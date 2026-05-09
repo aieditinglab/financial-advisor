@@ -1,8 +1,28 @@
 @import "tailwindcss";
 
+/* FlipLedger design tokens — paper + editorial */
+:root {
+  --paper: #F5F4ED;
+  --paper-soft: #FAF9F2;
+  --surface: #FFFFFF;
+  --ink: #1F1E1D;
+  --ink-2: #2E2C2A;
+  --text-secondary: #605F5C;
+  --text-muted: #8C8A82;
+  --border: #E5E2D6;
+  --border-subtle: #EFEDE5;
+  --accent: #10B981;
+  --accent-hover: #0E9F73;
+  --accent-soft: #E6F2EC;
+  --accent-deep: #064E3B;
+  --dark: #1F1E1D;
+  --dark-soft: #2E2C2A;
+}
+
 @theme inline {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-sans-app);
+  --font-serif: var(--font-serif-app);
+  --font-mono: var(--font-mono-app);
 }
 
 * {
@@ -14,25 +34,49 @@ html {
 }
 
 body {
-  background: #FAFAF8;
-  color: #0F1C2E;
-  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans-app), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "ss01", "cv11";
+}
+
+.serif {
+  font-family: var(--font-serif-app), "Source Serif 4", "Source Serif Pro", "Charter", Georgia, serif;
+  font-feature-settings: "ss01", "ss02";
+  letter-spacing: -0.01em;
+}
+
+.mono {
+  font-family: var(--font-mono-app), ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 }
 
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
+  height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #F4F3EF;
+  background: var(--paper);
 }
 ::-webkit-scrollbar-thumb {
-  background: #10B981;
-  border-radius: 3px;
+  background: var(--border);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
 }
 
 ::selection {
-  background: #10B981;
-  color: #0F1C2E;
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
 }

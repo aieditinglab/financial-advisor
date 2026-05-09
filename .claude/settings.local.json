@@ -4,7 +4,15 @@
       "Bash(npm run *)",
       "Bash(npm install *)",
       "Bash(npx next *)",
-      "Bash(Remove-Item -Recurse -Force node_modules, package-lock.json -ErrorAction SilentlyContinue)"
+      "Bash(Remove-Item -Recurse -Force node_modules, package-lock.json -ErrorAction SilentlyContinue)",
+      "mcp__474bb5e1-3016-4f20-b32f-45410b0f77b4__list_organizations",
+      "mcp__474bb5e1-3016-4f20-b32f-45410b0f77b4__list_projects",
+      "mcp__474bb5e1-3016-4f20-b32f-45410b0f77b4__get_cost",
+      "mcp__474bb5e1-3016-4f20-b32f-45410b0f77b4__confirm_cost",
+      "mcp__474bb5e1-3016-4f20-b32f-45410b0f77b4__create_project",
+      "mcp__474bb5e1-3016-4f20-b32f-45410b0f77b4__get_project_url",
+      "mcp__474bb5e1-3016-4f20-b32f-45410b0f77b4__get_publishable_keys",
+      "mcp__474bb5e1-3016-4f20-b32f-45410b0f77b4__apply_migration"
     ]
   }
 }

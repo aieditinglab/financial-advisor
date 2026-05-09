@@ -1,12 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const navLinks = [
-  { label: "Features", href: "#services" },
-  { label: "How It Works", href: "#approach" },
-  { label: "Stories", href: "#testimonials" },
-  { label: "Contact", href: "#contact" },
+  { label: "Features", href: "#features" },
+  { label: "How it works", href: "#how" },
+  { label: "Stories", href: "#stories" },
 ];
 
 export default function Navbar() {
@@ -14,7 +14,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => setScrolled(window.scrollY > 16);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -27,114 +27,121 @@ export default function Navbar() {
         left: 0,
         right: 0,
         zIndex: 50,
-        transition: "all 0.3s ease",
-        backgroundColor: scrolled ? "rgba(15, 28, 46, 0.97)" : "transparent",
-        backdropFilter: scrolled ? "blur(12px)" : "none",
-        borderBottom: scrolled ? "1px solid rgba(201, 168, 76, 0.15)" : "none",
+        transition: "all 0.2s ease",
+        background: scrolled ? "rgba(245, 244, 237, 0.92)" : "transparent",
+        backdropFilter: scrolled ? "saturate(180%) blur(14px)" : "none",
+        borderBottom: scrolled ? "1px solid var(--border-subtle)" : "1px solid transparent",
       }}
     >
       <div
         style={{
           maxWidth: "1200px",
           margin: "0 auto",
-          padding: "0 2rem",
-          height: "72px",
+          padding: "0 1.5rem",
+          height: "64px",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
         }}
       >
-        {/* Logo */}
-        <a
-          href="#"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "10px",
-            textDecoration: "none",
-          }}
-        >
+        <Link href="/" style={{ display: "flex", alignItems: "center", gap: "10px" }}>
           <div
             style={{
-              width: "32px",
-              height: "32px",
-              background: "linear-gradient(135deg, #10B981 0%, #34D399 100%)",
-              borderRadius: "8px",
+              width: "28px",
+              height: "28px",
+              background: "var(--ink)",
+              borderRadius: "7px",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
             }}
           >
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-              <path d="M2 13l4-4 3 3 4-5 3 2" stroke="#0F1C2E" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+            <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+              <path
+                d="M2 12l3.5-3.5 2.5 2.5 3.5-4.5 3 2.5"
+                stroke="var(--paper)"
+                strokeWidth="1.75"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
             </svg>
           </div>
           <span
+            className="serif"
             style={{
-              fontWeight: 700,
+              fontWeight: 600,
               fontSize: "1.1rem",
-              color: "#FAFAF8",
-              letterSpacing: "-0.02em",
+              color: "var(--ink)",
             }}
           >
             FlipLedger
           </span>
-        </a>
+        </Link>
 
-        {/* Desktop Nav */}
-        <nav style={{ display: "flex", alignItems: "center", gap: "2rem" }} className="hidden-mobile">
+        <nav
+          className="hidden-mobile"
+          style={{ display: "flex", alignItems: "center", gap: "2rem" }}
+        >
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
               style={{
-                color: "rgba(250, 250, 248, 0.75)",
-                textDecoration: "none",
+                color: "var(--text-secondary)",
                 fontSize: "0.9rem",
-                fontWeight: 450,
-                letterSpacing: "0.01em",
-                transition: "color 0.2s ease",
+                fontWeight: 500,
+                transition: "color 0.15s",
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "#10B981")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(250, 250, 248, 0.75)")}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "var(--ink)")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-secondary)")}
             >
               {link.label}
             </a>
           ))}
-          <a
-            href="#contact"
+          <Link
+            href="/login"
             style={{
-              background: "linear-gradient(135deg, #10B981 0%, #D4B86A 100%)",
-              color: "#0F1C2E",
-              padding: "0.5rem 1.25rem",
-              borderRadius: "6px",
-              fontWeight: 600,
-              fontSize: "0.875rem",
-              textDecoration: "none",
-              letterSpacing: "0.01em",
-              transition: "opacity 0.2s ease",
+              color: "var(--text-secondary)",
+              fontSize: "0.9rem",
+              fontWeight: 500,
+              transition: "color 0.15s",
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.9")}
-            onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+            onMouseEnter={(e) => (e.currentTarget.style.color = "var(--ink)")}
+            onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-secondary)")}
           >
-            Start Free
-          </a>
+            Sign in
+          </Link>
+          <Link
+            href="/signup"
+            style={{
+              background: "var(--ink)",
+              color: "var(--paper)",
+              padding: "0.5rem 1.1rem",
+              borderRadius: "8px",
+              fontWeight: 500,
+              fontSize: "0.875rem",
+              transition: "background 0.15s",
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.background = "var(--ink-2)")}
+            onMouseLeave={(e) => (e.currentTarget.style.background = "var(--ink)")}
+          >
+            Start free
+          </Link>
         </nav>
 
-        {/* Mobile Menu Button */}
         <button
-          onClick={() => setMenuOpen(!menuOpen)}
           className="show-mobile"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle menu"
           style={{
             background: "none",
             border: "none",
             cursor: "pointer",
             padding: "4px",
-            color: "#FAFAF8",
+            color: "var(--ink)",
           }}
-          aria-label="Toggle menu"
         >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             {menuOpen ? (
               <>
                 <line x1="18" y1="6" x2="6" y2="18" />
@@ -142,26 +149,24 @@ export default function Navbar() {
               </>
             ) : (
               <>
-                <line x1="3" y1="6" x2="21" y2="6" />
+                <line x1="3" y1="7" x2="21" y2="7" />
                 <line x1="3" y1="12" x2="21" y2="12" />
-                <line x1="3" y1="18" x2="21" y2="18" />
+                <line x1="3" y1="17" x2="21" y2="17" />
               </>
             )}
           </svg>
         </button>
       </div>
 
-      {/* Mobile Menu */}
       {menuOpen && (
         <div
           style={{
-            background: "rgba(15, 28, 46, 0.98)",
-            backdropFilter: "blur(12px)",
-            borderTop: "1px solid rgba(201, 168, 76, 0.15)",
-            padding: "1.5rem 2rem",
+            background: "var(--paper)",
+            borderTop: "1px solid var(--border-subtle)",
+            padding: "1.25rem 1.5rem 1.5rem",
             display: "flex",
             flexDirection: "column",
-            gap: "1.25rem",
+            gap: "1rem",
           }}
         >
           {navLinks.map((link) => (
@@ -169,33 +174,34 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               onClick={() => setMenuOpen(false)}
-              style={{
-                color: "rgba(250, 250, 248, 0.8)",
-                textDecoration: "none",
-                fontSize: "1rem",
-                fontWeight: 450,
-              }}
+              style={{ color: "var(--ink)", fontSize: "1rem", fontWeight: 500 }}
             >
               {link.label}
             </a>
           ))}
-          <a
-            href="#contact"
+          <Link
+            href="/login"
+            onClick={() => setMenuOpen(false)}
+            style={{ color: "var(--ink)", fontSize: "1rem", fontWeight: 500 }}
+          >
+            Sign in
+          </Link>
+          <Link
+            href="/signup"
             onClick={() => setMenuOpen(false)}
             style={{
-              background: "linear-gradient(135deg, #10B981 0%, #34D399 100%)",
-              color: "#0F1C2E",
-              padding: "0.75rem 1.5rem",
-              borderRadius: "6px",
-              fontWeight: 700,
+              background: "var(--ink)",
+              color: "var(--paper)",
+              padding: "0.7rem 1.2rem",
+              borderRadius: "8px",
+              fontWeight: 500,
               fontSize: "0.95rem",
-              textDecoration: "none",
               textAlign: "center",
-              marginTop: "0.5rem",
+              marginTop: "0.25rem",
             }}
           >
-            Start Free
-          </a>
+            Start free
+          </Link>
         </div>
       )}
 

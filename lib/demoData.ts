@@ -1,0 +1,98 @@
+import type { DemoItem } from "./types";
+
+const daysAgo = (n: number): string => {
+  const d = new Date();
+  d.setDate(d.getDate() - n);
+  return d.toISOString();
+};
+
+export const DEMO_ITEMS: DemoItem[] = [
+  {
+    id: "demo-1",
+    name: "Nike Dunk Low Panda",
+    platform: "stockx",
+    cogs: 95,
+    sale_price: 158,
+    fees: 14.22,
+    shipping: 4,
+    status: "sold",
+    sold_at: daysAgo(2),
+  },
+  {
+    id: "demo-2",
+    name: "Vintage Carhartt jacket",
+    platform: "depop",
+    cogs: 12,
+    sale_price: 78,
+    fees: 7.8,
+    shipping: 6.5,
+    status: "sold",
+    sold_at: daysAgo(5),
+  },
+  {
+    id: "demo-3",
+    name: "PS5 DualSense Edge",
+    platform: "ebay",
+    cogs: 145,
+    sale_price: 189,
+    fees: 24.5,
+    shipping: 8,
+    status: "sold",
+    sold_at: daysAgo(7),
+  },
+  {
+    id: "demo-4",
+    name: "Lululemon Define jacket (XS)",
+    platform: "depop",
+    cogs: 18,
+    sale_price: 64,
+    fees: 6.4,
+    shipping: 5,
+    status: "sold",
+    sold_at: daysAgo(11),
+  },
+  {
+    id: "demo-5",
+    name: "Pokemon 151 booster box",
+    platform: "whatnot",
+    cogs: 165,
+    sale_price: 232,
+    fees: 18.56,
+    shipping: 9,
+    status: "sold",
+    sold_at: daysAgo(14),
+  },
+  {
+    id: "demo-6",
+    name: "Apple AirPods Pro 2",
+    platform: "amazon",
+    cogs: 0,
+    sale_price: 0,
+    fees: 0,
+    shipping: 0,
+    status: "listed",
+    sold_at: null,
+  },
+  {
+    id: "demo-7",
+    name: "Levi's 501 vintage (32x30)",
+    platform: "depop",
+    cogs: 8,
+    sale_price: 0,
+    fees: 0,
+    shipping: 0,
+    status: "in_inventory",
+    sold_at: null,
+  },
+  {
+    id: "demo-8",
+    name: "Jordan 4 Bred Reimagined",
+    platform: "stockx",
+    cogs: 220,
+    sale_price: 0,
+    fees: 0,
+    shipping: 0,
+    status: "in_inventory",
+    sold_at: null,
+  },
+];

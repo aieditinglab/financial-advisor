@@ -1,9 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+
+const STORAGE_KEY = "fl_disclaimer_dismissed_v1";
 
 export default function DisclaimerBanner() {
-  const [dismissed, setDismissed] = useState(false);
+  const [dismissed, setDismissed] = useState(true);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    setDismissed(window.localStorage.getItem(STORAGE_KEY) === "1");
+  }, []);
 
   if (dismissed) return null;
 
@@ -11,67 +19,59 @@ export default function DisclaimerBanner() {
     <div
       style={{
         position: "fixed",
-        bottom: 0,
-        left: 0,
-        right: 0,
+        bottom: "1rem",
+        left: "1rem",
+        right: "1rem",
         zIndex: 40,
-        background: "rgba(9, 18, 30, 0.97)",
-        backdropFilter: "blur(12px)",
-        borderTop: "1px solid rgba(16, 185, 129, 0.2)",
-        padding: "0.75rem 2rem",
+        maxWidth: "640px",
+        margin: "0 auto",
+        background: "var(--surface)",
+        border: "1px solid var(--border)",
+        borderRadius: "12px",
+        padding: "0.85rem 1rem",
+        boxShadow: "0 12px 32px -8px rgba(31,30,29,0.18)",
         display: "flex",
         alignItems: "center",
-        justifyContent: "space-between",
-        gap: "1.5rem",
-        flexWrap: "wrap",
+        gap: "1rem",
       }}
     >
       <p
         style={{
-          color: "rgba(250, 250, 248, 0.5)",
+          color: "var(--text-secondary)",
           fontSize: "0.78rem",
           lineHeight: 1.5,
           margin: 0,
           flex: 1,
-          minWidth: "260px",
         }}
       >
-        FlipLedger uses AI. All outputs are for informational purposes only — not financial, tax, or legal advice.
-        AI can make mistakes. Verify important decisions with a licensed professional.{" "}
-        <a
-          href="/disclaimer"
-          style={{
-            color: "#10B981",
-            textDecoration: "none",
-            fontWeight: 500,
-          }}
-        >
-          Full disclaimer
-        </a>
+        FlipLedger uses AI. Outputs are for information only — not financial, tax, or
+        legal advice.{" "}
+        <Link href="/disclaimer" style={{ color: "var(--accent-deep)", fontWeight: 500 }}>
+          Read more
+        </Link>
       </p>
       <button
-        onClick={() => setDismissed(true)}
+        onClick={() => {
+          if (typeof window !== "undefined") {
+            window.localStorage.setItem(STORAGE_KEY, "1");
+          }
+          setDismissed(true);
+        }}
         aria-label="Dismiss disclaimer"
         style={{
-          background: "none",
-          border: "1px solid rgba(250, 250, 248, 0.15)",
-          color: "rgba(250, 250, 248, 0.4)",
+          background: "transparent",
+          border: "1px solid var(--border)",
+          color: "var(--text-secondary)",
           borderRadius: "6px",
-          padding: "4px 12px",
-          fontSize: "0.75rem",
+          padding: "4px 10px",
+          fontSize: "0.78rem",
           cursor: "pointer",
           fontFamily: "inherit",
           flexShrink: 0,
-          transition: "color 0.2s, border-color 0.2s",
+          transition: "border-color 0.15s",
         }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.color = "rgba(250, 250, 248, 0.7)";
-          e.currentTarget.style.borderColor = "rgba(250, 250, 248, 0.3)";
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.color = "rgba(250, 250, 248, 0.4)";
-          e.currentTarget.style.borderColor = "rgba(250, 250, 248, 0.15)";
-        }}
+        onMouseEnter={(e) => (e.currentTarget.style.borderColor = "var(--ink)")}
+        onMouseLeave={(e) => (e.currentTarget.style.borderColor = "var(--border)")}
       >
         Got it
       </button>

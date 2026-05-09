@@ -1,172 +1,156 @@
-const principles = [
+"use client";
+
+import Link from "next/link";
+
+const steps = [
   {
     number: "01",
-    title: "Connect your selling platforms",
+    title: "Sign up in 30 seconds",
     description:
-      "Link eBay, StockX, Amazon, Whatnot, and more. FlipLedger pulls in your sales data automatically — no manual entry, no copy-pasting from receipts.",
+      "Email and password. We send a 6-digit code for two-step verification, then you're in.",
   },
   {
     number: "02",
-    title: "Log what you paid",
+    title: "Add your first item",
     description:
-      "Add your sourcing cost for each item — from thrift stores to liquidation pallets to retail arbitrage. We do the math on your true margin after every fee.",
+      "Log what you paid, where you sold it, fees, and shipping. We do the math on your real margin.",
   },
   {
     number: "03",
-    title: "Watch your profits in real time",
+    title: "Watch profit update live",
     description:
-      "As items sell, your dashboard updates live. See your best-performing categories, your worst, and exactly where your money is going.",
+      "Your dashboard fills in as you log items. See your best categories, your worst, and where cash is tied up.",
   },
   {
     number: "04",
     title: "Plan smarter with AI",
     description:
-      "Ask FlipLedger's AI what's working, where you're losing margin, and how to hit your goals. Plain-English answers — no finance degree required.",
+      "Ask plain-English questions about your numbers and get clear answers — no spreadsheets required.",
   },
 ];
 
 export default function Approach() {
   return (
     <section
-      id="approach"
+      id="how"
       style={{
-        background: "linear-gradient(160deg, #0F1C2E 0%, #162438 100%)",
-        padding: "7rem 2rem",
-        position: "relative",
-        overflow: "hidden",
+        background: "var(--paper)",
+        padding: "7rem 1.5rem",
+        borderTop: "1px solid var(--border-subtle)",
       }}
     >
-      {/* Background accent */}
-      <div
-        style={{
-          position: "absolute",
-          top: "-200px",
-          right: "-200px",
-          width: "600px",
-          height: "600px",
-          background: "radial-gradient(circle, rgba(16, 185, 129, 0.04) 0%, transparent 70%)",
-          pointerEvents: "none",
-        }}
-      />
-
-      <div style={{ maxWidth: "1200px", margin: "0 auto", position: "relative" }}>
+      <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "1fr 1fr",
+            gridTemplateColumns: "1fr 1.4fr",
             gap: "5rem",
             alignItems: "start",
           }}
           className="approach-grid"
         >
-          {/* Left column */}
           <div>
             <span
               style={{
                 display: "inline-block",
-                color: "#10B981",
-                fontSize: "0.75rem",
-                fontWeight: 700,
+                color: "var(--accent-deep)",
+                fontSize: "0.72rem",
+                fontWeight: 600,
                 letterSpacing: "0.12em",
                 textTransform: "uppercase",
-                marginBottom: "1rem",
+                marginBottom: "0.85rem",
               }}
             >
-              How It Works
+              How it works
             </span>
             <h2
+              className="serif"
               style={{
-                fontSize: "clamp(2rem, 4vw, 2.75rem)",
-                fontWeight: 700,
-                color: "#FAFAF8",
+                fontSize: "clamp(2rem, 4.5vw, 3rem)",
+                fontWeight: 500,
+                color: "var(--ink)",
                 letterSpacing: "-0.025em",
-                lineHeight: 1.15,
-                marginBottom: "1.5rem",
+                lineHeight: 1.1,
+                marginBottom: "1.25rem",
               }}
             >
-              Set up in minutes.
-              <br />
-              <span
-                style={{
-                  background: "linear-gradient(135deg, #10B981 0%, #6EE7B7 100%)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                }}
-              >
-                Insights in seconds.
-              </span>
+              Set up in minutes. Insights in seconds.
             </h2>
             <p
               style={{
-                color: "rgba(250, 250, 248, 0.55)",
-                lineHeight: 1.75,
+                color: "var(--text-secondary)",
+                lineHeight: 1.7,
                 fontSize: "1rem",
-                marginBottom: "2rem",
+                marginBottom: "1.5rem",
               }}
             >
               Most resellers run their business on gut feeling and a rough idea of what
-              they paid for something. FlipLedger replaces guesswork with real numbers —
+              they paid for something. FlipLedger replaces guesswork with real numbers,
               so you can make faster, smarter decisions on every flip.
             </p>
-            <a
-              href="#contact"
+            <Link
+              href="/signup"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
                 gap: "8px",
-                color: "#10B981",
-                textDecoration: "none",
+                color: "var(--accent-deep)",
                 fontSize: "0.9rem",
                 fontWeight: 600,
-                letterSpacing: "0.02em",
               }}
             >
               Get started free
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <path
+                  d="M3 8h10M9 4l4 4-4 4"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
-            </a>
+            </Link>
           </div>
 
-          {/* Right column */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
-            {principles.map((p, i) => (
+          <div>
+            {steps.map((s, i) => (
               <div
-                key={p.number}
+                key={s.number}
                 style={{
-                  padding: "1.75rem 0",
-                  borderBottom: i < principles.length - 1 ? "1px solid rgba(250, 250, 248, 0.07)" : "none",
                   display: "flex",
                   gap: "1.5rem",
+                  padding: "1.5rem 0",
+                  borderTop: i === 0 ? "none" : "1px solid var(--border-subtle)",
                 }}
               >
                 <span
+                  className="mono"
                   style={{
-                    color: "rgba(16, 185, 129, 0.45)",
-                    fontSize: "0.75rem",
-                    fontWeight: 700,
-                    letterSpacing: "0.08em",
+                    color: "var(--text-muted)",
+                    fontSize: "0.78rem",
+                    fontWeight: 600,
+                    letterSpacing: "0.06em",
                     flexShrink: 0,
-                    paddingTop: "3px",
-                    fontFamily: "monospace",
+                    paddingTop: "5px",
                   }}
                 >
-                  {p.number}
+                  {s.number}
                 </span>
                 <div>
                   <h3
+                    className="serif"
                     style={{
-                      color: "#FAFAF8",
-                      fontSize: "1rem",
-                      fontWeight: 650,
-                      marginBottom: "0.5rem",
+                      color: "var(--ink)",
+                      fontSize: "1.15rem",
+                      fontWeight: 500,
+                      marginBottom: "0.4rem",
                       letterSpacing: "-0.01em",
                     }}
                   >
-                    {p.title}
+                    {s.title}
                   </h3>
-                  <p style={{ color: "rgba(250, 250, 248, 0.5)", fontSize: "0.875rem", lineHeight: 1.65 }}>
-                    {p.description}
+                  <p style={{ color: "var(--text-secondary)", fontSize: "0.93rem", lineHeight: 1.6 }}>
+                    {s.description}
                   </p>
                 </div>
               </div>
@@ -177,7 +161,7 @@ export default function Approach() {
 
       <style>{`
         @media (max-width: 767px) {
-          .approach-grid { grid-template-columns: 1fr !important; gap: 3rem !important; }
+          .approach-grid { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
         }
       `}</style>
     </section>
