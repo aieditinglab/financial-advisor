@@ -1,0 +1,301 @@
+import Link from "next/link";
+
+const EFFECTIVE_DATE = "May 9, 2025";
+
+export default function DisclaimerPage() {
+  const sectionStyle = { marginBottom: "2.5rem" };
+  const h2Style = {
+    fontSize: "1.2rem",
+    fontWeight: 700,
+    color: "#0F1C2E",
+    letterSpacing: "-0.01em",
+    marginBottom: "0.75rem",
+  };
+  const pStyle = {
+    color: "#475569",
+    fontSize: "0.95rem",
+    lineHeight: 1.75,
+    marginBottom: "0.75rem",
+  };
+  const listStyle = {
+    color: "#475569",
+    fontSize: "0.95rem",
+    lineHeight: 1.75,
+    paddingLeft: "1.5rem",
+    marginBottom: "0.75rem",
+  };
+
+  return (
+    <>
+      <header
+        style={{
+          background: "rgba(15, 28, 46, 0.97)",
+          borderBottom: "1px solid rgba(16, 185, 129, 0.15)",
+          padding: "0 2rem",
+          height: "64px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          position: "sticky",
+          top: 0,
+          zIndex: 50,
+        }}
+      >
+        <Link href="/" style={{ display: "flex", alignItems: "center", gap: "10px", textDecoration: "none" }}>
+          <div
+            style={{
+              width: "28px",
+              height: "28px",
+              background: "linear-gradient(135deg, #10B981 0%, #34D399 100%)",
+              borderRadius: "7px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+              <path d="M2 12l3.5-3.5 2.5 2.5 3.5-4.5 3 2.5" stroke="#0F1C2E" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+            </svg>
+          </div>
+          <span style={{ fontWeight: 700, fontSize: "1rem", color: "#FAFAF8", letterSpacing: "-0.02em" }}>FlipLedger</span>
+        </Link>
+        <Link href="/" style={{ color: "rgba(250, 250, 248, 0.6)", fontSize: "0.85rem", textDecoration: "none" }}>
+          ← Back to home
+        </Link>
+      </header>
+
+      <main style={{ maxWidth: "760px", margin: "0 auto", padding: "5rem 2rem 7rem" }}>
+        <div style={{ marginBottom: "3rem", paddingBottom: "2rem", borderBottom: "1px solid #E8E6DF" }}>
+          <span
+            style={{
+              display: "inline-block",
+              color: "#10B981",
+              fontSize: "0.75rem",
+              fontWeight: 700,
+              letterSpacing: "0.12em",
+              textTransform: "uppercase",
+              marginBottom: "1rem",
+            }}
+          >
+            Legal
+          </span>
+          <h1
+            style={{
+              fontSize: "clamp(2rem, 5vw, 2.75rem)",
+              fontWeight: 800,
+              color: "#0F1C2E",
+              letterSpacing: "-0.03em",
+              lineHeight: 1.1,
+              marginBottom: "1rem",
+            }}
+          >
+            AI &amp; Financial Disclaimer
+          </h1>
+          <p style={{ color: "#94A3B8", fontSize: "0.875rem" }}>Effective date: {EFFECTIVE_DATE}</p>
+        </div>
+
+        {/* High-visibility callout */}
+        <div
+          style={{
+            background: "rgba(16, 185, 129, 0.06)",
+            border: "1px solid rgba(16, 185, 129, 0.25)",
+            borderRadius: "12px",
+            padding: "1.5rem 1.75rem",
+            marginBottom: "3rem",
+          }}
+        >
+          <p
+            style={{
+              color: "#0F1C2E",
+              fontSize: "1rem",
+              lineHeight: 1.7,
+              fontWeight: 500,
+              margin: 0,
+            }}
+          >
+            <strong>Plain-English summary:</strong> FlipLedger is a tracking and analytics tool — not a financial
+            advisor, tax preparer, or lawyer. The AI features can make mistakes. Nothing we show you is
+            financial, tax, or legal advice. Before making important money or tax decisions, talk to a
+            licensed professional.
+          </p>
+        </div>
+
+        <div style={sectionStyle}>
+          <h2 style={h2Style}>1. FlipLedger is Not a Financial Advisor</h2>
+          <p style={pStyle}>
+            FlipLedger is a software tool that helps resellers organize and analyze their financial data.
+            We are <strong>not</strong> a licensed financial advisor, investment adviser, broker-dealer, registered
+            investment company, certified public accountant (CPA), enrolled agent, tax preparer, attorney, or
+            any other type of licensed financial or legal professional.
+          </p>
+          <p style={pStyle}>
+            Nothing on or within the FlipLedger platform — including text, calculations, AI-generated insights,
+            dashboards, reports, summaries, suggestions, or any other content — constitutes or should be construed
+            as financial advice, investment advice, tax advice, accounting advice, or legal advice of any kind.
+          </p>
+        </div>
+
+        <div style={sectionStyle}>
+          <h2 style={h2Style}>2. AI Can Make Mistakes</h2>
+          <p style={pStyle}>
+            FlipLedger uses artificial intelligence (AI) — including large language models — to generate insights,
+            summaries, trend analyses, and suggestions based on your data. <strong>AI systems can and do produce
+            errors, hallucinations, and incorrect outputs.</strong> These outputs:
+          </p>
+          <ul style={listStyle}>
+            <li>May be factually incorrect, incomplete, or outdated</li>
+            <li>May not account for your specific circumstances, tax jurisdiction, or business situation</li>
+            <li>May reflect the limitations or biases present in AI training data</li>
+            <li>May change in accuracy or behavior as the underlying AI model is updated</li>
+            <li>Should never be relied upon as a substitute for professional judgment</li>
+          </ul>
+          <p style={pStyle}>
+            <strong>Always verify AI-generated outputs</strong> — especially any figures, calculations, tax estimates,
+            or recommendations — before using them to make financial, business, or tax decisions.
+          </p>
+        </div>
+
+        <div style={sectionStyle}>
+          <h2 style={h2Style}>3. No Fiduciary Relationship</h2>
+          <p style={pStyle}>
+            FlipLedger does not owe you a fiduciary duty of any kind. We are not acting as your advisor, agent,
+            or representative. No relationship is created between you and FlipLedger that would impose any duty
+            to act in your best interest in a legally binding financial or advisory capacity.
+          </p>
+        </div>
+
+        <div style={sectionStyle}>
+          <h2 style={h2Style}>4. Tax Estimates Are Approximations Only</h2>
+          <p style={pStyle}>
+            Any tax-related figures, quarterly tax estimates, self-employment tax calculations, or year-end
+            summaries provided by FlipLedger are <strong>rough approximations</strong> intended to help you
+            organize your financial information. They are not:
+          </p>
+          <ul style={listStyle}>
+            <li>Prepared or reviewed by a licensed tax professional</li>
+            <li>A substitute for a tax return prepared by a CPA or enrolled agent</li>
+            <li>Guaranteed to reflect your actual federal, state, or local tax liability</li>
+            <li>Accounting for every deduction, credit, or jurisdiction-specific rule that may apply to you</li>
+          </ul>
+          <p style={pStyle}>
+            Tax laws change frequently and vary by location. Always consult a licensed tax professional
+            (CPA, enrolled agent, or tax attorney) before filing returns or making tax payments.
+          </p>
+        </div>
+
+        <div style={sectionStyle}>
+          <h2 style={h2Style}>5. Informational Purposes Only</h2>
+          <p style={pStyle}>
+            All content, data, charts, insights, suggestions, and any other output from FlipLedger is provided
+            for <strong>general informational and organizational purposes only</strong>. It does not take into
+            account your individual financial situation, goals, risk tolerance, tax situation, or any other
+            personal circumstances.
+          </p>
+          <p style={pStyle}>
+            Information on FlipLedger may not be appropriate for your situation. Before acting on any
+            information from FlipLedger, consider whether it is appropriate for your specific circumstances
+            and consult a qualified professional.
+          </p>
+        </div>
+
+        <div style={sectionStyle}>
+          <h2 style={h2Style}>6. Platform Fee Data and Third-Party Information</h2>
+          <p style={pStyle}>
+            FlipLedger displays fee structures and data from third-party selling platforms (e.g., eBay, StockX,
+            Amazon, Whatnot). This information:
+          </p>
+          <ul style={listStyle}>
+            <li>May not reflect the most current fee schedules, as platforms change fees without notice</li>
+            <li>May vary based on your account tier, seller level, or subscription with those platforms</li>
+            <li>Is provided for estimation purposes only — not as a guarantee of your actual payout</li>
+          </ul>
+          <p style={pStyle}>
+            Always verify current fees directly with the relevant platform before making pricing decisions.
+          </p>
+        </div>
+
+        <div style={sectionStyle}>
+          <h2 style={h2Style}>7. Past Performance and Forward-Looking Information</h2>
+          <p style={pStyle}>
+            Any historical data, trend analyses, or projections shown in FlipLedger do not guarantee future results.
+            Resale markets are subject to fluctuations in supply, demand, platform policies, economic conditions,
+            and other factors beyond our control. Past performance of any item category, platform, or strategy
+            is not indicative of future performance.
+          </p>
+        </div>
+
+        <div style={sectionStyle}>
+          <h2 style={h2Style}>8. No Warranty on Accuracy</h2>
+          <p style={pStyle}>
+            FlipLedger makes no warranty, express or implied, regarding the accuracy, completeness, reliability,
+            suitability, or availability of any information, calculations, or AI-generated content on the platform.
+            The Service is provided &ldquo;as is,&rdquo; and you use it at your own risk.
+          </p>
+          <p style={pStyle}>
+            We do not verify the accuracy of data you input. Inaccurate input data will produce inaccurate outputs.
+            You are responsible for ensuring the data you enter is correct.
+          </p>
+        </div>
+
+        <div style={sectionStyle}>
+          <h2 style={h2Style}>9. Limitation of Liability</h2>
+          <p style={pStyle}>
+            TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, FLIPLEDGER SHALL NOT BE LIABLE FOR ANY LOSSES,
+            DAMAGES, OR COSTS (INCLUDING LOST PROFITS, TAX PENALTIES, FINES, OR INDIRECT DAMAGES) ARISING FROM
+            YOUR RELIANCE ON ANY INFORMATION, AI OUTPUT, OR CALCULATIONS PROVIDED BY THE SERVICE — WHETHER SUCH
+            RELIANCE IS DIRECT OR INDIRECT, REGARDLESS OF WHETHER WE HAVE BEEN ADVISED OF THE POSSIBILITY OF
+            SUCH DAMAGES.
+          </p>
+        </div>
+
+        <div style={sectionStyle}>
+          <h2 style={h2Style}>10. Seek Professional Advice</h2>
+          <p style={pStyle}>
+            We strongly encourage you to seek advice from qualified licensed professionals for:
+          </p>
+          <ul style={listStyle}>
+            <li><strong>Tax matters:</strong> CPA, enrolled agent, or tax attorney</li>
+            <li><strong>Legal matters:</strong> Licensed attorney in your jurisdiction</li>
+            <li><strong>Financial planning:</strong> Registered investment adviser or certified financial planner (CFP®)</li>
+            <li><strong>Business formation:</strong> Attorney or CPA familiar with business entity law</li>
+          </ul>
+          <p style={pStyle}>
+            A free tool can help you organize your numbers — but important decisions deserve professional eyes.
+          </p>
+        </div>
+
+        <div style={sectionStyle}>
+          <h2 style={h2Style}>11. Questions</h2>
+          <p style={pStyle}>
+            If you have questions about this disclaimer, contact us at{" "}
+            <a href="mailto:hello@flipledger.com" style={{ color: "#10B981", textDecoration: "none" }}>
+              hello@flipledger.com
+            </a>
+            .
+          </p>
+        </div>
+
+        <div
+          style={{
+            marginTop: "4rem",
+            paddingTop: "2rem",
+            borderTop: "1px solid #E8E6DF",
+            display: "flex",
+            gap: "1.5rem",
+            flexWrap: "wrap",
+          }}
+        >
+          <Link href="/terms" style={{ color: "#10B981", fontSize: "0.875rem", textDecoration: "none" }}>Terms of Service →</Link>
+          <Link href="/privacy" style={{ color: "#10B981", fontSize: "0.875rem", textDecoration: "none" }}>Privacy Policy →</Link>
+          <Link href="/" style={{ color: "#10B981", fontSize: "0.875rem", textDecoration: "none" }}>← Back to FlipLedger</Link>
+        </div>
+      </main>
+
+      <footer style={{ background: "#060d17", padding: "2rem", textAlign: "center" }}>
+        <p style={{ color: "rgba(250, 250, 248, 0.25)", fontSize: "0.78rem" }}>
+          © 2025 FlipLedger. All rights reserved. Not financial advice.
+        </p>
+      </footer>
+    </>
+  );
+}
