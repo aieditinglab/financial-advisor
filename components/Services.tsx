@@ -97,15 +97,14 @@ export default function Services() {
           {features.map((f, i) => (
             <div
               key={f.title}
+              className="fl-feature-cell"
               style={{
                 padding: "1.75rem",
                 borderRight: "1px solid var(--border-subtle)",
                 borderBottom: "1px solid var(--border-subtle)",
                 background: "var(--surface)",
-                transition: "background 0.15s",
+                transition: "background 0.18s ease",
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.background = "var(--paper-soft)")}
-              onMouseLeave={(e) => (e.currentTarget.style.background = "var(--surface)")}
             >
               <div
                 className="mono"
@@ -152,6 +151,12 @@ export default function Services() {
           </Link>
         </p>
       </div>
+
+      <style>{`
+        .fl-feature-cell:hover { background: var(--paper-soft) !important; }
+        .fl-feature-cell:hover h3 { color: var(--accent-deep); }
+        .fl-feature-cell h3 { transition: color 0.2s ease; }
+      `}</style>
     </section>
   );
 }

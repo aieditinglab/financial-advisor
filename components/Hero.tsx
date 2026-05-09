@@ -30,6 +30,7 @@ export default function Hero() {
             }}
           >
             <span
+              className="fl-pulse-dot"
               style={{
                 width: "6px",
                 height: "6px",

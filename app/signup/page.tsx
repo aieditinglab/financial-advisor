@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import AuthShell from "@/components/auth/AuthShell";
+import PasswordInput from "@/components/auth/PasswordInput";
 import { createClient } from "@/lib/supabase/client";
 import {
   buttonDisabledStyle,
@@ -17,13 +18,20 @@ export default function SignupPage() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [accepted, setAccepted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [info, setInfo] = useState<string | null>(null);
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
+    setInfo(null);
 
+    if (!accepted) {
+      setError("You must agree to the Terms of Service and Privacy Policy.");
+      return;
+    }
     if (password.length < 8) {
       setError("Password must be at least 8 characters.");
       return;
@@ -31,34 +39,54 @@ export default function SignupPage() {
 
     setLoading(true);
     const supabase = createClient();
-    const { error } = await supabase.auth.signUp({
+    const { data, error: signUpErr } = await supabase.auth.signUp({
       email,
       password,
-      options: {
-        emailRedirectTo:
-          typeof window !== "undefined"
-            ? `${window.location.origin}/dashboard`
-            : undefined,
-      },
     });
-    setLoading(false);
-
-    if (error) {
-      setError(error.message);
+    if (signUpErr) {
+      setLoading(false);
+      setError(signUpErr.message);
       return;
     }
 
-    router.push(`/verify?email=${encodeURIComponent(email)}`);
+    // If email confirmation is OFF in Supabase, signUp returns a session.
+    if (data.session) {
+      // mark terms acceptance
+      try {
+        await supabase
+          .from("profiles")
+          .update({ accepted_terms_at: new Date().toISOString() })
+          .eq("id", data.session.user.id);
+      } catch {
+        // non-blocking
+      }
+      router.push("/dashboard?welcome=1");
+      router.refresh();
+      return;
+    }
+
+    // Confirmation still on — try signing in directly (works once they confirm).
+    const { data: signedIn, error: signInErr } =
+      await supabase.auth.signInWithPassword({ email, password });
+    setLoading(false);
+    if (signInErr || !signedIn.session) {
+      setInfo(
+        "Account created. Confirm your email to finish — or ask the admin to disable email confirmation in Supabase to skip this step.",
+      );
+      return;
+    }
+    router.push("/dashboard?welcome=1");
+    router.refresh();
   };
 
   return (
     <AuthShell
       title="Create your account"
-      subtitle="Free forever — no credit card. Two-step verification by email."
+      subtitle="Free forever. No credit card. Straight into the app."
       footer={
-        <p style={{ color: "rgba(250,250,248,0.5)", fontSize: "0.875rem" }}>
+        <p style={{ color: "var(--text-secondary)", fontSize: "0.875rem" }}>
           Already have an account?{" "}
-          <Link href="/login" style={{ color: "#10B981", textDecoration: "none", fontWeight: 600 }}>
+          <Link href="/login" style={{ color: "var(--accent-deep)", fontWeight: 600 }}>
             Sign in
           </Link>
         </p>
@@ -76,39 +104,88 @@ export default function SignupPage() {
             onChange={(e) => setEmail(e.target.value)}
             placeholder="you@email.com"
             style={inputStyle}
-            onFocus={(e) => (e.currentTarget.style.borderColor = "rgba(16,185,129,0.5)")}
-            onBlur={(e) => (e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)")}
+            onFocus={(e) => (e.currentTarget.style.borderColor = "var(--accent)")}
+            onBlur={(e) => (e.currentTarget.style.borderColor = "var(--border)")}
           />
         </div>
-        <div style={{ marginBottom: "1.25rem" }}>
+        <div style={{ marginBottom: "1.1rem" }}>
           <label htmlFor="password" style={labelStyle}>Password</label>
-          <input
+          <PasswordInput
             id="password"
-            type="password"
-            required
-            autoComplete="new-password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={setPassword}
             placeholder="At least 8 characters"
-            style={inputStyle}
-            onFocus={(e) => (e.currentTarget.style.borderColor = "rgba(16,185,129,0.5)")}
-            onBlur={(e) => (e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)")}
+            autoComplete="new-password"
           />
         </div>
 
-        <button type="submit" disabled={loading} style={loading ? buttonDisabledStyle : buttonStyle}>
-          {loading ? "Creating account…" : "Create account"}
+        <label
+          style={{
+            display: "flex",
+            alignItems: "flex-start",
+            gap: "0.6rem",
+            marginBottom: "1.25rem",
+            cursor: "pointer",
+            color: "var(--text-secondary)",
+            fontSize: "0.83rem",
+            lineHeight: 1.55,
+          }}
+        >
+          <input
+            type="checkbox"
+            checked={accepted}
+            onChange={(e) => setAccepted(e.target.checked)}
+            style={{
+              width: "16px",
+              height: "16px",
+              marginTop: "2px",
+              accentColor: "var(--accent)",
+              cursor: "pointer",
+              flexShrink: 0,
+            }}
+          />
+          <span>
+            I agree to the{" "}
+            <Link href="/terms" style={{ color: "var(--accent-deep)", fontWeight: 500 }}>
+              Terms of Service
+            </Link>
+            ,{" "}
+            <Link href="/privacy" style={{ color: "var(--accent-deep)", fontWeight: 500 }}>
+              Privacy Policy
+            </Link>
+            , and{" "}
+            <Link href="/disclaimer" style={{ color: "var(--accent-deep)", fontWeight: 500 }}>
+              AI Disclaimer
+            </Link>
+            . I understand FlipLedger is not financial, tax, or legal advice.
+          </span>
+        </label>
+
+        <button
+          type="submit"
+          disabled={loading || !accepted}
+          style={loading || !accepted ? buttonDisabledStyle : buttonStyle}
+        >
+          {loading ? "Creating your account…" : "Create account"}
         </button>
 
         {error && <div style={errorStyle}>{error}</div>}
-
-        <p style={{ marginTop: "1.25rem", color: "rgba(250,250,248,0.4)", fontSize: "0.75rem", lineHeight: 1.5 }}>
-          By creating an account you agree to our{" "}
-          <Link href="/terms" style={{ color: "rgba(250,250,248,0.6)" }}>Terms</Link>,{" "}
-          <Link href="/privacy" style={{ color: "rgba(250,250,248,0.6)" }}>Privacy Policy</Link>, and{" "}
-          <Link href="/disclaimer" style={{ color: "rgba(250,250,248,0.6)" }}>AI Disclaimer</Link>.
-          FlipLedger is not financial, tax, or legal advice.
-        </p>
+        {info && (
+          <div
+            style={{
+              marginTop: "0.85rem",
+              padding: "0.65rem 0.85rem",
+              background: "var(--accent-soft)",
+              border: "1px solid rgba(16,185,129,0.25)",
+              borderRadius: "8px",
+              color: "var(--accent-deep)",
+              fontSize: "0.85rem",
+              lineHeight: 1.55,
+            }}
+          >
+            {info}
+          </div>
+        )}
       </form>
     </AuthShell>
   );

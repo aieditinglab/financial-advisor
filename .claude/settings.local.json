@@ -12,7 +12,11 @@
       "mcp__474bb5e1-3016-4f20-b32f-45410b0f77b4__create_project",
       "mcp__474bb5e1-3016-4f20-b32f-45410b0f77b4__get_project_url",
       "mcp__474bb5e1-3016-4f20-b32f-45410b0f77b4__get_publishable_keys",
-      "mcp__474bb5e1-3016-4f20-b32f-45410b0f77b4__apply_migration"
+      "mcp__474bb5e1-3016-4f20-b32f-45410b0f77b4__apply_migration",
+      "mcp__9800ca92-ecc8-42fa-9398-55a3e713e87e__deploy_to_vercel",
+      "mcp__9800ca92-ecc8-42fa-9398-55a3e713e87e__list_teams",
+      "mcp__9800ca92-ecc8-42fa-9398-55a3e713e87e__list_projects",
+      "PowerShell(try { \\(Invoke-WebRequest -Uri \"https://financial-advisor-brown.vercel.app\" -UseBasicParsing -MaximumRedirection 0 -ErrorAction SilentlyContinue\\).StatusCode } catch { $_.Exception.Response.StatusCode.value__ })"
     ]
   }
 }

@@ -81,6 +81,7 @@ export default function About() {
           {pillars.map((p) => (
             <div
               key={p.title}
+              className="fl-lift"
               style={{
                 background: "var(--paper-soft)",
                 border: "1px solid var(--border)",

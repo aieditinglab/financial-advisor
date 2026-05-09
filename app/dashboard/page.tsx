@@ -4,32 +4,56 @@ import type { Item } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
 
-export default async function DashboardPage() {
+export default async function DashboardPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ welcome?: string }>;
+}) {
+  const params = await searchParams;
   const supabase = await createClient();
 
-  const { data: items, error } = await supabase
-    .from("items")
-    .select("*")
-    .order("created_at", { ascending: false });
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
-  if (error) {
+  const [{ data: items, error: itemsErr }, { data: profile }] = await Promise.all([
+    supabase
+      .from("items")
+      .select("*")
+      .eq("user_id", user!.id)
+      .order("created_at", { ascending: false }),
+    supabase
+      .from("profiles")
+      .select("is_admin, plan, accepted_terms_at, email")
+      .eq("id", user!.id)
+      .maybeSingle(),
+  ]);
+
+  if (itemsErr) {
     return (
       <div style={{ maxWidth: "900px", margin: "3rem auto", padding: "0 1.5rem" }}>
         <div
           style={{
             padding: "1rem 1.25rem",
-            background: "#FEF2F2",
-            border: "1px solid #FECACA",
+            background: "rgba(159,42,42,0.08)",
+            border: "1px solid rgba(159,42,42,0.25)",
             borderRadius: "10px",
-            color: "#B91C1C",
+            color: "#9F2A2A",
             fontSize: "0.9rem",
           }}
         >
-          Couldn&apos;t load your items: {error.message}
+          Couldn&apos;t load your items: {itemsErr.message}
         </div>
       </div>
     );
   }
 
-  return <DashboardView items={(items ?? []) as Item[]} />;
+  return (
+    <DashboardView
+      items={(items ?? []) as Item[]}
+      isAdmin={!!profile?.is_admin}
+      plan={profile?.plan ?? "free"}
+      autoOpenWalkthrough={params.welcome === "1"}
+    />
+  );
 }

@@ -133,7 +133,8 @@ export default function ItemsTable({
         </span>
       </div>
 
-      <div style={{ overflowX: "auto" }}>
+      {/* Desktop / tablet: table */}
+      <div className="items-desktop" style={{ overflowX: "auto" }}>
         <table style={{ width: "100%", borderCollapse: "collapse", minWidth: "720px" }}>
           <thead>
             <tr style={{ background: "var(--paper-soft)" }}>
@@ -189,7 +190,6 @@ export default function ItemsTable({
                         fontWeight: 600,
                         padding: "2px 8px",
                         borderRadius: "20px",
-                        letterSpacing: "0.01em",
                       }}
                     >
                       {statusLabel[r.status]}
@@ -252,6 +252,139 @@ export default function ItemsTable({
             })}
           </tbody>
         </table>
+      </div>
+
+      {/* Mobile: cards */}
+      <div className="items-mobile" style={{ display: "none" }}>
+        {rows.map((r) => {
+          const profit = computeProfit({
+            sale_price: r.sale_price,
+            cogs: r.cogs,
+            fees: r.fees,
+            shipping: r.shipping,
+          });
+          const isSold = r.status === "sold";
+          const profitColor = !isSold
+            ? "var(--text-muted)"
+            : profit >= 0
+              ? "var(--accent-deep)"
+              : "#9F2A2A";
+          const status = statusStyle[r.status];
+          return (
+            <div
+              key={r.id}
+              style={{
+                padding: "1rem 1.15rem",
+                borderTop: "1px solid var(--border-subtle)",
+                display: "flex",
+                flexDirection: "column",
+                gap: "0.55rem",
+              }}
+            >
+              <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", justifyContent: "space-between" }}>
+                <span style={{ fontWeight: 500, color: "var(--ink)", fontSize: "0.95rem" }}>
+                  {r.name}
+                </span>
+                <span
+                  style={{
+                    display: "inline-block",
+                    background: status.bg,
+                    color: status.color,
+                    fontSize: "0.7rem",
+                    fontWeight: 600,
+                    padding: "2px 8px",
+                    borderRadius: "20px",
+                    flexShrink: 0,
+                  }}
+                >
+                  {statusLabel[r.status]}
+                </span>
+              </div>
+              <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.78rem", color: "var(--text-muted)" }}>
+                <span>{platformLabel(r.platform)}</span>
+                <span>{fmtDate(r.sold_at)}</span>
+              </div>
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(3, 1fr)",
+                  gap: "0.5rem",
+                  paddingTop: "0.4rem",
+                  borderTop: "1px dashed var(--border-subtle)",
+                }}
+              >
+                <Stat label="COGS" value={fmtMoney(r.cogs)} />
+                <Stat
+                  label="Sale"
+                  value={fmtMoney(r.sale_price)}
+                  color={isSold ? "var(--ink)" : "var(--text-muted)"}
+                />
+                <Stat
+                  label="Profit"
+                  value={isSold ? fmtMoney(profit) : "—"}
+                  color={profitColor}
+                  bold
+                />
+              </div>
+              {editable && !r.isDemo && (
+                <button
+                  onClick={() => handleDelete(r.id)}
+                  disabled={deletingId === r.id}
+                  style={{
+                    alignSelf: "flex-start",
+                    background: "transparent",
+                    border: "none",
+                    color: "var(--text-muted)",
+                    cursor: "pointer",
+                    padding: "2px 0",
+                    fontSize: "0.78rem",
+                    fontFamily: "inherit",
+                  }}
+                >
+                  {deletingId === r.id ? "Deleting…" : "Delete"}
+                </button>
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      <style>{`
+        @media (max-width: 640px) {
+          .items-desktop { display: none !important; }
+          .items-mobile { display: block !important; }
+        }
+      `}</style>
+    </div>
+  );
+}
+
+function Stat({
+  label,
+  value,
+  color = "var(--text-secondary)",
+  bold = false,
+}: {
+  label: string;
+  value: string;
+  color?: string;
+  bold?: boolean;
+}) {
+  return (
+    <div>
+      <div
+        style={{
+          fontSize: "0.65rem",
+          color: "var(--text-muted)",
+          textTransform: "uppercase",
+          letterSpacing: "0.05em",
+          marginBottom: "2px",
+        }}
+      >
+        {label}
+      </div>
+      <div className="mono" style={{ fontSize: "0.85rem", color, fontWeight: bold ? 600 : 500 }}>
+        {value}
       </div>
     </div>
   );

@@ -74,6 +74,7 @@ export default function Testimonials() {
           {testimonials.map((t) => (
             <figure
               key={t.name}
+              className="fl-lift"
               style={{
                 background: "var(--surface)",
                 border: "1px solid var(--border)",
