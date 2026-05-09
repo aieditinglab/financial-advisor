@@ -16,7 +16,9 @@
       "mcp__9800ca92-ecc8-42fa-9398-55a3e713e87e__deploy_to_vercel",
       "mcp__9800ca92-ecc8-42fa-9398-55a3e713e87e__list_teams",
       "mcp__9800ca92-ecc8-42fa-9398-55a3e713e87e__list_projects",
-      "PowerShell(try { \\(Invoke-WebRequest -Uri \"https://financial-advisor-brown.vercel.app\" -UseBasicParsing -MaximumRedirection 0 -ErrorAction SilentlyContinue\\).StatusCode } catch { $_.Exception.Response.StatusCode.value__ })"
+      "PowerShell(try { \\(Invoke-WebRequest -Uri \"https://financial-advisor-brown.vercel.app\" -UseBasicParsing -MaximumRedirection 0 -ErrorAction SilentlyContinue\\).StatusCode } catch { $_.Exception.Response.StatusCode.value__ })",
+      "Bash(git mv *)",
+      "Bash(git add *)"
     ]
   }
 }

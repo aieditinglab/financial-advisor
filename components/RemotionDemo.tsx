@@ -7,32 +7,64 @@ import { useEffect, useRef, useState } from "react";
 const Demo = dynamic(() => import("@/remotion/Demo"), { ssr: false });
 
 const FPS = 30;
-const DURATION_FRAMES = 26 * FPS; // matches FL_DURATION
+const DURATION_FRAMES = 26 * FPS;
 const COMP_W = 1280;
 const COMP_H = 720;
 
-// Captions, voiced via the browser's Web Speech API.
-// Time stamps in seconds — start of each spoken phrase.
 const CAPTIONS = [
   { time: 0.4, text: "Reseller finance, made simple." },
   { time: 4.2, text: "Add an item: name, platform, what you paid, what you sold it for." },
   { time: 10.2, text: "Your dashboard updates in real time. Real profit. Real margin." },
-  { time: 16.2, text: "AI insights surface what's working — and what's quietly losing money." },
+  { time: 16.2, text: "AI insights surface what's working and what's quietly losing money." },
   { time: 22.2, text: "Start free at flipledger.com." },
 ];
+
+async function fetchClip(text: string): Promise<HTMLAudioElement | null> {
+  try {
+    const r = await fetch("/api/tts", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text }),
+    });
+    if (!r.ok) return null;
+    const blob = await r.blob();
+    const url = URL.createObjectURL(blob);
+    const audio = new Audio(url);
+    audio.preload = "auto";
+    audio.volume = 0.95;
+    return audio;
+  } catch {
+    return null;
+  }
+}
+
+function speakFallback(text: string) {
+  if (typeof window === "undefined" || !window.speechSynthesis) return;
+  const u = new SpeechSynthesisUtterance(text);
+  u.rate = 1.05;
+  u.volume = 0.85;
+  const voices = window.speechSynthesis.getVoices();
+  const preferred =
+    voices.find((v) => /Google US English/i.test(v.name)) ??
+    voices.find((v) => /Samantha|Karen|Daniel/i.test(v.name)) ??
+    voices.find((v) => v.lang.startsWith("en"));
+  if (preferred) u.voice = preferred;
+  window.speechSynthesis.speak(u);
+}
 
 export default function RemotionDemo() {
   const [voiceOn, setVoiceOn] = useState(false);
   const [playing, setPlaying] = useState(false);
+  const [loadingVoice, setLoadingVoice] = useState(false);
   const playerRef = useRef<React.ComponentRef<typeof Player>>(null);
   const spokenRef = useRef<Set<number>>(new Set());
+  const clipsRef = useRef<(HTMLAudioElement | null)[]>([]);
+  const usingFallbackRef = useRef(false);
 
-  // Reset spoken captions when restarting
   useEffect(() => {
     if (!playing) spokenRef.current = new Set();
   }, [playing]);
 
-  // Subscribe to play/pause events
   useEffect(() => {
     const player = playerRef.current;
     if (!player) return;
@@ -46,7 +78,23 @@ export default function RemotionDemo() {
     };
   }, []);
 
-  // Speak captions in sync with player time when voice is on
+  // Preload ElevenLabs clips once the user enables voice
+  useEffect(() => {
+    if (!voiceOn || clipsRef.current.length > 0) return;
+    let cancelled = false;
+    setLoadingVoice(true);
+    (async () => {
+      const clips = await Promise.all(CAPTIONS.map((c) => fetchClip(c.text)));
+      if (cancelled) return;
+      clipsRef.current = clips;
+      usingFallbackRef.current = clips.every((c) => c === null);
+      setLoadingVoice(false);
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [voiceOn]);
+
   useEffect(() => {
     if (!voiceOn) return;
     const player = playerRef.current;
@@ -58,18 +106,12 @@ export default function RemotionDemo() {
         if (spokenRef.current.has(i)) return;
         if (seconds >= c.time) {
           spokenRef.current.add(i);
-          if (typeof window !== "undefined" && window.speechSynthesis) {
-            const u = new SpeechSynthesisUtterance(c.text);
-            u.rate = 1.05;
-            u.pitch = 1.0;
-            u.volume = 0.85;
-            const voices = window.speechSynthesis.getVoices();
-            const preferred =
-              voices.find((v) => /Google US English/i.test(v.name)) ??
-              voices.find((v) => /Samantha|Karen|Daniel/i.test(v.name)) ??
-              voices.find((v) => v.lang.startsWith("en"));
-            if (preferred) u.voice = preferred;
-            window.speechSynthesis.speak(u);
+          const clip = clipsRef.current[i];
+          if (clip) {
+            clip.currentTime = 0;
+            clip.play().catch(() => speakFallback(c.text));
+          } else {
+            speakFallback(c.text);
           }
         }
       });
@@ -78,15 +120,16 @@ export default function RemotionDemo() {
     player.addEventListener("frameupdate", onFrame);
     return () => {
       player.removeEventListener("frameupdate", onFrame);
+      clipsRef.current.forEach((c) => c?.pause());
       if (typeof window !== "undefined" && window.speechSynthesis) {
         window.speechSynthesis.cancel();
       }
     };
   }, [voiceOn]);
 
-  // Stop voice on unmount
   useEffect(
     () => () => {
+      clipsRef.current.forEach((c) => c?.pause());
       if (typeof window !== "undefined" && window.speechSynthesis) {
         window.speechSynthesis.cancel();
       }
@@ -100,7 +143,6 @@ export default function RemotionDemo() {
     if (playing) {
       p.pause();
     } else {
-      // Force voices to load; some browsers lazy-init.
       if (typeof window !== "undefined" && window.speechSynthesis) {
         window.speechSynthesis.getVoices();
       }
@@ -203,9 +245,6 @@ export default function RemotionDemo() {
               fontWeight: 500,
               cursor: "pointer",
               fontFamily: "inherit",
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 6,
             }}
           >
             {playing ? "Pause" : "Play demo"}
@@ -214,8 +253,11 @@ export default function RemotionDemo() {
             onClick={() => {
               setVoiceOn((v) => {
                 const next = !v;
-                if (!next && typeof window !== "undefined" && window.speechSynthesis) {
-                  window.speechSynthesis.cancel();
+                if (!next) {
+                  clipsRef.current.forEach((c) => c?.pause());
+                  if (typeof window !== "undefined" && window.speechSynthesis) {
+                    window.speechSynthesis.cancel();
+                  }
                 }
                 return next;
               });
@@ -230,12 +272,9 @@ export default function RemotionDemo() {
               fontWeight: 500,
               cursor: "pointer",
               fontFamily: "inherit",
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 6,
             }}
           >
-            {voiceOn ? "Voice on" : "Voice off"}
+            {loadingVoice ? "Loading voice…" : voiceOn ? "Voice on" : "Voice off"}
           </button>
         </div>
         <span style={{ color: "var(--text-muted)", fontSize: "0.78rem" }}>

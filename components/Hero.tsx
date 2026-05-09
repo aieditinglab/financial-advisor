@@ -12,8 +12,31 @@ export default function Hero() {
         padding: "9rem 1.5rem 5rem",
       }}
     >
+      <span
+        className="fl-halo"
+        aria-hidden
+        style={{
+          width: 480,
+          height: 480,
+          background: "radial-gradient(circle, rgba(16,185,129,0.28), rgba(16,185,129,0) 70%)",
+          top: -120,
+          right: -120,
+        }}
+      />
+      <span
+        className="fl-halo"
+        aria-hidden
+        style={{
+          width: 360,
+          height: 360,
+          background: "radial-gradient(circle, rgba(245,158,11,0.18), rgba(245,158,11,0) 70%)",
+          bottom: -80,
+          left: -100,
+          animationDelay: "-3s",
+        }}
+      />
       <div style={{ maxWidth: "1100px", margin: "0 auto", position: "relative" }}>
-        <div style={{ maxWidth: "760px" }}>
+        <div style={{ maxWidth: "760px" }} className="fl-rise">
           <div
             style={{
               display: "inline-flex",
@@ -56,10 +79,10 @@ export default function Hero() {
             Reseller finance,
             <br />
             <em
+              className="fl-gradient-text"
               style={{
                 fontStyle: "italic",
                 fontWeight: 400,
-                color: "var(--accent-deep)",
               }}
             >
               made simple.
@@ -83,6 +106,7 @@ export default function Hero() {
           <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem", alignItems: "center" }}>
             <Link
               href="/signup"
+              className="fl-glow-btn"
               style={{
                 background: "var(--ink)",
                 color: "var(--paper)",
@@ -90,13 +114,6 @@ export default function Hero() {
                 borderRadius: "10px",
                 fontWeight: 500,
                 fontSize: "0.95rem",
-                transition: "background 0.15s, transform 0.15s",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = "var(--ink-2)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = "var(--ink)";
               }}
             >
               Start tracking — it's free
@@ -121,7 +138,7 @@ export default function Hero() {
           </div>
 
           <p style={{ marginTop: "1.25rem", color: "var(--text-muted)", fontSize: "0.82rem" }}>
-            Free forever tier · No credit card · Two-step verification by email
+            Free forever tier · No credit card · Cancel any time
           </p>
         </div>
 
