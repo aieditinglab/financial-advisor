@@ -29,9 +29,11 @@ export default function Navbar() {
         right: 0,
         zIndex: 50,
         transition: "all 0.2s ease",
-        background: scrolled ? "rgba(245, 244, 237, 0.92)" : "transparent",
-        backdropFilter: scrolled ? "saturate(180%) blur(14px)" : "none",
+        background: scrolled ? "rgba(250, 247, 238, 0.85)" : "transparent",
+        backdropFilter: scrolled ? "saturate(180%) blur(18px)" : "none",
+        WebkitBackdropFilter: scrolled ? "saturate(180%) blur(18px)" : "none",
         borderBottom: scrolled ? "1px solid var(--border-subtle)" : "1px solid transparent",
+        boxShadow: scrolled ? "0 1px 0 rgba(14,17,22,0.02)" : "none",
       }}
     >
       <div
@@ -114,17 +116,8 @@ export default function Navbar() {
           </Link>
           <Link
             href="/signup"
-            style={{
-              background: "var(--ink)",
-              color: "var(--paper)",
-              padding: "0.5rem 1.1rem",
-              borderRadius: "8px",
-              fontWeight: 500,
-              fontSize: "0.875rem",
-              transition: "background 0.15s",
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.background = "var(--ink-2)")}
-            onMouseLeave={(e) => (e.currentTarget.style.background = "var(--ink)")}
+            className="fl-btn fl-btn-accent"
+            style={{ padding: "0.55rem 1.15rem", fontSize: "0.88rem" }}
           >
             Start free
           </Link>
@@ -190,16 +183,8 @@ export default function Navbar() {
           <Link
             href="/signup"
             onClick={() => setMenuOpen(false)}
-            style={{
-              background: "var(--ink)",
-              color: "var(--paper)",
-              padding: "0.7rem 1.2rem",
-              borderRadius: "8px",
-              fontWeight: 500,
-              fontSize: "0.95rem",
-              textAlign: "center",
-              marginTop: "0.25rem",
-            }}
+            className="fl-btn fl-btn-accent"
+            style={{ padding: "0.75rem 1.25rem", fontSize: "0.95rem", marginTop: "0.25rem" }}
           >
             Start free
           </Link>

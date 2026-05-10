@@ -165,33 +165,49 @@ export default function Sidebar({ isAdmin }: { isAdmin: boolean }) {
 
       <style>{`
         .fl-sidebar {
-          width: 220px;
+          width: 240px;
           flex-shrink: 0;
           background: var(--surface);
-          border-right: 1px solid var(--border);
+          border-right: 1px solid var(--border-subtle);
           position: sticky;
-          top: 60px;
-          height: calc(100vh - 60px);
+          top: 64px;
+          height: calc(100vh - 64px);
           overflow-y: auto;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
         }
         .fl-nav-item {
           display: flex;
           align-items: center;
-          gap: 10px;
-          padding: 0.55rem 0.85rem;
-          border-radius: 8px;
+          gap: 11px;
+          padding: 0.6rem 0.9rem;
+          border-radius: 10px;
           font-size: 0.88rem;
           font-weight: 500;
           color: var(--text-secondary);
-          transition: background 0.15s, color 0.15s;
+          position: relative;
+          transition: background 180ms ease, color 180ms ease, transform 180ms ease;
         }
         .fl-nav-item:hover {
           background: var(--paper-soft);
           color: var(--ink);
+          transform: translateX(2px);
         }
         .fl-nav-item[data-active="true"] {
-          background: var(--ink);
+          background: linear-gradient(135deg, var(--ink) 0%, var(--ink-2) 100%);
           color: var(--paper);
+          box-shadow: var(--shadow-sm);
+        }
+        .fl-nav-item[data-active="true"]::before {
+          content: "";
+          position: absolute;
+          left: -12px;
+          top: 8px;
+          bottom: 8px;
+          width: 3px;
+          border-radius: 0 3px 3px 0;
+          background: var(--accent);
         }
         .fl-sidebar-toggle {
           display: none;

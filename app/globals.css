@@ -1,30 +1,79 @@
 @import "tailwindcss";
 
-/* FlipLedger design tokens — paper + editorial, warmer & richer */
+/* ============================================================
+   FlipLedger — "Editorial Modern" design system
+   Bone-white surfaces, deep midnight ink, saturated emerald,
+   copper warmth. Built for finance with personality.
+   ============================================================ */
+
 :root {
-  --paper: #F4F2EA;
-  --paper-soft: #FAF8F1;
+  /* Surfaces */
+  --paper: #FAF7EE;
+  --paper-soft: #F1EDDD;
+  --paper-deep: #E9E2CC;
   --surface: #FFFFFF;
-  --ink: #1B1A19;
-  --ink-2: #2A2826;
-  --text-secondary: #5A5854;
-  --text-muted: #8B887F;
-  --border: #E2DED1;
-  --border-subtle: #EDE9DD;
-  --accent: #0F9D6E;
-  --accent-hover: #0B855E;
-  --accent-soft: #E2F1E9;
+  --surface-elev: #FFFFFF;
+
+  /* Ink — deep midnight, slight blue undertone */
+  --ink: #0E1116;
+  --ink-2: #1A1E25;
+  --ink-3: #2A2F38;
+
+  /* Text */
+  --text-secondary: #4B515D;
+  --text-muted: #8B919D;
+
+  /* Borders */
+  --border: #E0DAC6;
+  --border-subtle: #ECE7D5;
+  --border-strong: #C9C2A9;
+
+  /* Primary accent — saturated emerald */
+  --accent: #0E9E6E;
+  --accent-hover: #0A7E58;
   --accent-deep: #064C36;
-  --warm: #C7771A;
-  --warm-soft: #FBEFD9;
-  --warm-deep: #7A4810;
-  --rose: #C44B4B;
-  --rose-soft: #FBE4E4;
-  --shadow-sm: 0 1px 2px rgba(27,26,25,0.05);
-  --shadow-md: 0 4px 14px -4px rgba(27,26,25,0.10);
-  --shadow-lg: 0 24px 60px -28px rgba(27,26,25,0.22);
-  --dark: #1B1A19;
-  --dark-soft: #2A2826;
+  --accent-soft: #D5EFE2;
+  --accent-glow: rgba(14, 158, 110, 0.35);
+
+  /* Warm — copper / amber */
+  --warm: #D97A1A;
+  --warm-hover: #B85F0E;
+  --warm-deep: #7A4310;
+  --warm-soft: #FBE5C5;
+  --warm-glow: rgba(217, 122, 26, 0.30);
+
+  /* Rose — for negative / risk */
+  --rose: #DC2C5C;
+  --rose-soft: #FBDDE5;
+  --rose-deep: #821B38;
+
+  /* Cobalt — occasional accent */
+  --cobalt: #1F4ED8;
+  --cobalt-soft: #D9E2FB;
+
+  /* Gold highlight */
+  --gold: #C99A1F;
+  --gold-soft: #F8EAC2;
+
+  /* Shadows */
+  --shadow-xs: 0 1px 2px rgba(14,17,22,0.04);
+  --shadow-sm: 0 2px 6px rgba(14,17,22,0.06);
+  --shadow-md: 0 8px 22px -8px rgba(14,17,22,0.14);
+  --shadow-lg: 0 28px 60px -28px rgba(14,17,22,0.28);
+  --shadow-xl: 0 40px 80px -36px rgba(14,17,22,0.32);
+  --shadow-glow-emerald: 0 12px 36px -12px rgba(14,158,110,0.45);
+  --shadow-glow-warm: 0 12px 36px -12px rgba(217,122,26,0.40);
+
+  /* Radii */
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --r-xl: 22px;
+  --r-2xl: 28px;
+
+  /* Legacy alias */
+  --dark: var(--ink);
+  --dark-soft: var(--ink-2);
 }
 
 @theme inline {
@@ -33,9 +82,7 @@
   --font-mono: var(--font-mono-app);
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 html {
   scroll-behavior: smooth;
@@ -48,114 +95,132 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-feature-settings: "ss01", "cv11";
+  /* Subtle paper grain over the whole canvas */
+  background-image:
+    radial-gradient(rgba(14,17,22,0.02) 1px, transparent 1px),
+    radial-gradient(rgba(14,17,22,0.015) 1px, transparent 1px);
+  background-size: 24px 24px, 36px 36px;
+  background-position: 0 0, 12px 18px;
 }
 
 .serif {
   font-family: var(--font-serif-app), "Source Serif 4", "Source Serif Pro", "Charter", Georgia, serif;
   font-feature-settings: "ss01", "ss02";
-  letter-spacing: -0.01em;
+  letter-spacing: -0.012em;
 }
 
 .mono {
   font-family: var(--font-mono-app), ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-feature-settings: "tnum";
 }
 
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-::-webkit-scrollbar-track {
-  background: var(--paper);
-}
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb {
   background: var(--border);
-  border-radius: 4px;
+  border-radius: 6px;
+  border: 2px solid var(--paper);
 }
-::-webkit-scrollbar-thumb:hover {
-  background: var(--text-muted);
-}
+::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
 
 ::selection {
   background: var(--accent-soft);
-  color: var(--ink);
+  color: var(--accent-deep);
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; }
 
-button {
-  font-family: inherit;
-}
+/* ============================================================
+   Animations
+   ============================================================ */
 
-/* Animations */
 @keyframes fl-pulse-dot {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5); }
-  50%      { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(14, 158, 110, 0.55); }
+  50%      { box-shadow: 0 0 0 8px rgba(14, 158, 110, 0); }
 }
 @keyframes fl-fade-up {
-  from { opacity: 0; transform: translateY(14px); }
+  from { opacity: 0; transform: translateY(16px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-@keyframes fl-float {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-3px); }
+@keyframes fl-rise {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
-
-.fl-pulse-dot {
-  animation: fl-pulse-dot 2s ease-in-out infinite;
-}
-
-.fl-reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1), transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
-}
-.fl-reveal.fl-revealed {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.fl-lift {
-  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
-  will-change: transform;
-}
-.fl-lift:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 16px 38px -16px rgba(31,30,29,0.18);
-  border-color: var(--text-muted);
-}
-
-/* Richer accents */
 @keyframes fl-shimmer {
   0%   { background-position: -200% 0; }
   100% { background-position: 200% 0; }
 }
 @keyframes fl-halo {
   0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.55; }
-  50%      { transform: translate(20px, -10px) scale(1.08); opacity: 0.75; }
+  50%      { transform: translate(24px, -16px) scale(1.10); opacity: 0.78; }
 }
-@keyframes fl-rise {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: translateY(0); }
+@keyframes fl-orbit {
+  0%   { transform: rotate(0deg) translateX(8px) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(8px) rotate(-360deg); }
+}
+@keyframes fl-grid-pan {
+  0%   { background-position: 0 0; }
+  100% { background-position: 60px 60px; }
+}
+@keyframes fl-blob {
+  0%, 100% { border-radius: 47% 53% 56% 44% / 53% 49% 51% 47%; }
+  33%      { border-radius: 60% 40% 50% 50% / 40% 60% 40% 60%; }
+  66%      { border-radius: 40% 60% 60% 40% / 60% 40% 60% 40%; }
 }
 
+.fl-pulse-dot { animation: fl-pulse-dot 2.2s ease-in-out infinite; }
+
+.fl-rise { animation: fl-rise 600ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+
+.fl-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.fl-reveal.fl-revealed { opacity: 1; transform: translateY(0); }
+
+.fl-lift {
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 220ms ease,
+              border-color 220ms ease;
+  will-change: transform;
+}
+.fl-lift:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-strong);
+}
+
+/* ============================================================
+   Gradient text & accent utilities
+   ============================================================ */
+
 .fl-gradient-text {
-  background: linear-gradient(90deg, #064E3B 0%, #10B981 45%, #059669 100%);
+  background: linear-gradient(96deg, var(--accent-deep) 0%, var(--accent) 45%, var(--gold) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.fl-gradient-warm {
+  background: linear-gradient(96deg, var(--warm-deep) 0%, var(--warm) 50%, var(--gold) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 
 .fl-shimmer {
   background: linear-gradient(
     90deg,
     var(--ink) 0%,
-    var(--ink) 40%,
-    #10B981 50%,
-    var(--ink) 60%,
+    var(--ink) 38%,
+    var(--accent) 50%,
+    var(--ink) 62%,
     var(--ink) 100%
   );
   background-size: 200% 100%;
@@ -168,9 +233,76 @@ button {
 .fl-halo {
   position: absolute;
   border-radius: 50%;
-  filter: blur(60px);
+  filter: blur(70px);
   pointer-events: none;
-  animation: fl-halo 9s ease-in-out infinite;
+  animation: fl-halo 11s ease-in-out infinite;
+  z-index: 0;
+}
+
+.fl-blob {
+  position: absolute;
+  filter: blur(40px);
+  pointer-events: none;
+  animation: fl-blob 14s ease-in-out infinite;
+  z-index: 0;
+}
+
+/* Subtle dot grid for hero/section backgrounds */
+.fl-grid {
+  background-image: radial-gradient(rgba(14,17,22,0.07) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* ============================================================
+   Buttons
+   ============================================================ */
+
+.fl-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--r-md);
+  font-size: 0.92rem;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: transform 160ms ease, background 160ms ease, box-shadow 200ms ease, border-color 160ms ease;
+  white-space: nowrap;
+}
+.fl-btn:disabled { cursor: not-allowed; opacity: 0.55; }
+.fl-btn:active:not(:disabled) { transform: translateY(1px) scale(0.99); }
+
+.fl-btn-primary {
+  background: linear-gradient(135deg, var(--ink) 0%, var(--ink-2) 100%);
+  color: var(--paper);
+  box-shadow: var(--shadow-sm);
+}
+.fl-btn-primary:hover:not(:disabled) {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.fl-btn-accent {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-deep) 100%);
+  color: #FFFFFF;
+  box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255,255,255,0.18);
+}
+.fl-btn-accent:hover:not(:disabled) {
+  box-shadow: var(--shadow-glow-emerald);
+  transform: translateY(-1px);
+}
+
+.fl-btn-ghost {
+  background: var(--surface);
+  color: var(--ink);
+  border-color: var(--border);
+}
+.fl-btn-ghost:hover:not(:disabled) {
+  border-color: var(--ink);
+  background: var(--paper-soft);
 }
 
 .fl-glow-btn {
@@ -179,12 +311,30 @@ button {
 }
 .fl-glow-btn:hover {
   transform: translateY(-1px);
-  box-shadow: 0 12px 28px -10px rgba(16,185,129,0.55), 0 0 0 1px rgba(16,185,129,0.35);
+  box-shadow: var(--shadow-glow-emerald);
 }
 
-.fl-underline-link {
-  position: relative;
+/* ============================================================
+   Cards
+   ============================================================ */
+
+.fl-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 1.25rem 1.4rem;
+  box-shadow: var(--shadow-xs);
 }
+.fl-card-elev {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-md);
+}
+
+/* Underline link micro-interaction */
+.fl-underline-link { position: relative; }
 .fl-underline-link::after {
   content: "";
   position: absolute;
@@ -202,12 +352,38 @@ button {
   transform-origin: left;
 }
 
-.fl-rise {
-  animation: fl-rise 600ms cubic-bezier(0.16, 1, 0.3, 1) both;
+/* ============================================================
+   Form controls — unified
+   ============================================================ */
+
+.fl-input,
+.fl-select,
+.fl-textarea {
+  width: 100%;
+  background: var(--paper-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 0.6rem 0.85rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 160ms ease, background 160ms ease, box-shadow 160ms ease;
+}
+.fl-input:focus,
+.fl-select:focus,
+.fl-textarea:focus {
+  border-color: var(--accent);
+  background: var(--surface);
+  box-shadow: 0 0 0 3px var(--accent-glow);
 }
 
+/* ============================================================
+   Reduced motion
+   ============================================================ */
+
 @media (prefers-reduced-motion: reduce) {
-  .fl-reveal, .fl-pulse-dot, .fl-lift, .fl-shimmer, .fl-halo, .fl-rise {
+  .fl-reveal, .fl-pulse-dot, .fl-lift, .fl-shimmer, .fl-halo, .fl-blob, .fl-rise {
     transition: none !important;
     animation: none !important;
     transform: none !important;

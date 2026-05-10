@@ -39,7 +39,7 @@ export default async function DashboardLayout({ children }: { children: ReactNod
           background: "var(--surface)",
           borderBottom: "1px solid var(--border)",
           padding: "0 1.25rem 0 4rem",
-          height: "60px",
+          height: "64px",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
