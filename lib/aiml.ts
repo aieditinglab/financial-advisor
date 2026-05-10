@@ -1,8 +1,8 @@
-// AI/ML API client (https://aimlapi.com)
-// OpenAI-compatible chat completions endpoint.
+// Groq API client (https://groq.com)
+// OpenAI-compatible chat completions endpoint — blazing fast inference.
 
-const ENDPOINT = "https://api.aimlapi.com/v1/chat/completions";
-const DEFAULT_MODEL = "gpt-4o-mini";
+const ENDPOINT = "https://api.groq.com/openai/v1/chat/completions";
+const DEFAULT_MODEL = "llama-3.3-70b-versatile";
 
 interface OAIMessage {
   role: "system" | "user" | "assistant";
