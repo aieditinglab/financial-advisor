@@ -2,7 +2,7 @@
 // OpenAI-compatible chat completions endpoint — blazing fast inference.
 
 const ENDPOINT = "https://api.groq.com/openai/v1/chat/completions";
-const DEFAULT_MODEL = "llama-3.3-70b-versatile";
+const DEFAULT_MODEL = "qwen/qwen3-32b";
 
 interface OAIMessage {
   role: "system" | "user" | "assistant";
