@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
-import { geminiGenerate } from "@/lib/gemini";
+import { aimlGenerate } from "@/lib/aiml";
 import { computeProfit, type Item } from "@/lib/types";
 
 export const runtime = "nodejs";
@@ -15,7 +15,7 @@ You are NOT a licensed financial, tax, or legal advisor. If the user asks about 
 
 interface ChatRequest {
   message: string;
-  history?: { role: "user" | "model"; text: string }[];
+  history?: { role: "user" | "assistant" | "model"; text: string }[];
 }
 
 function buildItemContext(items: Item[]): string {
@@ -102,24 +102,26 @@ export async function POST(req: NextRequest) {
 
   const context = buildItemContext((items ?? []) as Item[]);
 
-  const messages: { role: "user" | "model"; text: string }[] = [];
+  const messages: { role: "user" | "assistant"; text: string }[] = [];
   messages.push({
     role: "user",
     text: `Here is the user's tracked reseller data. Treat it as ground truth.\n\n${context}`,
   });
   messages.push({
-    role: "model",
+    role: "assistant",
     text: "Got it — I have the user's reseller data. What would you like to know?",
   });
   for (const m of body.history ?? []) {
-    if (m.role === "user" || m.role === "model") {
-      messages.push({ role: m.role, text: m.text });
+    // Accept legacy "model" role alias from older client bundles.
+    const role = m.role === "model" ? "assistant" : m.role;
+    if (role === "user" || role === "assistant") {
+      messages.push({ role, text: m.text });
     }
   }
   messages.push({ role: "user", text: body.message });
 
   try {
-    const reply = await geminiGenerate({ system: SYSTEM, messages, temperature: 0.55 });
+    const reply = await aimlGenerate({ system: SYSTEM, messages, temperature: 0.55 });
 
     await supabase.from("chat_messages").insert([
       { user_id: user.id, role: "user", content: body.message },

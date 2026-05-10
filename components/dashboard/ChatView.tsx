@@ -48,7 +48,7 @@ export default function ChatView() {
     setPending(true);
     const userMsg: Msg = { id: crypto.randomUUID(), role: "user", content: trimmed };
     const history = messages.map((m) => ({
-      role: m.role === "assistant" ? ("model" as const) : ("user" as const),
+      role: m.role === "assistant" ? ("assistant" as const) : ("user" as const),
       text: m.content,
     }));
     setMessages((prev) => [...prev, userMsg]);

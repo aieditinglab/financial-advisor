@@ -1,328 +1,253 @@
-"use client";
-
-import Link from "next/link";
+const stats = [
+  { value: "$2.4B", label: "Assets Under Advisement" },
+  { value: "340+", label: "Families Served" },
+  { value: "20 yrs", label: "In Practice" },
+  { value: "Flat-Fee", label: "No Commissions" },
+];
 
 export default function Hero() {
   return (
     <section
       style={{
-        background: "var(--paper)",
+        minHeight: "100vh",
+        background: "linear-gradient(160deg, #0F1C2E 0%, #162438 55%, #1A2D47 100%)",
         position: "relative",
         overflow: "hidden",
-        padding: "10rem 1.5rem 6rem",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        padding: "7rem 1.5rem 5rem",
       }}
     >
-      {/* Decorative halos */}
-      <span
-        className="fl-halo"
-        aria-hidden
+      {/* Subtle grid overlay */}
+      <div
+        aria-hidden="true"
         style={{
-          width: 560,
-          height: 560,
-          background: "radial-gradient(circle, rgba(14,158,110,0.32), rgba(14,158,110,0) 70%)",
-          top: -180,
-          right: -160,
-        }}
-      />
-      <span
-        className="fl-halo"
-        aria-hidden
-        style={{
-          width: 420,
-          height: 420,
-          background: "radial-gradient(circle, rgba(217,122,26,0.22), rgba(217,122,26,0) 70%)",
-          bottom: -120,
-          left: -120,
-          animationDelay: "-4s",
-        }}
-      />
-      <span
-        className="fl-halo"
-        aria-hidden
-        style={{
-          width: 320,
-          height: 320,
-          background: "radial-gradient(circle, rgba(31,78,216,0.16), rgba(31,78,216,0) 70%)",
-          top: "30%",
-          left: "55%",
-          animationDelay: "-7s",
+          position: "absolute",
+          inset: 0,
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)",
+          backgroundSize: "60px 60px",
+          pointerEvents: "none",
         }}
       />
 
-      <div style={{ maxWidth: "1140px", margin: "0 auto", position: "relative" }}>
-        <div style={{ maxWidth: "820px" }} className="fl-rise">
-          <div
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "10px",
-              background: "var(--surface)",
-              border: "1px solid var(--border)",
-              borderRadius: "100px",
-              padding: "6px 16px 6px 14px",
-              marginBottom: "1.85rem",
-              fontSize: "0.78rem",
-              color: "var(--text-secondary)",
-              fontWeight: 500,
-              boxShadow: "var(--shadow-xs)",
-            }}
-          >
-            <span
-              className="fl-pulse-dot"
-              style={{
-                width: "7px",
-                height: "7px",
-                borderRadius: "50%",
-                background: "var(--accent)",
-                display: "inline-block",
-              }}
-            />
-            <span style={{ color: "var(--ink)" }}>Built for resellers</span>
-            <span style={{ color: "var(--text-muted)" }}>·</span>
-            <span>eBay · StockX · Depop · Whatnot · Amazon · Mercari</span>
-          </div>
+      {/* Gold glow blob — top right */}
+      <span
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          top: "-120px",
+          right: "-80px",
+          width: "480px",
+          height: "480px",
+          borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(201,168,76,0.14), rgba(201,168,76,0) 70%)",
+          filter: "blur(40px)",
+          pointerEvents: "none",
+        }}
+      />
+      {/* Subtle blue blob — bottom left */}
+      <span
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          bottom: "-60px",
+          left: "-60px",
+          width: "360px",
+          height: "360px",
+          borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(30,80,140,0.22), rgba(30,80,140,0) 70%)",
+          filter: "blur(50px)",
+          pointerEvents: "none",
+        }}
+      />
 
-          <h1
-            className="serif"
-            style={{
-              fontSize: "clamp(2.75rem, 7vw, 5rem)",
-              fontWeight: 500,
-              color: "var(--ink)",
-              lineHeight: 1.02,
-              letterSpacing: "-0.038em",
-              marginBottom: "1.6rem",
-            }}
-          >
-            Reseller finance,
-            <br />
-            <em
-              className="fl-gradient-text"
-              style={{
-                fontStyle: "italic",
-                fontWeight: 400,
-              }}
-            >
-              made simple.
-            </em>
-          </h1>
-
-          <p
-            style={{
-              fontSize: "clamp(1.08rem, 1.9vw, 1.22rem)",
-              color: "var(--text-secondary)",
-              lineHeight: 1.6,
-              marginBottom: "2.5rem",
-              maxWidth: "620px",
-            }}
-          >
-            Track real profit on every flip — after platform fees, shipping, and taxes. Whether
-            you&apos;re moving 5 items a month or 500, FlipLedger replaces guesswork with numbers
-            you can actually trust.
-          </p>
-
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem", alignItems: "center" }}>
-            <Link href="/signup" className="fl-btn fl-btn-accent fl-glow-btn" style={{ padding: "0.95rem 1.7rem", fontSize: "0.98rem" }}>
-              Start tracking — it&apos;s free
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <path d="M3 7h8m-3-3l3 3-3 3" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </Link>
-            <a href="#features" className="fl-btn fl-btn-ghost" style={{ padding: "0.95rem 1.4rem", fontSize: "0.98rem" }}>
-              See how it works
-            </a>
-          </div>
-
-          <div style={{ marginTop: "1.6rem", display: "flex", flexWrap: "wrap", gap: "1.5rem", color: "var(--text-muted)", fontSize: "0.82rem" }}>
-            <Trust>Free forever tier</Trust>
-            <Trust>No credit card</Trust>
-            <Trust>Cancel any time</Trust>
-          </div>
-        </div>
-
-        {/* Dashboard preview — richer, layered */}
+      <div style={{ maxWidth: "1140px", margin: "0 auto", position: "relative", width: "100%" }}>
+        {/* Positioning badge */}
         <div
           style={{
-            marginTop: "5rem",
-            position: "relative",
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "8px",
+            background: "rgba(201,168,76,0.12)",
+            border: "1px solid rgba(201,168,76,0.28)",
+            borderRadius: "100px",
+            padding: "6px 16px",
+            marginBottom: "2rem",
           }}
         >
-          {/* Floating sparkline accent card behind */}
-          <div
-            aria-hidden
+          <span
             style={{
-              position: "absolute",
-              top: -28,
-              right: 12,
-              background: "linear-gradient(135deg, var(--ink) 0%, var(--ink-2) 100%)",
-              color: "var(--paper)",
-              borderRadius: "var(--r-md)",
-              padding: "0.85rem 1.1rem",
-              boxShadow: "var(--shadow-lg)",
-              transform: "rotate(2deg)",
-              zIndex: 1,
-              display: "none",
+              width: "6px",
+              height: "6px",
+              borderRadius: "50%",
+              background: "#C9A84C",
+              display: "inline-block",
+              boxShadow: "0 0 0 3px rgba(201,168,76,0.25)",
             }}
-            className="hero-floating-card"
+          />
+          <span
+            style={{
+              fontSize: "0.75rem",
+              fontWeight: 600,
+              color: "#C9A84C",
+              letterSpacing: "0.12em",
+              textTransform: "uppercase",
+            }}
           >
-            <div style={{ fontSize: "0.65rem", letterSpacing: "0.08em", textTransform: "uppercase", opacity: 0.6, fontWeight: 600, marginBottom: 4 }}>
-              This month
-            </div>
-            <div className="serif" style={{ fontSize: "1.4rem", fontWeight: 500, letterSpacing: "-0.02em" }}>
-              +$2,184
-            </div>
-            <svg width="100" height="22" viewBox="0 0 100 22" style={{ marginTop: 6 }}>
-              <path d="M0 18 L20 14 L40 16 L60 8 L80 10 L100 4" stroke="var(--accent)" strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+            Fee-Only · Fiduciary · Independent
+          </span>
+        </div>
+
+        {/* Primary headline */}
+        <h1
+          style={{
+            fontSize: "clamp(2.6rem, 6vw, 4.25rem)",
+            fontWeight: 700,
+            color: "#FAFAF8",
+            letterSpacing: "-0.03em",
+            lineHeight: 1.08,
+            marginBottom: "1.5rem",
+            maxWidth: "820px",
+          }}
+        >
+          Advice you can trust.
+          <br />
+          <span
+            style={{
+              background: "linear-gradient(90deg, #C9A84C 0%, #D4B86A 55%, #C9A84C 100%)",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+            }}
+          >
+            A plan built for you.
+          </span>
+        </h1>
+
+        {/* Sub-headline */}
+        <p
+          style={{
+            fontSize: "clamp(1rem, 2.2vw, 1.2rem)",
+            color: "rgba(250,250,248,0.68)",
+            lineHeight: 1.65,
+            maxWidth: "580px",
+            marginBottom: "2.75rem",
+          }}
+        >
+          Meridian Wealth Advisors is an independent, fee-only registered investment advisory firm.
+          We work only for you — no commissions, no product sales, no conflicts of interest.
+        </p>
+
+        {/* CTAs */}
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "1rem",
+            marginBottom: "4.5rem",
+          }}
+        >
+          <a href="#contact" className="mw-btn-gold">
+            Schedule a Consultation
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path
+                d="M3 8h10M9 4l4 4-4 4"
+                stroke="currentColor"
+                strokeWidth="1.75"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
             </svg>
-          </div>
+          </a>
+          <a href="#services" className="mw-btn-ghost-light">
+            Explore Services
+          </a>
+        </div>
 
-          <div
-            style={{
-              background: "var(--surface)",
-              border: "1px solid var(--border)",
-              borderRadius: "var(--r-xl)",
-              padding: "1.4rem",
-              boxShadow: "var(--shadow-xl)",
-              position: "relative",
-              zIndex: 2,
-            }}
-          >
+        {/* Trust stats */}
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "0",
+            borderTop: "1px solid rgba(255,255,255,0.10)",
+            paddingTop: "2.25rem",
+          }}
+        >
+          {stats.map((stat, i) => (
             <div
+              key={stat.label}
               style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "10px",
-                paddingBottom: "1rem",
-                borderBottom: "1px solid var(--border-subtle)",
-                marginBottom: "1.1rem",
-              }}
-            >
-              <span style={{ width: 11, height: 11, borderRadius: "50%", background: "#E8E2D2" }} />
-              <span style={{ width: 11, height: 11, borderRadius: "50%", background: "#E8E2D2" }} />
-              <span style={{ width: 11, height: 11, borderRadius: "50%", background: "#E8E2D2" }} />
-              <span style={{ marginLeft: "auto", fontSize: "0.72rem", color: "var(--text-muted)" }}>
-                flipledger.com / dashboard
-              </span>
-            </div>
-
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(170px, 1fr))",
-                gap: "0.75rem",
-                marginBottom: "1.1rem",
-              }}
-            >
-              <PreviewStat label="Net profit" value="$1,284.50" tone="accent" />
-              <PreviewStat label="Revenue" value="$3,420" />
-              <PreviewStat label="Margin" value="37.6%" />
-              <PreviewStat label="Inventory" value="12 items" />
-            </div>
-
-            <div
-              style={{
-                border: "1px solid var(--border-subtle)",
-                borderRadius: "var(--r-md)",
-                overflow: "hidden",
-                fontSize: "0.85rem",
+                paddingRight: "2.5rem",
+                paddingLeft: i > 0 ? "2.5rem" : "0",
+                borderRight: i < stats.length - 1 ? "1px solid rgba(255,255,255,0.10)" : "none",
+                marginBottom: "1rem",
               }}
             >
               <div
                 style={{
-                  display: "grid",
-                  gridTemplateColumns: "1.4fr 0.8fr 0.7fr 0.7fr",
-                  gap: "1rem",
-                  padding: "0.65rem 1.1rem",
-                  background: "var(--paper-soft)",
-                  color: "var(--text-muted)",
-                  fontSize: "0.7rem",
-                  fontWeight: 600,
-                  letterSpacing: "0.06em",
-                  textTransform: "uppercase",
+                  fontSize: "clamp(1.5rem, 3vw, 1.85rem)",
+                  fontWeight: 700,
+                  color: "#C9A84C",
+                  letterSpacing: "-0.02em",
+                  lineHeight: 1,
+                  marginBottom: "0.35rem",
                 }}
               >
-                <span>Item</span>
-                <span>Platform</span>
-                <span>Sale</span>
-                <span style={{ textAlign: "right" }}>Profit</span>
+                {stat.value}
               </div>
-              {[
-                { item: "Nike Dunk Low Panda", platform: "StockX", sale: "$158.00", profit: "+$44.78" },
-                { item: "Vintage Carhartt jacket", platform: "Depop", sale: "$78.00", profit: "+$51.70" },
-                { item: "PS5 DualSense Edge", platform: "eBay", sale: "$189.00", profit: "+$11.50" },
-              ].map((r, i) => (
-                <div
-                  key={i}
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "1.4fr 0.8fr 0.7fr 0.7fr",
-                    gap: "1rem",
-                    padding: "0.75rem 1.1rem",
-                    borderTop: "1px solid var(--border-subtle)",
-                    alignItems: "center",
-                  }}
-                >
-                  <span style={{ color: "var(--ink)", fontWeight: 500 }}>{r.item}</span>
-                  <span style={{ color: "var(--text-secondary)" }}>{r.platform}</span>
-                  <span className="mono" style={{ color: "var(--text-secondary)" }}>{r.sale}</span>
-                  <span
-                    className="mono"
-                    style={{ color: "var(--accent-deep)", fontWeight: 600, textAlign: "right" }}
-                  >
-                    {r.profit}
-                  </span>
-                </div>
-              ))}
+              <div
+                style={{
+                  fontSize: "0.75rem",
+                  color: "rgba(250,250,248,0.52)",
+                  fontWeight: 500,
+                  letterSpacing: "0.01em",
+                  lineHeight: 1.4,
+                }}
+              >
+                {stat.label}
+              </div>
             </div>
-          </div>
+          ))}
         </div>
       </div>
 
-      <style>{`
-        @media (min-width: 720px) {
-          .hero-floating-card {
-            display: block !important;
-          }
-        }
-      `}</style>
-    </section>
-  );
-}
-
-function Trust({ children }: { children: React.ReactNode }) {
-  return (
-    <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-        <path d="M2 7l3.5 3.5L12 4" stroke="var(--accent)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-      {children}
-    </span>
-  );
-}
-
-function PreviewStat({ label, value, tone }: { label: string; value: string; tone?: "accent" }) {
-  return (
-    <div
-      style={{
-        background: tone === "accent" ? "var(--accent-soft)" : "var(--paper-soft)",
-        border: `1px solid ${tone === "accent" ? "rgba(14,158,110,0.20)" : "var(--border-subtle)"}`,
-        borderRadius: "var(--r-md)",
-        padding: "0.95rem 1.1rem",
-      }}
-    >
-      <div style={{ color: tone === "accent" ? "var(--accent-deep)" : "var(--text-secondary)", fontSize: "0.7rem", marginBottom: "5px", fontWeight: 600, letterSpacing: "0.04em", textTransform: "uppercase" }}>
-        {label}
-      </div>
+      {/* Scroll indicator */}
       <div
-        className="serif"
+        aria-hidden="true"
         style={{
-          fontSize: "1.3rem",
-          fontWeight: 500,
-          color: tone === "accent" ? "var(--accent-deep)" : "var(--ink)",
-          letterSpacing: "-0.015em",
+          position: "absolute",
+          bottom: "2.5rem",
+          left: "50%",
+          transform: "translateX(-50%)",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "6px",
+          opacity: 0.35,
         }}
       >
-        {value}
+        <div
+          style={{
+            width: "1px",
+            height: "36px",
+            background:
+              "linear-gradient(to bottom, rgba(250,250,248,0) 0%, rgba(250,250,248,0.6) 100%)",
+          }}
+        />
+        <span
+          style={{
+            fontSize: "0.65rem",
+            color: "rgba(250,250,248,0.6)",
+            letterSpacing: "0.12em",
+            textTransform: "uppercase",
+          }}
+        >
+          scroll
+        </span>
       </div>
-    </div>
+    </section>
   );
 }

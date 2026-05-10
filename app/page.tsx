@@ -1,13 +1,11 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import DemoSection from "@/components/DemoSection";
 import Services from "@/components/Services";
 import Approach from "@/components/Approach";
 import About from "@/components/About";
 import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import DisclaimerBanner from "@/components/DisclaimerBanner";
 
 export default function Home() {
   return (
@@ -15,7 +13,6 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <DemoSection />
         <Services />
         <Approach />
         <About />
@@ -23,7 +20,6 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
-      <DisclaimerBanner />
     </>
   );
 }

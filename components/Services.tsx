@@ -1,161 +1,248 @@
-"use client";
-
-import Link from "next/link";
-
-const features = [
+const services = [
   {
-    title: "Profit per item",
-    description:
-      "See your true margin on every flip after COGS, fees, and shipping. Know if you actually made money before celebrating.",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M12 2L2 7l10 5 10-5-10-5z" />
+        <path d="M2 17l10 5 10-5" />
+        <path d="M2 12l10 5 10-5" />
+      </svg>
+    ),
+    title: "Wealth Management",
+    description: "Comprehensive investment management aligned with your goals, tax situation, and risk tolerance — with no hidden fees.",
+    features: [
+      "Personalized investment policy statement",
+      "Tax-efficient asset location",
+      "Ongoing portfolio rebalancing",
+      "Alternative investment access",
+    ],
   },
   {
-    title: "COGS & expenses",
-    description:
-      "Log what you paid — sourcing, prep, storage. Bulk import from spreadsheets. Cost-per-unit done automatically.",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <rect x="2" y="3" width="20" height="14" rx="2" />
+        <path d="M8 21h8M12 17v4" />
+      </svg>
+    ),
+    title: "Retirement Planning",
+    description: "Model your retirement timeline, optimize Social Security, and build a distribution strategy that keeps you financially secure for life.",
+    features: [
+      "Retirement income projections",
+      "Social Security optimization",
+      "Required minimum distribution planning",
+      "Drawdown sequencing strategy",
+    ],
   },
   {
-    title: "Tax estimates",
-    description:
-      "Quarterly estimates and a year-end summary built for the 1099 grind. Hand it to your CPA and skip the spreadsheet shuffle.",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+        <polyline points="14 2 14 8 20 8" />
+        <line x1="16" y1="13" x2="8" y2="13" />
+        <line x1="16" y1="17" x2="8" y2="17" />
+        <polyline points="10 9 9 9 8 9" />
+      </svg>
+    ),
+    title: "Tax Strategy",
+    description: "Year-round, proactive tax planning that reduces your lifetime tax burden — coordinated with your CPA for seamless execution.",
+    features: [
+      "Tax-loss harvesting",
+      "Roth conversion analysis",
+      "Capital gains management",
+      "Business owner tax strategies",
+    ],
   },
   {
-    title: "Cash flow dashboard",
-    description:
-      "Money in, money out, in real time. Know when to reinvest in inventory and when to hold back.",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+        <polyline points="9 22 9 12 15 12 15 22" />
+      </svg>
+    ),
+    title: "Estate Planning",
+    description: "Coordinate your estate documents, trust structures, and beneficiary designations to protect your wealth across generations.",
+    features: [
+      "Estate document review & coordination",
+      "Beneficiary designation audit",
+      "Trust planning strategies",
+      "Charitable giving structures",
+    ],
   },
   {
-    title: "Platform fee calculator",
-    description:
-      "eBay, StockX, Amazon FBA, Depop, Whatnot, Mercari. See your net payout before you list anything.",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      </svg>
+    ),
+    title: "Risk Management",
+    description: "Evaluate your insurance coverage gaps and construct a protection strategy that shields your family and assets from unexpected events.",
+    features: [
+      "Life and disability insurance analysis",
+      "Long-term care planning",
+      "Umbrella liability review",
+      "Business risk assessment",
+    ],
   },
   {
-    title: "AI insights",
-    description:
-      "Plain-English answers about your numbers. Best categories, slipping margins, what's tying up cash. *",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="10" />
+        <polyline points="12 6 12 12 16 14" />
+      </svg>
+    ),
+    title: "Financial Planning",
+    description: "A written, comprehensive financial plan that maps every dimension of your financial life — updated annually as your circumstances change.",
+    features: [
+      "Written comprehensive financial plan",
+      "Cash flow & savings analysis",
+      "Education funding strategies",
+      "Business succession planning",
+    ],
   },
 ];
 
 export default function Services() {
   return (
     <section
-      id="features"
+      id="services"
       style={{
-        background: "var(--surface)",
+        background: "var(--paper)",
         padding: "7rem 1.5rem",
         borderTop: "1px solid var(--border-subtle)",
       }}
     >
       <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-        <div style={{ marginBottom: "3.5rem", maxWidth: "640px" }}>
+        {/* Section header */}
+        <div style={{ marginBottom: "3.75rem", maxWidth: "620px" }}>
           <span
             style={{
               display: "inline-block",
               color: "var(--accent-deep)",
               fontSize: "0.72rem",
-              fontWeight: 600,
-              letterSpacing: "0.12em",
+              fontWeight: 700,
+              letterSpacing: "0.13em",
               textTransform: "uppercase",
               marginBottom: "0.85rem",
             }}
           >
-            Features
+            What We Do
           </span>
           <h2
-            className="serif"
             style={{
-              fontSize: "clamp(2rem, 4.5vw, 3rem)",
-              fontWeight: 500,
+              fontSize: "clamp(2rem, 4.5vw, 2.9rem)",
+              fontWeight: 700,
               color: "var(--ink)",
               letterSpacing: "-0.025em",
-              lineHeight: 1.1,
+              lineHeight: 1.12,
               marginBottom: "1rem",
             }}
           >
-            Everything a reseller actually needs.
+            Comprehensive wealth advice — under one roof.
           </h2>
-          <p
-            style={{
-              color: "var(--text-secondary)",
-              lineHeight: 1.65,
-              fontSize: "1.05rem",
-              maxWidth: "560px",
-            }}
-          >
-            No accounting degree required. Just the numbers that tell you whether your
-            resale business is actually working — and where to fix it if it isn&apos;t.
+          <p style={{ color: "var(--text-secondary)", fontSize: "1rem", lineHeight: 1.65 }}>
+            We bring every dimension of your financial life into a single, coordinated plan — so nothing falls through the cracks.
           </p>
         </div>
 
+        {/* Service cards grid */}
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-            borderTop: "1px solid var(--border-subtle)",
-            borderLeft: "1px solid var(--border-subtle)",
+            gridTemplateColumns: "repeat(3, 1fr)",
+            gap: "1.25rem",
           }}
+          className="services-grid"
         >
-          {features.map((f, i) => (
+          {services.map((svc) => (
             <div
-              key={f.title}
-              className="fl-feature-cell"
+              key={svc.title}
+              className="fl-lift"
               style={{
-                padding: "1.75rem",
-                borderRight: "1px solid var(--border-subtle)",
-                borderBottom: "1px solid var(--border-subtle)",
                 background: "var(--surface)",
-                transition: "background 0.18s ease",
+                border: "1px solid var(--border)",
+                borderRadius: "var(--r-xl)",
+                padding: "1.75rem",
               }}
             >
+              {/* Icon */}
               <div
-                className="mono"
                 style={{
-                  fontSize: "0.7rem",
-                  color: "var(--text-muted)",
-                  marginBottom: "1rem",
-                  letterSpacing: "0.08em",
+                  width: "44px",
+                  height: "44px",
+                  borderRadius: "10px",
+                  background: "var(--accent-soft)",
+                  color: "var(--accent-deep)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  marginBottom: "1.1rem",
+                  flexShrink: 0,
                 }}
               >
-                {String(i + 1).padStart(2, "0")}
+                {svc.icon}
               </div>
+
+              {/* Title */}
               <h3
-                className="serif"
                 style={{
-                  fontSize: "1.2rem",
-                  fontWeight: 500,
+                  fontSize: "1rem",
+                  fontWeight: 700,
                   color: "var(--ink)",
                   marginBottom: "0.55rem",
                   letterSpacing: "-0.01em",
                 }}
               >
-                {f.title}
+                {svc.title}
               </h3>
+
+              {/* Description */}
               <p
                 style={{
+                  fontSize: "0.88rem",
                   color: "var(--text-secondary)",
-                  fontSize: "0.92rem",
                   lineHeight: 1.6,
+                  marginBottom: "1.1rem",
                 }}
               >
-                {f.description}
+                {svc.description}
               </p>
+
+              {/* Feature bullets */}
+              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.45rem" }}>
+                {svc.features.map((f) => (
+                  <li
+                    key={f}
+                    style={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      gap: "0.55rem",
+                      fontSize: "0.82rem",
+                      color: "var(--text-muted)",
+                      lineHeight: 1.45,
+                    }}
+                  >
+                    <span
+                      style={{
+                        display: "inline-block",
+                        width: "4px",
+                        height: "4px",
+                        borderRadius: "50%",
+                        background: "var(--accent)",
+                        marginTop: "0.45rem",
+                        flexShrink: 0,
+                      }}
+                    />
+                    {f}
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>
-
-        <p style={{ marginTop: "1.5rem", color: "var(--text-muted)", fontSize: "0.78rem", lineHeight: 1.55 }}>
-          * AI-powered features are informational only and do not constitute financial,
-          tax, or legal advice. Always verify important decisions with a qualified
-          professional.{" "}
-          <Link href="/disclaimer" style={{ color: "var(--accent-deep)" }}>
-            Read the full disclaimer →
-          </Link>
-        </p>
       </div>
 
       <style>{`
-        .fl-feature-cell:hover { background: var(--paper-soft) !important; }
-        .fl-feature-cell:hover h3 { color: var(--accent-deep); }
-        .fl-feature-cell h3 { transition: color 0.2s ease; }
+        @media (max-width: 1024px) { .services-grid { grid-template-columns: repeat(2, 1fr) !important; } }
+        @media (max-width: 640px) { .services-grid { grid-template-columns: 1fr !important; } }
       `}</style>
     </section>
   );

@@ -1,32 +1,33 @@
 import type { Metadata } from "next";
-import { Inter, Source_Serif_4, JetBrains_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
 const sans = Inter({
   variable: "--font-sans-app",
   subsets: ["latin"],
   display: "swap",
-});
-
-const serif = Source_Serif_4({
-  variable: "--font-serif-app",
-  subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  display: "swap",
-});
-
-const mono = JetBrains_Mono({
-  variable: "--font-mono-app",
-  subsets: ["latin"],
-  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "FlipLedger — Reseller finance, made simple",
+  title: "Meridian Wealth Advisors — Fee-Only Financial Planning",
   description:
-    "Track profit, COGS, platform fees, taxes, and cash flow for your reselling business. Built for eBay, StockX, Amazon FBA, Whatnot, Depop, and more. Free to start.",
+    "Meridian Wealth Advisors is a fee-only, fiduciary financial advisory firm serving high-net-worth individuals and families. Transparent flat-fee advice with no commissions, no conflicts.",
   keywords:
-    "reseller finance, profit tracker, COGS tracker, eBay profit calculator, StockX fees, Amazon FBA tracker, reselling taxes, flip profit, Depop seller tools",
+    "fee-only financial advisor, fiduciary advisor, wealth management, retirement planning, tax strategy, estate planning, independent financial advisor, flat-fee financial planning",
+  openGraph: {
+    title: "Meridian Wealth Advisors — Fee-Only Financial Planning",
+    description:
+      "Fee-only, fiduciary wealth management for high-net-worth individuals. 20 years of trusted, independent advice with no commissions.",
+    type: "website",
+    siteName: "Meridian Wealth Advisors",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Meridian Wealth Advisors — Fee-Only Financial Planning",
+    description:
+      "Fee-only, fiduciary wealth management with no commissions and no conflicts of interest.",
+  },
 };
 
 export default function RootLayout({
@@ -35,10 +36,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${sans.variable} ${serif.variable} ${mono.variable} scroll-smooth`}
-    >
+    <html lang="en" className={`${sans.variable} scroll-smooth`}>
       <body className="antialiased">{children}</body>
     </html>
   );

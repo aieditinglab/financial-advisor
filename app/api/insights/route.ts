@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
-import { geminiGenerate } from "@/lib/gemini";
+import { aimlGenerate } from "@/lib/aiml";
 import { computeProfit, type Item } from "@/lib/types";
 
 export const runtime = "nodejs";
@@ -108,7 +108,7 @@ export async function POST() {
   const context = buildContext(items);
 
   try {
-    const raw = await geminiGenerate({
+    const raw = await aimlGenerate({
       system: SYSTEM,
       messages: [{ role: "user", text: `Reseller data:\n\n${context}\n\nReturn the JSON briefing.` }],
       temperature: 0.4,

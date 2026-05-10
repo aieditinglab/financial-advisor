@@ -1,157 +1,142 @@
-"use client";
-
-import Link from "next/link";
-
-const steps = [
+const principles = [
   {
     number: "01",
-    title: "Sign up in 30 seconds",
+    title: "We're legally required to act in your interest.",
     description:
-      "Email and password. We send a 6-digit code for two-step verification, then you're in.",
+      "As a fiduciary, we are legally and ethically bound to put your interests before our own at all times — not just when it's convenient.",
   },
   {
     number: "02",
-    title: "Add your first item",
+    title: "Planning comes before investing.",
     description:
-      "Log what you paid, where you sold it, fees, and shipping. We do the math on your real margin.",
+      "We build your financial plan first. Your investment strategy flows from your goals, time horizon, and tax situation — not the other way around.",
   },
   {
     number: "03",
-    title: "Watch profit update live",
+    title: "We follow evidence, not predictions.",
     description:
-      "Your dashboard fills in as you log items. See your best categories, your worst, and where cash is tied up.",
+      "We don't chase trends or make market calls. We use decades of academic research to build low-cost, diversified portfolios that stand the test of time.",
   },
   {
     number: "04",
-    title: "Plan smarter with AI",
+    title: "One flat fee. Full transparency.",
     description:
-      "Ask plain-English questions about your numbers and get clear answers — no spreadsheets required.",
+      "You pay one transparent fee for everything — no commissions, no fund kickbacks, no hidden costs. Our incentive is your success, not product sales.",
   },
 ];
 
 export default function Approach() {
   return (
     <section
-      id="how"
+      id="approach"
       style={{
-        background: "var(--paper)",
+        background: "var(--ink)",
         padding: "7rem 1.5rem",
-        borderTop: "1px solid var(--border-subtle)",
       }}
     >
       <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "1fr 1.4fr",
+            gridTemplateColumns: "1fr 1.3fr",
             gap: "5rem",
             alignItems: "start",
           }}
           className="approach-grid"
         >
-          <div>
+          {/* Left column */}
+          <div style={{ position: "sticky", top: "8rem" }} className="approach-left">
             <span
               style={{
                 display: "inline-block",
-                color: "var(--accent-deep)",
+                color: "#C9A84C",
                 fontSize: "0.72rem",
-                fontWeight: 600,
-                letterSpacing: "0.12em",
+                fontWeight: 700,
+                letterSpacing: "0.13em",
                 textTransform: "uppercase",
                 marginBottom: "0.85rem",
               }}
             >
-              How it works
+              Our Philosophy
             </span>
             <h2
-              className="serif"
               style={{
-                fontSize: "clamp(2rem, 4.5vw, 3rem)",
-                fontWeight: 500,
-                color: "var(--ink)",
+                fontSize: "clamp(2rem, 4.5vw, 2.9rem)",
+                fontWeight: 700,
+                color: "#FAFAF8",
                 letterSpacing: "-0.025em",
                 lineHeight: 1.1,
                 marginBottom: "1.25rem",
               }}
             >
-              Set up in minutes. Insights in seconds.
+              Different by design — not by accident.
             </h2>
             <p
               style={{
-                color: "var(--text-secondary)",
+                color: "rgba(250,250,248,0.58)",
+                fontSize: "0.97rem",
                 lineHeight: 1.7,
-                fontSize: "1rem",
-                marginBottom: "1.5rem",
+                marginBottom: "2rem",
               }}
             >
-              Most resellers run their business on gut feeling and a rough idea of what
-              they paid for something. FlipLedger replaces guesswork with real numbers,
-              so you can make faster, smarter decisions on every flip.
+              Independent, fee-only advisory firms are a small fraction of the industry. We chose this model deliberately because it's the only structure that keeps our interests aligned with yours.
             </p>
-            <Link
-              href="/signup"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "8px",
-                color: "var(--accent-deep)",
-                fontSize: "0.9rem",
-                fontWeight: 600,
-              }}
+            <a
+              href="#contact"
+              className="mw-btn-gold"
+              style={{ display: "inline-flex" }}
             >
-              Get started free
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-                <path
-                  d="M3 8h10M9 4l4 4-4 4"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </Link>
+              Schedule a Free Consultation
+            </a>
           </div>
 
-          <div>
-            {steps.map((s, i) => (
+          {/* Right column — principles */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
+            {principles.map((p, i) => (
               <div
-                key={s.number}
+                key={p.number}
                 style={{
-                  display: "flex",
-                  gap: "1.5rem",
-                  padding: "1.5rem 0",
-                  borderTop: i === 0 ? "none" : "1px solid var(--border-subtle)",
+                  borderTop: "1px solid rgba(255,255,255,0.08)",
+                  padding: "2rem 0",
+                  borderBottom: i === principles.length - 1 ? "1px solid rgba(255,255,255,0.08)" : "none",
                 }}
               >
-                <span
-                  className="mono"
-                  style={{
-                    color: "var(--text-muted)",
-                    fontSize: "0.78rem",
-                    fontWeight: 600,
-                    letterSpacing: "0.06em",
-                    flexShrink: 0,
-                    paddingTop: "5px",
-                  }}
-                >
-                  {s.number}
-                </span>
-                <div>
-                  <h3
-                    className="serif"
+                <div style={{ display: "flex", gap: "1.25rem", alignItems: "flex-start" }}>
+                  <span
                     style={{
-                      color: "var(--ink)",
-                      fontSize: "1.15rem",
-                      fontWeight: 500,
-                      marginBottom: "0.4rem",
-                      letterSpacing: "-0.01em",
+                      fontSize: "0.72rem",
+                      fontWeight: 700,
+                      color: "#C9A84C",
+                      letterSpacing: "0.08em",
+                      marginTop: "0.2rem",
+                      flexShrink: 0,
                     }}
                   >
-                    {s.title}
-                  </h3>
-                  <p style={{ color: "var(--text-secondary)", fontSize: "0.93rem", lineHeight: 1.6 }}>
-                    {s.description}
-                  </p>
+                    {p.number}
+                  </span>
+                  <div>
+                    <h3
+                      style={{
+                        fontSize: "1.02rem",
+                        fontWeight: 600,
+                        color: "#FAFAF8",
+                        marginBottom: "0.55rem",
+                        lineHeight: 1.35,
+                        letterSpacing: "-0.01em",
+                      }}
+                    >
+                      {p.title}
+                    </h3>
+                    <p
+                      style={{
+                        fontSize: "0.88rem",
+                        color: "rgba(250,250,248,0.55)",
+                        lineHeight: 1.7,
+                      }}
+                    >
+                      {p.description}
+                    </p>
+                  </div>
                 </div>
               </div>
             ))}
@@ -160,8 +145,9 @@ export default function Approach() {
       </div>
 
       <style>{`
-        @media (max-width: 767px) {
+        @media (max-width: 768px) {
           .approach-grid { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
+          .approach-left { position: static !important; }
         }
       `}</style>
     </section>
