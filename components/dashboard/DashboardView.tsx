@@ -317,7 +317,7 @@ export default function DashboardView({
             </svg>
           </div>
           <p style={{ color: "var(--ink)", fontSize: "0.9rem", margin: 0, lineHeight: 1.55 }}>
-            <strong style={{ fontWeight: 600 }}>Welcome to FlipLedger.</strong>{" "}
+            <strong style={{ fontWeight: 600 }}>Welcome to Bolt Resell AI.</strong>{" "}
             <span style={{ color: "var(--text-secondary)" }}>
               This is a demo of how your dashboard will look. Click{" "}
             </span>

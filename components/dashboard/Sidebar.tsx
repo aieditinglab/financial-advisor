@@ -79,6 +79,25 @@ const NAV: NavItem[] = [
       </svg>
     ),
   },
+  {
+    href: "/dashboard/profiles",
+    label: "Linked profiles",
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <circle cx="8" cy="5" r="3" stroke="currentColor" strokeWidth="1.4" />
+        <path d="M3 14c0-2.8 2.2-5 5-5s5 2.2 5 5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+      </svg>
+    ),
+  },
+  {
+    href: "/dashboard/vendors",
+    label: "Vendors",
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M2 6l1-4h10l1 4M2 6v7a1 1 0 001 1h10a1 1 0 001-1V6M2 6h12M5 6v1.5a1.5 1.5 0 003 0V6M8 6v1.5a1.5 1.5 0 003 0V6" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
+      </svg>
+    ),
+  },
 ];
 
 export default function Sidebar({ isAdmin }: { isAdmin: boolean }) {
@@ -136,16 +155,16 @@ export default function Sidebar({ isAdmin }: { isAdmin: boolean }) {
           style={{
             margin: "0.75rem",
             padding: "0.85rem 0.95rem",
-            background: "linear-gradient(135deg, var(--accent-soft), var(--warm-soft))",
+            background: "linear-gradient(135deg, var(--sage-soft, #E8EDDA), var(--accent-soft, #FBEAE6))",
             border: "1px solid var(--border)",
             borderRadius: 12,
           }}
         >
-          <div style={{ fontSize: "0.7rem", letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--accent-deep)", fontWeight: 700, marginBottom: "0.4rem" }}>
+          <div style={{ fontSize: "0.7rem", letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--sage-deep, #5A6B3B)", fontWeight: 700, marginBottom: "0.4rem" }}>
             Need help?
           </div>
           <p style={{ fontSize: "0.8rem", color: "var(--ink)", margin: 0, lineHeight: 1.5 }}>
-            Ask the <Link href="/dashboard/chat" style={{ color: "var(--accent-deep)", fontWeight: 600 }}>AI assistant</Link> anything about your numbers.
+            Ask the <Link href="/dashboard/chat" style={{ color: "var(--accent, #E2725B)", fontWeight: 600 }}>AI assistant</Link> anything about your numbers.
           </p>
         </div>
       </aside>
@@ -195,8 +214,8 @@ export default function Sidebar({ isAdmin }: { isAdmin: boolean }) {
           transform: translateX(2px);
         }
         .fl-nav-item[data-active="true"] {
-          background: linear-gradient(135deg, var(--ink) 0%, var(--ink-2) 100%);
-          color: var(--paper);
+          background: linear-gradient(135deg, var(--espresso, #3D2B1F) 0%, var(--ink) 100%);
+          color: #FFFDD0;
           box-shadow: var(--shadow-sm);
         }
         .fl-nav-item[data-active="true"]::before {
@@ -207,7 +226,7 @@ export default function Sidebar({ isAdmin }: { isAdmin: boolean }) {
           bottom: 8px;
           width: 3px;
           border-radius: 0 3px 3px 0;
-          background: var(--accent);
+          background: var(--accent, #E2725B);
         }
         .fl-sidebar-toggle {
           display: none;

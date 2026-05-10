@@ -59,7 +59,7 @@ export default function LegalShell({
             className="serif"
             style={{ fontWeight: 600, fontSize: "1rem", color: "var(--ink)" }}
           >
-            FlipLedger
+            Bolt Resell AI
           </span>
         </Link>
         <Link
@@ -149,7 +149,7 @@ export default function LegalShell({
         }}
       >
         <p style={{ color: "rgba(245,244,237,0.45)", fontSize: "0.78rem", margin: 0 }}>
-          © 2025 FlipLedger. Not financial advice. ·{" "}
+          © 2025 Bolt Resell AI. Not financial advice. ·{" "}
           <Link href="/terms" style={{ color: "rgba(245,244,237,0.55)" }}>Terms</Link> ·{" "}
           <Link href="/privacy" style={{ color: "rgba(245,244,237,0.55)" }}>Privacy</Link> ·{" "}
           <Link href="/disclaimer" style={{ color: "rgba(245,244,237,0.55)" }}>Disclaimer</Link>

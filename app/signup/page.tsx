@@ -157,7 +157,7 @@ export default function SignupPage() {
             <Link href="/disclaimer" style={{ color: "var(--accent-deep)", fontWeight: 500 }}>
               AI Disclaimer
             </Link>
-            . I understand FlipLedger is not financial, tax, or legal advice.
+            . I understand Bolt Resell AI is not financial, tax, or legal advice.
           </span>
         </label>
 

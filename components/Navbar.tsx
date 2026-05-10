@@ -4,10 +4,9 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const navLinks = [
-  { label: "Services", href: "/#services" },
-  { label: "Our Approach", href: "/#approach" },
-  { label: "About", href: "/#about" },
-  { label: "Testimonials", href: "/#testimonials" },
+  { label: "Features", href: "/#features" },
+  { label: "How It Works", href: "/#how-it-works" },
+  { label: "Pricing", href: "/#pricing" },
 ];
 
 export default function Navbar() {
@@ -29,11 +28,11 @@ export default function Navbar() {
         right: 0,
         zIndex: 50,
         transition: "all 0.25s ease",
-        background: scrolled ? "rgba(15, 28, 46, 0.96)" : "transparent",
+        background: scrolled ? "rgba(61, 43, 31, 0.97)" : "transparent",
         backdropFilter: scrolled ? "saturate(180%) blur(20px)" : "none",
         WebkitBackdropFilter: scrolled ? "saturate(180%) blur(20px)" : "none",
-        borderBottom: scrolled ? "1px solid rgba(255,255,255,0.08)" : "1px solid transparent",
-        boxShadow: scrolled ? "0 2px 16px rgba(15,28,46,0.16)" : "none",
+        borderBottom: scrolled ? "1px solid rgba(255,253,208,0.08)" : "1px solid transparent",
+        boxShadow: scrolled ? "0 2px 16px rgba(61,43,31,0.16)" : "none",
       }}
     >
       <div
@@ -53,7 +52,7 @@ export default function Navbar() {
             style={{
               width: "30px",
               height: "30px",
-              background: "linear-gradient(135deg, #C9A84C 0%, #B8942E 100%)",
+              background: "linear-gradient(135deg, #E2725B 0%, #D4604A 100%)",
               borderRadius: "7px",
               display: "flex",
               alignItems: "center",
@@ -61,26 +60,26 @@ export default function Navbar() {
               flexShrink: 0,
             }}
           >
-            {/* M monogram */}
-            <svg width="16" height="14" viewBox="0 0 16 14" fill="none" aria-hidden="true">
+            {/* Bolt icon */}
+            <svg width="14" height="16" viewBox="0 0 14 16" fill="none" aria-hidden="true">
               <path
-                d="M1.5 12.5V1.5L8 8.5L14.5 1.5V12.5"
+                d="M8 1L2 9h5l-1 6 6-8H7l1-6z"
+                fill="white"
                 stroke="white"
-                strokeWidth="2"
-                strokeLinecap="round"
+                strokeWidth="0.5"
                 strokeLinejoin="round"
               />
             </svg>
           </div>
           <span
             style={{
-              fontWeight: 600,
+              fontWeight: 700,
               fontSize: "1rem",
-              color: "rgba(250,250,248,0.95)",
+              color: "rgba(255,253,208,0.95)",
               letterSpacing: "-0.01em",
             }}
           >
-            Meridian Wealth
+            Bolt Resell AI
           </span>
         </Link>
 
@@ -94,13 +93,13 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               style={{
-                color: "rgba(250,250,248,0.72)",
+                color: "rgba(255,253,208,0.72)",
                 fontSize: "0.88rem",
                 fontWeight: 500,
                 transition: "color 160ms ease",
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "rgba(250,250,248,1)")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(250,250,248,0.72)")}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "rgba(255,253,208,1)")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,253,208,0.72)")}
             >
               {link.label}
             </a>
@@ -108,14 +107,24 @@ export default function Navbar() {
         </nav>
 
         {/* CTA */}
-        <div className="hidden-mobile" style={{ display: "flex", alignItems: "center" }}>
-          <a
-            href="#contact"
-            className="mw-btn-gold"
+        <div className="hidden-mobile" style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+          <Link
+            href="/login"
+            style={{
+              color: "rgba(255,253,208,0.8)",
+              fontSize: "0.88rem",
+              fontWeight: 500,
+            }}
+          >
+            Log in
+          </Link>
+          <Link
+            href="/login"
+            className="bolt-btn-cta"
             style={{ fontSize: "0.85rem", padding: "0.62rem 1.3rem" }}
           >
-            Book a Call
-          </a>
+            Get Started Free
+          </Link>
         </div>
 
         {/* Mobile hamburger */}
@@ -128,7 +137,7 @@ export default function Navbar() {
             border: "none",
             cursor: "pointer",
             padding: "6px",
-            color: "rgba(250,250,248,0.9)",
+            color: "rgba(255,253,208,0.9)",
           }}
         >
           <svg
@@ -160,8 +169,8 @@ export default function Navbar() {
       {menuOpen && (
         <div
           style={{
-            background: "rgba(15,28,46,0.98)",
-            borderTop: "1px solid rgba(255,255,255,0.08)",
+            background: "rgba(61,43,31,0.98)",
+            borderTop: "1px solid rgba(255,253,208,0.08)",
             padding: "1.25rem 1.5rem 1.75rem",
             display: "flex",
             flexDirection: "column",
@@ -174,7 +183,7 @@ export default function Navbar() {
               href={link.href}
               onClick={() => setMenuOpen(false)}
               style={{
-                color: "rgba(250,250,248,0.82)",
+                color: "rgba(255,253,208,0.82)",
                 fontSize: "1rem",
                 fontWeight: 500,
               }}
@@ -182,14 +191,14 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
-          <a
-            href="#contact"
+          <Link
+            href="/login"
             onClick={() => setMenuOpen(false)}
-            className="mw-btn-gold"
+            className="bolt-btn-cta"
             style={{ marginTop: "0.5rem", justifyContent: "center" }}
           >
-            Book a Call
-          </a>
+            Get Started Free
+          </Link>
         </div>
       )}
 

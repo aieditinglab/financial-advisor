@@ -25,28 +25,22 @@ export default function Footer() {
                 style={{
                   width: "28px",
                   height: "28px",
-                  background: "var(--paper)",
+                  background: "linear-gradient(135deg, #E2725B, #D4604A)",
                   borderRadius: "7px",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
                 }}
               >
-                <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
-                  <path
-                    d="M2 12l3.5-3.5 2.5 2.5 3.5-4.5 3 2.5"
-                    stroke="var(--ink)"
-                    strokeWidth="1.75"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
+                <svg width="12" height="14" viewBox="0 0 14 16" fill="none">
+                  <path d="M8 1L2 9h5l-1 6 6-8H7l1-6z" fill="white" stroke="white" strokeWidth="0.5" strokeLinejoin="round" />
                 </svg>
               </div>
               <span
                 className="serif"
                 style={{ fontWeight: 600, fontSize: "1.05rem", color: "var(--paper)" }}
               >
-                FlipLedger
+                Bolt Resell AI
               </span>
             </Link>
             <p
@@ -96,7 +90,7 @@ export default function Footer() {
 
           <FooterColumn
             title="Contact"
-            links={[{ label: "hello@flipledger.com", href: "mailto:hello@flipledger.com" }]}
+            links={[{ label: "hello@boltresell.ai", href: "mailto:hello@boltresell.ai" }]}
           />
         </div>
 
@@ -112,7 +106,7 @@ export default function Footer() {
           }}
         >
           <p style={{ color: "rgba(245,244,237,0.4)", fontSize: "0.78rem", margin: 0, lineHeight: 1.55, maxWidth: "640px" }}>
-            © 2025 FlipLedger. FlipLedger is a financial tracking tool, not a licensed
+            © 2025 Bolt Resell AI. Bolt Resell AI is a financial tracking tool, not a licensed
             financial advisor. AI-generated insights are for informational purposes only
             and do not constitute financial, tax, or legal advice.
           </p>

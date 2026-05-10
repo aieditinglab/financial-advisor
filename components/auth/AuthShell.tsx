@@ -34,21 +34,15 @@ export default function AuthShell({
             style={{
               width: "28px",
               height: "28px",
-              background: "var(--ink)",
+              background: "linear-gradient(135deg, #E2725B, #D4604A)",
               borderRadius: "7px",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
             }}
           >
-            <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
-              <path
-                d="M2 12l3.5-3.5 2.5 2.5 3.5-4.5 3 2.5"
-                stroke="var(--paper)"
-                strokeWidth="1.75"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
+            <svg width="12" height="14" viewBox="0 0 14 16" fill="none">
+              <path d="M8 1L2 9h5l-1 6 6-8H7l1-6z" fill="white" stroke="white" strokeWidth="0.5" strokeLinejoin="round" />
             </svg>
           </div>
           <span
@@ -59,7 +53,7 @@ export default function AuthShell({
               color: "var(--ink)",
             }}
           >
-            FlipLedger
+            Bolt Resell AI
           </span>
         </Link>
       </header>
@@ -121,7 +115,7 @@ export default function AuthShell({
 
       <footer style={{ padding: "1.5rem 2rem", textAlign: "center" }}>
         <p style={{ color: "var(--text-muted)", fontSize: "0.75rem" }}>
-          © 2025 FlipLedger ·{" "}
+          © 2025 Bolt Resell AI ·{" "}
           <Link href="/terms" style={{ color: "var(--text-secondary)" }}>Terms</Link> ·{" "}
           <Link href="/privacy" style={{ color: "var(--text-secondary)" }}>Privacy</Link> ·{" "}
           <Link href="/disclaimer" style={{ color: "var(--text-secondary)" }}>AI Disclaimer</Link>

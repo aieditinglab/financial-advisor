@@ -12,7 +12,7 @@ interface Step {
 
 const STEPS: Step[] = [
   {
-    title: "Welcome to FlipLedger",
+    title: "Welcome to Bolt Resell AI",
     body: "This is your reseller HQ. We'll show you around in 30 seconds. You can replay this any time from the Walkthrough button.",
   },
   {

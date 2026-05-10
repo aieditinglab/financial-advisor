@@ -50,7 +50,7 @@ export default async function AdminPage() {
             Admin only
           </h1>
           <p style={{ color: "var(--text-secondary)", margin: "0 0 1.5rem" }}>
-            This page is restricted to FlipLedger admins.
+            This page is restricted to Bolt Resell AI admins.
           </p>
           <Link
             href="/dashboard"
@@ -129,7 +129,7 @@ export default async function AdminPage() {
         System overview
       </h1>
       <p style={{ color: "var(--text-secondary)", margin: "0 0 1.75rem", fontSize: "0.95rem" }}>
-        FlipLedger administrative dashboard. Visible only to authorized accounts.
+        Bolt Resell AI administrative dashboard. Visible only to authorized accounts.
       </p>
 
       <div

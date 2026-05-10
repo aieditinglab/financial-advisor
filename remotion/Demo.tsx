@@ -36,7 +36,7 @@ export const FL_WIDTH = 1280;
 export const FL_HEIGHT = 720;
 export const FL_DURATION = 26 * FL_FPS; // 26 seconds
 
-export default function FlipLedgerDemo() {
+export default function BoltResellDemo() {
   return (
     <AbsoluteFill style={{ background: PAPER, fontFamily: SANS }}>
       {/* Subtle paper grain */}
@@ -457,7 +457,7 @@ function CTAScene() {
       <FlipLogo size={48} />
       <h2 style={{ fontFamily: SERIF, fontSize: 76, fontWeight: 500, color: INK, margin: "28px 0 14px", letterSpacing: "-0.03em", textAlign: "center", lineHeight: 1 }}>
         Start free at{" "}
-        <span style={{ fontStyle: "italic", color: ACCENT_DEEP }}>flipledger.com</span>
+        <span style={{ fontStyle: "italic", color: ACCENT_DEEP }}>boltresell.ai</span>
       </h2>
       <p style={{ color: TEXT_SECONDARY, fontSize: 22, marginBottom: 36 }}>
         No credit card. No commitment. Just real numbers.
@@ -540,7 +540,7 @@ function Watermark() {
         letterSpacing: "0.08em",
       }}
     >
-      flipledger.com
+      boltresell.ai
     </div>
   );
 }

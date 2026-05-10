@@ -44,7 +44,7 @@ export default function DisclaimerBanner() {
           flex: 1,
         }}
       >
-        FlipLedger uses AI. Outputs are for information only — not financial, tax, or
+        Bolt Resell AI uses AI. Outputs are for information only — not financial, tax, or
         legal advice.{" "}
         <Link href="/disclaimer" style={{ color: "var(--accent-deep)", fontWeight: 500 }}>
           Read more

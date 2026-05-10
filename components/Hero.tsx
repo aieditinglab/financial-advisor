@@ -1,8 +1,10 @@
+import Link from "next/link";
+
 const stats = [
-  { value: "$2.4B", label: "Assets Under Advisement" },
-  { value: "340+", label: "Families Served" },
-  { value: "20 yrs", label: "In Practice" },
-  { value: "Flat-Fee", label: "No Commissions" },
+  { value: "6+", label: "Platforms Tracked" },
+  { value: "AI", label: "Powered Insights" },
+  { value: "Free", label: "To Get Started" },
+  { value: "Real-time", label: "Market Data" },
 ];
 
 export default function Hero() {
@@ -10,7 +12,7 @@ export default function Hero() {
     <section
       style={{
         minHeight: "100vh",
-        background: "linear-gradient(160deg, #0F1C2E 0%, #162438 55%, #1A2D47 100%)",
+        background: "linear-gradient(160deg, #3D2B1F 0%, #4A3728 55%, #5C4033 100%)",
         position: "relative",
         overflow: "hidden",
         display: "flex",
@@ -26,13 +28,13 @@ export default function Hero() {
           position: "absolute",
           inset: 0,
           backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)",
+            "linear-gradient(rgba(255,253,208,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,253,208,0.02) 1px, transparent 1px)",
           backgroundSize: "60px 60px",
           pointerEvents: "none",
         }}
       />
 
-      {/* Gold glow blob — top right */}
+      {/* Terracotta glow blob — top right */}
       <span
         aria-hidden="true"
         style={{
@@ -42,12 +44,12 @@ export default function Hero() {
           width: "480px",
           height: "480px",
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(201,168,76,0.14), rgba(201,168,76,0) 70%)",
+          background: "radial-gradient(circle, rgba(226,114,91,0.18), rgba(226,114,91,0) 70%)",
           filter: "blur(40px)",
           pointerEvents: "none",
         }}
       />
-      {/* Subtle blue blob — bottom left */}
+      {/* Sage blob — bottom left */}
       <span
         aria-hidden="true"
         style={{
@@ -57,7 +59,7 @@ export default function Hero() {
           width: "360px",
           height: "360px",
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(30,80,140,0.22), rgba(30,80,140,0) 70%)",
+          background: "radial-gradient(circle, rgba(138,154,91,0.20), rgba(138,154,91,0) 70%)",
           filter: "blur(50px)",
           pointerEvents: "none",
         }}
@@ -70,8 +72,8 @@ export default function Hero() {
             display: "inline-flex",
             alignItems: "center",
             gap: "8px",
-            background: "rgba(201,168,76,0.12)",
-            border: "1px solid rgba(201,168,76,0.28)",
+            background: "rgba(138,154,91,0.15)",
+            border: "1px solid rgba(138,154,91,0.30)",
             borderRadius: "100px",
             padding: "6px 16px",
             marginBottom: "2rem",
@@ -82,21 +84,21 @@ export default function Hero() {
               width: "6px",
               height: "6px",
               borderRadius: "50%",
-              background: "#C9A84C",
+              background: "#8A9A5B",
               display: "inline-block",
-              boxShadow: "0 0 0 3px rgba(201,168,76,0.25)",
+              boxShadow: "0 0 0 3px rgba(138,154,91,0.25)",
             }}
           />
           <span
             style={{
               fontSize: "0.75rem",
               fontWeight: 600,
-              color: "#C9A84C",
+              color: "#8A9A5B",
               letterSpacing: "0.12em",
               textTransform: "uppercase",
             }}
           >
-            Fee-Only · Fiduciary · Independent
+            AI-Powered Reselling Assistant
           </span>
         </div>
 
@@ -105,24 +107,24 @@ export default function Hero() {
           style={{
             fontSize: "clamp(2.6rem, 6vw, 4.25rem)",
             fontWeight: 700,
-            color: "#FAFAF8",
+            color: "#FFFDD0",
             letterSpacing: "-0.03em",
             lineHeight: 1.08,
             marginBottom: "1.5rem",
             maxWidth: "820px",
           }}
         >
-          Advice you can trust.
+          Flip smarter.
           <br />
           <span
             style={{
-              background: "linear-gradient(90deg, #C9A84C 0%, #D4B86A 55%, #C9A84C 100%)",
+              background: "linear-gradient(90deg, #E2725B 0%, #8A9A5B 100%)",
               WebkitBackgroundClip: "text",
               backgroundClip: "text",
               WebkitTextFillColor: "transparent",
             }}
           >
-            A plan built for you.
+            Profit faster.
           </span>
         </h1>
 
@@ -130,14 +132,14 @@ export default function Hero() {
         <p
           style={{
             fontSize: "clamp(1rem, 2.2vw, 1.2rem)",
-            color: "rgba(250,250,248,0.68)",
+            color: "rgba(255,253,208,0.70)",
             lineHeight: 1.65,
             maxWidth: "580px",
             marginBottom: "2.75rem",
           }}
         >
-          Meridian Wealth Advisors is an independent, fee-only registered investment advisory firm.
-          We work only for you — no commissions, no product sales, no conflicts of interest.
+          Bolt Resell AI tracks your inventory across eBay, Depop, StockX & more.
+          Get AI insights, market research, and profit analytics — all in one place.
         </p>
 
         {/* CTAs */}
@@ -149,8 +151,8 @@ export default function Hero() {
             marginBottom: "4.5rem",
           }}
         >
-          <a href="#contact" className="mw-btn-gold">
-            Schedule a Consultation
+          <Link href="/login" className="bolt-btn-cta">
+            Start Tracking Free
             <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
               <path
                 d="M3 8h10M9 4l4 4-4 4"
@@ -160,9 +162,9 @@ export default function Hero() {
                 strokeLinejoin="round"
               />
             </svg>
-          </a>
-          <a href="#services" className="mw-btn-ghost-light">
-            Explore Services
+          </Link>
+          <a href="#features" className="bolt-btn-ghost-light">
+            See Features
           </a>
         </div>
 
@@ -172,7 +174,7 @@ export default function Hero() {
             display: "flex",
             flexWrap: "wrap",
             gap: "0",
-            borderTop: "1px solid rgba(255,255,255,0.10)",
+            borderTop: "1px solid rgba(255,253,208,0.10)",
             paddingTop: "2.25rem",
           }}
         >
@@ -182,7 +184,7 @@ export default function Hero() {
               style={{
                 paddingRight: "2.5rem",
                 paddingLeft: i > 0 ? "2.5rem" : "0",
-                borderRight: i < stats.length - 1 ? "1px solid rgba(255,255,255,0.10)" : "none",
+                borderRight: i < stats.length - 1 ? "1px solid rgba(255,253,208,0.10)" : "none",
                 marginBottom: "1rem",
               }}
             >
@@ -190,7 +192,7 @@ export default function Hero() {
                 style={{
                   fontSize: "clamp(1.5rem, 3vw, 1.85rem)",
                   fontWeight: 700,
-                  color: "#C9A84C",
+                  color: "#E2725B",
                   letterSpacing: "-0.02em",
                   lineHeight: 1,
                   marginBottom: "0.35rem",
@@ -201,7 +203,7 @@ export default function Hero() {
               <div
                 style={{
                   fontSize: "0.75rem",
-                  color: "rgba(250,250,248,0.52)",
+                  color: "rgba(255,253,208,0.52)",
                   fontWeight: 500,
                   letterSpacing: "0.01em",
                   lineHeight: 1.4,
@@ -234,13 +236,13 @@ export default function Hero() {
             width: "1px",
             height: "36px",
             background:
-              "linear-gradient(to bottom, rgba(250,250,248,0) 0%, rgba(250,250,248,0.6) 100%)",
+              "linear-gradient(to bottom, rgba(255,253,208,0) 0%, rgba(255,253,208,0.6) 100%)",
           }}
         />
         <span
           style={{
             fontSize: "0.65rem",
-            color: "rgba(250,250,248,0.6)",
+            color: "rgba(255,253,208,0.6)",
             letterSpacing: "0.12em",
             textTransform: "uppercase",
           }}

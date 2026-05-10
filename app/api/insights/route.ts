@@ -5,7 +5,7 @@ import { computeProfit, type Item } from "@/lib/types";
 
 export const runtime = "nodejs";
 
-const SYSTEM = `You are FlipLedger AI, generating an executive briefing for a reseller.
+const SYSTEM = `You are Bolt Resell AI, generating an executive briefing for a reseller.
 
 Return a JSON object with exactly this shape and no other text:
 {

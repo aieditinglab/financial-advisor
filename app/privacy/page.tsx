@@ -10,8 +10,8 @@ export default function PrivacyPage() {
       nextPage={{ label: "AI Disclaimer", href: "/disclaimer" }}
     >
       <p>
-        FlipLedger (&ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;) respects your privacy. This Privacy
-        Policy explains what information we collect when you use FlipLedger (the
+        Bolt Resell AI (&ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;) respects your privacy. This Privacy
+        Policy explains what information we collect when you use Bolt Resell AI (the
         &ldquo;Service&rdquo;), how we use it, and your choices. By using the Service, you agree
         to the practices described here.
       </p>
@@ -81,7 +81,7 @@ export default function PrivacyPage() {
       <p>
         We retain your data for as long as your account is active or as needed to
         provide the Service. You may request deletion of your account and associated
-        data at any time by contacting us at hello@flipledger.com. We may retain certain
+        data at any time by contacting us at hello@boltresell.ai. We may retain certain
         data for a limited period afterward to comply with legal obligations or resolve
         disputes.
       </p>
@@ -95,7 +95,7 @@ export default function PrivacyPage() {
       </p>
       <p>
         If you believe your account has been compromised, contact us immediately at
-        hello@flipledger.com.
+        hello@boltresell.ai.
       </p>
 
       <h2>6. Cookies and Tracking</h2>
@@ -117,7 +117,7 @@ export default function PrivacyPage() {
         personal information from children under 13. If we discover we have collected
         information from a child under 13 without verifiable parental consent, we will
         delete it promptly. If you believe a child under 13 has provided us data,
-        contact us at hello@flipledger.com.
+        contact us at hello@boltresell.ai.
       </p>
 
       <h2>8. Your Rights and Choices</h2>
@@ -131,7 +131,7 @@ export default function PrivacyPage() {
         <li>Withdraw consent where processing is based on consent</li>
       </ul>
       <p>
-        To exercise any of these rights, contact us at hello@flipledger.com. We will
+        To exercise any of these rights, contact us at hello@boltresell.ai. We will
         respond within 30 days.
       </p>
 
@@ -145,7 +145,7 @@ export default function PrivacyPage() {
 
       <h2>10. AI and Automated Processing</h2>
       <p>
-        FlipLedger uses AI and automated processing to generate financial insights,
+        Bolt Resell AI uses AI and automated processing to generate financial insights,
         summaries, and suggestions. These outputs are based on the data you provide and
         are subject to error. See our <Link href="/disclaimer">AI &amp; Financial Disclaimer</Link>{" "}
         for important limitations. We do not make legally significant automated
@@ -163,7 +163,7 @@ export default function PrivacyPage() {
       <h2>12. Contact Us</h2>
       <p>
         Questions about this Privacy Policy? Contact us at{" "}
-        <a href="mailto:hello@flipledger.com">hello@flipledger.com</a>.
+        <a href="mailto:hello@boltresell.ai">hello@boltresell.ai</a>.
       </p>
     </LegalShell>
   );

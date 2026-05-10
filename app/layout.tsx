@@ -10,23 +10,23 @@ const sans = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Meridian Wealth Advisors — Fee-Only Financial Planning",
+  title: "Bolt Resell AI — Smart Reselling Analytics",
   description:
-    "Meridian Wealth Advisors is a fee-only, fiduciary financial advisory firm serving high-net-worth individuals and families. Transparent flat-fee advice with no commissions, no conflicts.",
+    "Track your reselling inventory across eBay, Depop, StockX & more. AI-powered insights, profit analytics, market research, and vendor sourcing — all in one platform.",
   keywords:
-    "fee-only financial advisor, fiduciary advisor, wealth management, retirement planning, tax strategy, estate planning, independent financial advisor, flat-fee financial planning",
+    "reselling tracker, reseller analytics, eBay profit tracker, Depop analytics, reselling AI, inventory management, flip tracker, reseller tools",
   openGraph: {
-    title: "Meridian Wealth Advisors — Fee-Only Financial Planning",
+    title: "Bolt Resell AI — Smart Reselling Analytics",
     description:
-      "Fee-only, fiduciary wealth management for high-net-worth individuals. 20 years of trusted, independent advice with no commissions.",
+      "AI-powered reselling dashboard. Track inventory, analyze profits, research markets, and grow your reselling business.",
     type: "website",
-    siteName: "Meridian Wealth Advisors",
+    siteName: "Bolt Resell AI",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Meridian Wealth Advisors — Fee-Only Financial Planning",
+    title: "Bolt Resell AI — Smart Reselling Analytics",
     description:
-      "Fee-only, fiduciary wealth management with no commissions and no conflicts of interest.",
+      "AI-powered analytics for resellers. Track profits across eBay, Depop, StockX and more.",
   },
 };
 

@@ -9,23 +9,23 @@ export default function DisclaimerPage() {
     >
       <div className="callout">
         <p>
-          <strong>Plain-English summary:</strong> FlipLedger is a tracking and analytics
+          <strong>Plain-English summary:</strong> Bolt Resell AI is a tracking and analytics
           tool — not a financial advisor, tax preparer, or lawyer. The AI features can
           make mistakes. Nothing we show you is financial, tax, or legal advice. Before
           making important money or tax decisions, talk to a licensed professional.
         </p>
       </div>
 
-      <h2>1. FlipLedger is Not a Financial Advisor</h2>
+      <h2>1. Bolt Resell AI is Not a Financial Advisor</h2>
       <p>
-        FlipLedger is a software tool that helps resellers organize and analyze their
+        Bolt Resell AI is a software tool that helps resellers organize and analyze their
         financial data. We are <strong>not</strong> a licensed financial advisor,
         investment adviser, broker-dealer, registered investment company, certified
         public accountant (CPA), enrolled agent, tax preparer, attorney, or any other
         type of licensed financial or legal professional.
       </p>
       <p>
-        Nothing on or within the FlipLedger platform — including text, calculations,
+        Nothing on or within the Bolt Resell AI platform — including text, calculations,
         AI-generated insights, dashboards, reports, summaries, suggestions, or any
         other content — constitutes or should be construed as financial advice,
         investment advice, tax advice, accounting advice, or legal advice of any kind.
@@ -33,7 +33,7 @@ export default function DisclaimerPage() {
 
       <h2>2. AI Can Make Mistakes</h2>
       <p>
-        FlipLedger uses artificial intelligence (AI) — including large language models —
+        Bolt Resell AI uses artificial intelligence (AI) — including large language models —
         to generate insights, summaries, trend analyses, and suggestions based on your
         data.{" "}
         <strong>
@@ -56,16 +56,16 @@ export default function DisclaimerPage() {
 
       <h2>3. No Fiduciary Relationship</h2>
       <p>
-        FlipLedger does not owe you a fiduciary duty of any kind. We are not acting as
+        Bolt Resell AI does not owe you a fiduciary duty of any kind. We are not acting as
         your advisor, agent, or representative. No relationship is created between you
-        and FlipLedger that would impose any duty to act in your best interest in a
+        and Bolt Resell AI that would impose any duty to act in your best interest in a
         legally binding financial or advisory capacity.
       </p>
 
       <h2>4. Tax Estimates Are Approximations Only</h2>
       <p>
         Any tax-related figures, quarterly tax estimates, self-employment tax
-        calculations, or year-end summaries provided by FlipLedger are{" "}
+        calculations, or year-end summaries provided by Bolt Resell AI are{" "}
         <strong>rough approximations</strong> intended to help you organize your
         financial information. They are not:
       </p>
@@ -84,20 +84,20 @@ export default function DisclaimerPage() {
       <h2>5. Informational Purposes Only</h2>
       <p>
         All content, data, charts, insights, suggestions, and any other output from
-        FlipLedger is provided for{" "}
+        Bolt Resell AI is provided for{" "}
         <strong>general informational and organizational purposes only</strong>. It does
         not take into account your individual financial situation, goals, risk
         tolerance, tax situation, or any other personal circumstances.
       </p>
       <p>
-        Information on FlipLedger may not be appropriate for your situation. Before
-        acting on any information from FlipLedger, consider whether it is appropriate
+        Information on Bolt Resell AI may not be appropriate for your situation. Before
+        acting on any information from Bolt Resell AI, consider whether it is appropriate
         for your specific circumstances and consult a qualified professional.
       </p>
 
       <h2>6. Platform Fee Data and Third-Party Information</h2>
       <p>
-        FlipLedger displays fee structures and data from third-party selling platforms
+        Bolt Resell AI displays fee structures and data from third-party selling platforms
         (e.g., eBay, StockX, Amazon, Depop, Whatnot). This information:
       </p>
       <ul>
@@ -112,7 +112,7 @@ export default function DisclaimerPage() {
 
       <h2>7. Past Performance and Forward-Looking Information</h2>
       <p>
-        Any historical data, trend analyses, or projections shown in FlipLedger do not
+        Any historical data, trend analyses, or projections shown in Bolt Resell AI do not
         guarantee future results. Resale markets are subject to fluctuations in supply,
         demand, platform policies, economic conditions, and other factors beyond our
         control. Past performance of any item category, platform, or strategy is not
@@ -121,7 +121,7 @@ export default function DisclaimerPage() {
 
       <h2>8. No Warranty on Accuracy</h2>
       <p>
-        FlipLedger makes no warranty, express or implied, regarding the accuracy,
+        Bolt Resell AI makes no warranty, express or implied, regarding the accuracy,
         completeness, reliability, suitability, or availability of any information,
         calculations, or AI-generated content on the platform. The Service is provided
         &ldquo;as is,&rdquo; and you use it at your own risk.
@@ -134,7 +134,7 @@ export default function DisclaimerPage() {
 
       <h2>9. Limitation of Liability</h2>
       <p>
-        TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, FLIPLEDGER SHALL NOT BE
+        TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, BOLT RESELL AI SHALL NOT BE
         LIABLE FOR ANY LOSSES, DAMAGES, OR COSTS (INCLUDING LOST PROFITS, TAX PENALTIES,
         FINES, OR INDIRECT DAMAGES) ARISING FROM YOUR RELIANCE ON ANY INFORMATION, AI
         OUTPUT, OR CALCULATIONS PROVIDED BY THE SERVICE — WHETHER SUCH RELIANCE IS
@@ -158,7 +158,7 @@ export default function DisclaimerPage() {
       <h2>11. Questions</h2>
       <p>
         If you have questions about this disclaimer, contact us at{" "}
-        <a href="mailto:hello@flipledger.com">hello@flipledger.com</a>.
+        <a href="mailto:hello@boltresell.ai">hello@boltresell.ai</a>.
       </p>
     </LegalShell>
   );

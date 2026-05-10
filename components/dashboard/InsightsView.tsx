@@ -14,9 +14,9 @@ interface Insights {
 }
 
 const toneStyles = {
-  good: { bg: "var(--accent-soft)", color: "var(--accent-deep)", border: "rgba(15,157,110,0.25)" },
+  good: { bg: "var(--sage-soft, #E8EDDA)", color: "var(--sage-deep, #5A6B3B)", border: "rgba(138,154,91,0.30)" },
   warn: { bg: "var(--rose-soft)", color: "#883535", border: "rgba(196,75,75,0.30)" },
-  info: { bg: "var(--warm-soft)", color: "var(--warm-deep)", border: "rgba(199,119,26,0.30)" },
+  info: { bg: "var(--accent-soft, #FBEAE6)", color: "var(--accent-deep, #B84D3A)", border: "rgba(226,114,91,0.25)" },
 } as const;
 
 export default function InsightsView() {
@@ -44,6 +44,12 @@ export default function InsightsView() {
 
   useEffect(() => {
     void generate();
+    // Auto-refresh insights every 90 seconds
+    const interval = setInterval(() => {
+      void generate();
+    }, 90_000);
+    return () => clearInterval(interval);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -88,8 +94,9 @@ export default function InsightsView() {
       {data && (
         <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
           <div className="fl-rise" style={{ background: "var(--surface)", border: "1px solid var(--border)", borderRadius: 14, padding: "1.5rem", boxShadow: "var(--shadow-md)" }}>
-            <div style={{ fontSize: "0.7rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--accent-deep)", marginBottom: "0.6rem" }}>
-              Briefing
+            <div style={{ fontSize: "0.7rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--sage-deep, #5A6B3B)", marginBottom: "0.6rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+              <span style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--sage, #8A9A5B)", display: "inline-block", animation: "fl-pulse-dot 2.2s ease-in-out infinite" }} />
+              Live Briefing
             </div>
             <p className="serif" style={{ fontSize: "clamp(1.2rem, 2.5vw, 1.5rem)", fontWeight: 500, color: "var(--ink)", lineHeight: 1.4, margin: 0, letterSpacing: "-0.01em" }}>
               {data.headline}

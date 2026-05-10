@@ -1,65 +1,70 @@
 @import "tailwindcss";
 
 /* ============================================================
-   Meridian Wealth Advisors — Design System
-   Cream surfaces, deep navy ink, warm gold accent.
-   Built for trust, credibility, and high-net-worth clients.
+   Bolt Resell AI — Design System
+   "Earthy Reliable" palette: Cream/Ivory 60%, Espresso/Sage 30%, Terracotta 10%
+   Grounded, organic, trustworthy.
    ============================================================ */
 
 :root {
-  /* Surfaces — cream */
-  --paper: #FAFAF8;
-  --paper-soft: #F4F3EF;
-  --paper-deep: #E8E6DF;
-  --surface: #FFFFFF;
+  /* Background — Cream/Ivory (60%) */
+  --paper: #FFFDD0;
+  --paper-soft: #FBF8E8;
+  --paper-deep: #F3EDD4;
+  --surface: #FFFEF5;
   --surface-elev: #FFFFFF;
 
-  /* Ink — deep navy */
-  --ink: #0F1C2E;
-  --ink-2: #162438;
-  --ink-3: #1E3048;
+  /* Ink — Near-black & Espresso (30%) */
+  --ink: #212529;
+  --ink-2: #3D2B1F;
+  --ink-3: #4A3728;
 
-  /* Text */
-  --text-secondary: #475569;
-  --text-muted: #64748B;
+  /* Text hierarchy */
+  --text-secondary: #5C4A3A;
+  --text-muted: #7A6B5E;
 
   /* Borders */
-  --border: #E8E6DF;
-  --border-subtle: #F0EEE9;
-  --border-strong: #D4D0C5;
+  --border: #E8DFC9;
+  --border-subtle: #F0E9D8;
+  --border-strong: #D4C9AE;
 
-  /* Primary accent — warm gold */
-  --accent: #C9A84C;
-  --accent-hover: #B8942E;
-  --accent-deep: #8A6B1A;
-  --accent-soft: #F5EDCF;
-  --accent-glow: rgba(201, 168, 76, 0.35);
+  /* Primary — Espresso Brown */
+  --espresso: #3D2B1F;
+  --espresso-light: #5C4033;
+  --espresso-soft: rgba(61, 43, 31, 0.08);
 
-  /* Navy — dark section backgrounds */
-  --navy: #0F1C2E;
-  --navy-2: #162438;
-  --navy-3: #1E3048;
-  --navy-light: rgba(255, 255, 255, 0.08);
+  /* Secondary — Sage Green */
+  --sage: #8A9A5B;
+  --sage-hover: #7A8A4D;
+  --sage-deep: #5A6B3B;
+  --sage-soft: #E8EDDA;
+  --sage-glow: rgba(138, 154, 91, 0.30);
 
-  /* Gold variant for hovers */
-  --gold: #C9A84C;
-  --gold-hover: #D4B86A;
-  --gold-soft: #F5EDCF;
-  --gold-glow: rgba(201, 168, 76, 0.30);
+  /* Accent — Terracotta (10%) */
+  --accent: #E2725B;
+  --accent-hover: #D4604A;
+  --accent-deep: #B84D3A;
+  --accent-soft: #FBEAE6;
+  --accent-glow: rgba(226, 114, 91, 0.30);
 
   /* Rose — for negative / alerts */
   --rose: #DC2C5C;
   --rose-soft: #FBDDE5;
   --rose-deep: #821B38;
 
+  /* Success */
+  --success: #8A9A5B;
+  --success-soft: #E8EDDA;
+
   /* Shadows */
-  --shadow-xs: 0 1px 2px rgba(15,28,46,0.04);
-  --shadow-sm: 0 2px 6px rgba(15,28,46,0.06);
-  --shadow-md: 0 8px 40px rgba(15,28,46,0.10);
-  --shadow-lg: 0 28px 60px -28px rgba(15,28,46,0.20);
-  --shadow-xl: 0 40px 80px -36px rgba(15,28,46,0.24);
-  --shadow-glow-gold: 0 4px 24px rgba(201,168,76,0.30);
-  --shadow-lift: 0 8px 40px rgba(15,28,46,0.10);
+  --shadow-xs: 0 1px 2px rgba(33, 37, 41, 0.04);
+  --shadow-sm: 0 2px 6px rgba(61, 43, 31, 0.06);
+  --shadow-md: 0 8px 40px rgba(61, 43, 31, 0.10);
+  --shadow-lg: 0 28px 60px -28px rgba(61, 43, 31, 0.18);
+  --shadow-xl: 0 40px 80px -36px rgba(61, 43, 31, 0.22);
+  --shadow-glow-sage: 0 4px 24px rgba(138, 154, 91, 0.30);
+  --shadow-glow-accent: 0 4px 24px rgba(226, 114, 91, 0.25);
+  --shadow-lift: 0 8px 40px rgba(61, 43, 31, 0.10);
 
   /* Radii */
   --r-sm: 6px;
@@ -68,13 +73,11 @@
   --r-xl: 14px;
   --r-2xl: 16px;
 
-  /* Legacy alias */
+  /* Legacy aliases for components still referencing old vars */
   --dark: var(--ink);
   --dark-soft: var(--ink-2);
-  /* Keep emerald alias references working during transition */
-  --accent-deep: #8A6B1A;
-  --warm: #C9A84C;
-  --warm-soft: #F5EDCF;
+  --warm: var(--accent);
+  --warm-soft: var(--accent-soft);
 }
 
 @theme inline {
@@ -119,8 +122,8 @@ body {
 ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
 
 ::selection {
-  background: var(--accent-soft);
-  color: var(--accent-deep);
+  background: var(--sage-soft);
+  color: var(--sage-deep);
 }
 
 a { color: inherit; text-decoration: none; }
@@ -131,8 +134,8 @@ button { font-family: inherit; }
    ============================================================ */
 
 @keyframes fl-pulse-dot {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.55); }
-  50%      { box-shadow: 0 0 0 8px rgba(201, 168, 76, 0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(138, 154, 91, 0.55); }
+  50%      { box-shadow: 0 0 0 8px rgba(138, 154, 91, 0); }
 }
 @keyframes fl-fade-up {
   from { opacity: 0; transform: translateY(16px); }
@@ -162,6 +165,14 @@ button { font-family: inherit; }
   0%, 100% { border-radius: 47% 53% 56% 44% / 53% 49% 51% 47%; }
   33%      { border-radius: 60% 40% 50% 50% / 40% 60% 40% 60%; }
   66%      { border-radius: 40% 60% 60% 40% / 60% 40% 60% 40%; }
+}
+@keyframes bolt-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes bolt-breathe {
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50%      { transform: scale(1.05); opacity: 1; }
 }
 
 .fl-pulse-dot { animation: fl-pulse-dot 2.2s ease-in-out infinite; }
@@ -194,7 +205,7 @@ button { font-family: inherit; }
    ============================================================ */
 
 .fl-gradient-text {
-  background: linear-gradient(96deg, var(--accent-deep) 0%, var(--accent) 55%, var(--gold-hover) 100%);
+  background: linear-gradient(96deg, var(--espresso) 0%, var(--sage-deep) 55%, var(--sage) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -202,28 +213,11 @@ button { font-family: inherit; }
 }
 
 .fl-gradient-warm {
-  background: linear-gradient(96deg, var(--accent-deep) 0%, var(--accent) 50%, var(--gold-hover) 100%);
+  background: linear-gradient(96deg, var(--accent-deep) 0%, var(--accent) 50%, var(--sage) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   -webkit-text-fill-color: transparent;
-}
-
-/* Gold shimmer for headings on dark backgrounds */
-.fl-gold-shimmer {
-  background: linear-gradient(
-    90deg,
-    #C9A84C 0%,
-    #C9A84C 38%,
-    #F0D98A 50%,
-    #C9A84C 62%,
-    #C9A84C 100%
-  );
-  background-size: 200% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: fl-shimmer 6s linear infinite;
 }
 
 .fl-shimmer {
@@ -261,7 +255,7 @@ button { font-family: inherit; }
 
 /* Subtle dot grid for hero/section backgrounds */
 .fl-grid {
-  background-image: radial-gradient(rgba(14,17,22,0.07) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(61, 43, 31, 0.06) 1px, transparent 1px);
   background-size: 28px 28px;
 }
 
@@ -288,7 +282,7 @@ button { font-family: inherit; }
 .fl-btn:active:not(:disabled) { transform: translateY(1px) scale(0.99); }
 
 .fl-btn-primary {
-  background: linear-gradient(135deg, var(--ink) 0%, var(--ink-2) 100%);
+  background: linear-gradient(135deg, var(--espresso) 0%, var(--ink) 100%);
   color: var(--paper);
   box-shadow: var(--shadow-sm);
 }
@@ -298,17 +292,27 @@ button { font-family: inherit; }
 }
 
 .fl-btn-accent {
-  background: linear-gradient(135deg, #C9A84C 0%, #B8942E 100%);
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
   color: #FFFFFF;
   box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255,255,255,0.18);
 }
 .fl-btn-accent:hover:not(:disabled) {
-  box-shadow: var(--shadow-glow-gold);
+  box-shadow: var(--shadow-glow-accent);
   transform: translateY(-1px);
 }
 
-/* Gold CTA button — primary action */
-.mw-btn-gold {
+.fl-btn-sage {
+  background: linear-gradient(135deg, var(--sage) 0%, var(--sage-hover) 100%);
+  color: #FFFFFF;
+  box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255,255,255,0.18);
+}
+.fl-btn-sage:hover:not(:disabled) {
+  box-shadow: var(--shadow-glow-sage);
+  transform: translateY(-1px);
+}
+
+/* Terracotta CTA button — primary action */
+.bolt-btn-cta {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -320,21 +324,21 @@ button { font-family: inherit; }
   font-family: inherit;
   cursor: pointer;
   border: none;
-  background: linear-gradient(135deg, #C9A84C 0%, #B8942E 100%);
-  color: #0F1C2E;
-  box-shadow: 0 4px 24px rgba(201,168,76,0.30);
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+  color: #FFFFFF;
+  box-shadow: var(--shadow-glow-accent);
   transition: transform 180ms ease, box-shadow 180ms ease;
   white-space: nowrap;
   letter-spacing: 0.01em;
 }
-.mw-btn-gold:hover {
+.bolt-btn-cta:hover {
   transform: translateY(-1px);
-  box-shadow: 0 6px 30px rgba(201,168,76,0.42);
+  box-shadow: 0 6px 30px rgba(226, 114, 91, 0.40);
 }
-.mw-btn-gold:active { transform: translateY(0); }
+.bolt-btn-cta:active { transform: translateY(0); }
 
-/* Ghost button for light backgrounds */
-.mw-btn-ghost {
+/* Ghost button — light bg */
+.bolt-btn-ghost {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -350,13 +354,13 @@ button { font-family: inherit; }
   transition: border-color 180ms ease, background 180ms ease;
   white-space: nowrap;
 }
-.mw-btn-ghost:hover {
-  border-color: var(--ink);
+.bolt-btn-ghost:hover {
+  border-color: var(--espresso);
   background: var(--paper-soft);
 }
 
-/* Ghost button for dark (navy) backgrounds */
-.mw-btn-ghost-light {
+/* Ghost button for dark backgrounds */
+.bolt-btn-ghost-light {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -367,14 +371,14 @@ button { font-family: inherit; }
   font-family: inherit;
   cursor: pointer;
   background: transparent;
-  color: rgba(250,250,248,0.85);
-  border: 1.5px solid rgba(255,255,255,0.22);
+  color: rgba(255,253,208,0.85);
+  border: 1.5px solid rgba(255,253,208,0.25);
   transition: border-color 180ms ease, background 180ms ease;
   white-space: nowrap;
 }
-.mw-btn-ghost-light:hover {
-  border-color: rgba(255,255,255,0.55);
-  background: rgba(255,255,255,0.06);
+.bolt-btn-ghost-light:hover {
+  border-color: rgba(255,253,208,0.55);
+  background: rgba(255,253,208,0.06);
 }
 
 .fl-btn-ghost {
@@ -383,7 +387,7 @@ button { font-family: inherit; }
   border-color: var(--border);
 }
 .fl-btn-ghost:hover:not(:disabled) {
-  border-color: var(--ink);
+  border-color: var(--espresso);
   background: var(--paper-soft);
 }
 
@@ -393,7 +397,7 @@ button { font-family: inherit; }
 }
 .fl-glow-btn:hover {
   transform: translateY(-1px);
-  box-shadow: var(--shadow-glow-emerald);
+  box-shadow: var(--shadow-glow-sage);
 }
 
 /* ============================================================
@@ -455,9 +459,9 @@ button { font-family: inherit; }
 .fl-input:focus,
 .fl-select:focus,
 .fl-textarea:focus {
-  border-color: var(--accent);
+  border-color: var(--sage);
   background: var(--surface);
-  box-shadow: 0 0 0 3px var(--accent-glow);
+  box-shadow: 0 0 0 3px var(--sage-glow);
 }
 
 /* ============================================================

@@ -41,7 +41,7 @@ function LoginInner() {
   return (
     <AuthShell
       title="Welcome back"
-      subtitle="Sign in to your FlipLedger dashboard."
+      subtitle="Sign in to your Bolt Resell AI dashboard."
       footer={
         <p style={{ color: "var(--text-secondary)", fontSize: "0.875rem" }}>
           New here?{" "}

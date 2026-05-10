@@ -15,7 +15,7 @@ const testimonials = [
   },
   {
     quote:
-      "I was selling my business and needed someone who understood both the tax implications and the wealth management side. Meridian handled the entire transition — the Roth conversions, the estate restructuring, the investment plan — all in one place. Invaluable.",
+      "I was selling my business and needed someone who understood both the tax implications and the wealth management side. Bolt Resell AI handled the entire transition — the Roth conversions, the estate restructuring, the investment plan — all in one place. Invaluable.",
     name: "Tom S.",
     detail: "Business Owner — Client since 2019",
     dark: false,

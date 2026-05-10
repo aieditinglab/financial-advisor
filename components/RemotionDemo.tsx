@@ -16,7 +16,7 @@ const CAPTIONS = [
   { time: 4.2, text: "Add an item: name, platform, what you paid, what you sold it for." },
   { time: 10.2, text: "Your dashboard updates in real time. Real profit. Real margin." },
   { time: 16.2, text: "AI insights surface what's working and what's quietly losing money." },
-  { time: 22.2, text: "Start free at flipledger.com." },
+  { time: 22.2, text: "Start free at boltresell.ai." },
 ];
 
 async function fetchClip(text: string): Promise<HTMLAudioElement | null> {

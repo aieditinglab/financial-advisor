@@ -22,10 +22,10 @@ export async function aimlGenerate(opts: {
   maxTokens?: number;
   model?: string;
 }): Promise<string> {
-  const apiKey = process.env.AIMLAPI_API_KEY;
-  if (!apiKey) throw new Error("AIMLAPI_API_KEY not configured");
+  const apiKey = process.env.AL_API_KEY;
+  if (!apiKey) throw new Error("AL_API_KEY not configured");
 
-  const model = opts.model ?? process.env.AIMLAPI_MODEL ?? DEFAULT_MODEL;
+  const model = opts.model ?? process.env.AL_MODEL ?? DEFAULT_MODEL;
 
   const messages: OAIMessage[] = [];
   if (opts.system) messages.push({ role: "system", content: opts.system });

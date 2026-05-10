@@ -290,7 +290,7 @@ export default function PricingPage() {
           }}
         >
           All plans include AI-generated insights labeled as informational only.
-          FlipLedger is a financial tracking tool, not a licensed financial advisor.{" "}
+          Bolt Resell AI is a financial tracking tool, not a licensed financial advisor.{" "}
           <Link href="/disclaimer" style={{ color: "var(--accent-deep)" }}>
             Read the full disclaimer
           </Link>

@@ -9,21 +9,21 @@ export default function TermsPage() {
       nextPage={{ label: "Privacy Policy", href: "/privacy" }}
     >
       <p>
-        These Terms of Service (&ldquo;Terms&rdquo;) govern your access to and use of FlipLedger
-        (the &ldquo;Service&rdquo;), operated by FlipLedger (&ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;). By
+        These Terms of Service (&ldquo;Terms&rdquo;) govern your access to and use of Bolt Resell AI
+        (the &ldquo;Service&rdquo;), operated by Bolt Resell AI (&ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;). By
         accessing or using the Service, you agree to be bound by these Terms. If you do
         not agree to these Terms, please do not use the Service.
       </p>
 
       <h2>1. Description of Service</h2>
       <p>
-        FlipLedger is a financial tracking and analytics tool designed to help resellers
+        Bolt Resell AI is a financial tracking and analytics tool designed to help resellers
         monitor their cost of goods sold (COGS), profit margins, platform fees, tax
         estimates, and cash flow. The Service may include AI-powered features that
         provide summaries, insights, and suggestions based on your data.
       </p>
       <p>
-        <strong>FlipLedger is not a licensed financial advisor, tax preparer, accountant, or legal counsel.</strong>{" "}
+        <strong>Bolt Resell AI is not a licensed financial advisor, tax preparer, accountant, or legal counsel.</strong>{" "}
         The Service is a software tool, and nothing on the platform constitutes
         financial, tax, investment, or legal advice. See Section 6 and our{" "}
         <Link href="/disclaimer">AI &amp; Financial Disclaimer</Link> for full details.
@@ -31,7 +31,7 @@ export default function TermsPage() {
 
       <h2>2. Eligibility</h2>
       <p>
-        You must be at least 13 years old to use FlipLedger. If you are under 18, you
+        You must be at least 13 years old to use Bolt Resell AI. If you are under 18, you
         represent that a parent or guardian has reviewed and agreed to these Terms on
         your behalf. By using the Service, you represent and warrant that you meet
         these eligibility requirements.
@@ -63,13 +63,13 @@ export default function TermsPage() {
 
       <h2>5. Your Data</h2>
       <p>
-        You retain ownership of the data you input into FlipLedger. By using the Service,
+        You retain ownership of the data you input into Bolt Resell AI. By using the Service,
         you grant us a limited, non-exclusive license to process your data solely for
         the purpose of providing and improving the Service. We will not sell your
         personal data to third parties. See our <Link href="/privacy">Privacy Policy</Link> for details.
       </p>
       <p>
-        You are responsible for the accuracy of the data you provide. FlipLedger cannot
+        You are responsible for the accuracy of the data you provide. Bolt Resell AI cannot
         guarantee the accuracy of calculations, estimates, or insights derived from
         inaccurate input data.
       </p>
@@ -78,10 +78,10 @@ export default function TermsPage() {
       <p>
         <strong>The Service does not provide financial, tax, investment, or legal advice of any kind.</strong>{" "}
         All content, data, calculations, AI-generated insights, and information provided
-        through FlipLedger are for general informational and organizational purposes only.
+        through Bolt Resell AI are for general informational and organizational purposes only.
       </p>
       <p>
-        FlipLedger is not a registered investment adviser, broker-dealer, tax preparer,
+        Bolt Resell AI is not a registered investment adviser, broker-dealer, tax preparer,
         certified public accountant (CPA), or attorney. We do not hold any fiduciary
         duty to you. No information provided by the Service should be relied upon as a
         substitute for professional advice from a licensed financial advisor, CPA, tax
@@ -116,7 +116,7 @@ export default function TermsPage() {
 
       <h2>8. Limitation of Liability</h2>
       <p>
-        TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, FLIPLEDGER AND ITS OFFICERS,
+        TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, BOLT RESELL AI AND ITS OFFICERS,
         DIRECTORS, EMPLOYEES, AND AGENTS SHALL NOT BE LIABLE FOR ANY INDIRECT,
         INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES — INCLUDING BUT NOT
         LIMITED TO LOSS OF PROFITS, REVENUE, DATA, OR BUSINESS OPPORTUNITIES — ARISING
@@ -131,7 +131,7 @@ export default function TermsPage() {
 
       <h2>9. Indemnification</h2>
       <p>
-        You agree to indemnify, defend, and hold harmless FlipLedger and its officers,
+        You agree to indemnify, defend, and hold harmless Bolt Resell AI and its officers,
         directors, employees, and agents from and against any claims, damages, losses,
         liabilities, costs, and expenses (including reasonable attorneys&apos; fees)
         arising out of or related to your use of the Service, your violation of these
@@ -140,7 +140,7 @@ export default function TermsPage() {
 
       <h2>10. Third-Party Platforms and Services</h2>
       <p>
-        FlipLedger may integrate with or display information from third-party platforms
+        Bolt Resell AI may integrate with or display information from third-party platforms
         (e.g., eBay, StockX, Amazon, Depop, Whatnot). We are not affiliated with,
         endorsed by, or responsible for the accuracy of data from these platforms.
         Platform fee structures, policies, and rates are subject to change; always
@@ -172,7 +172,7 @@ export default function TermsPage() {
       <h2>14. Contact</h2>
       <p>
         If you have questions about these Terms, contact us at{" "}
-        <a href="mailto:hello@flipledger.com">hello@flipledger.com</a>.
+        <a href="mailto:hello@boltresell.ai">hello@boltresell.ai</a>.
       </p>
     </LegalShell>
   );

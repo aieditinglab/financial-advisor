@@ -117,7 +117,7 @@ export default function Contact() {
           }}
         >
           <p style={{ color: "var(--text-muted)", fontSize: "0.78rem", lineHeight: 1.55, margin: 0 }}>
-            FlipLedger uses AI to surface insights about your numbers. AI outputs are
+            Bolt Resell AI uses AI to surface insights about your numbers. AI outputs are
             informational only — not financial, tax, or legal advice. Always verify
             important decisions with a licensed professional.{" "}
             <Link href="/disclaimer" style={{ color: "var(--accent-deep)" }}>
