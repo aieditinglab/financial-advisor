@@ -1,22 +1,30 @@
 @import "tailwindcss";
 
-/* FlipLedger design tokens — paper + editorial */
+/* FlipLedger design tokens — paper + editorial, warmer & richer */
 :root {
-  --paper: #F5F4ED;
-  --paper-soft: #FAF9F2;
+  --paper: #F4F2EA;
+  --paper-soft: #FAF8F1;
   --surface: #FFFFFF;
-  --ink: #1F1E1D;
-  --ink-2: #2E2C2A;
-  --text-secondary: #605F5C;
-  --text-muted: #8C8A82;
-  --border: #E5E2D6;
-  --border-subtle: #EFEDE5;
-  --accent: #10B981;
-  --accent-hover: #0E9F73;
-  --accent-soft: #E6F2EC;
-  --accent-deep: #064E3B;
-  --dark: #1F1E1D;
-  --dark-soft: #2E2C2A;
+  --ink: #1B1A19;
+  --ink-2: #2A2826;
+  --text-secondary: #5A5854;
+  --text-muted: #8B887F;
+  --border: #E2DED1;
+  --border-subtle: #EDE9DD;
+  --accent: #0F9D6E;
+  --accent-hover: #0B855E;
+  --accent-soft: #E2F1E9;
+  --accent-deep: #064C36;
+  --warm: #C7771A;
+  --warm-soft: #FBEFD9;
+  --warm-deep: #7A4810;
+  --rose: #C44B4B;
+  --rose-soft: #FBE4E4;
+  --shadow-sm: 0 1px 2px rgba(27,26,25,0.05);
+  --shadow-md: 0 4px 14px -4px rgba(27,26,25,0.10);
+  --shadow-lg: 0 24px 60px -28px rgba(27,26,25,0.22);
+  --dark: #1B1A19;
+  --dark-soft: #2A2826;
 }
 
 @theme inline {

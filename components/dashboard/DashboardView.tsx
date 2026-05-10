@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import type { Item } from "@/lib/types";
 import { computeProfit } from "@/lib/types";
@@ -11,6 +10,8 @@ import ItemsTable, { type DashboardRow } from "./ItemsTable";
 import AddItemDialog from "./AddItemDialog";
 import AIInsights from "./AIInsights";
 import Walkthrough, { shouldShowWalkthrough } from "./Walkthrough";
+import ProfitChart from "./ProfitChart";
+import QuickActions from "./QuickActions";
 
 type ViewMode = "real" | "demo";
 
@@ -120,7 +121,7 @@ export default function DashboardView({
 
   return (
     <div
-      style={{ maxWidth: "1100px", margin: "0 auto", padding: "1.75rem 1rem 5rem" }}
+      style={{ maxWidth: "1100px", margin: "0 auto", padding: "1.75rem 1.25rem 5rem" }}
       className="dashboard-shell"
     >
       <div
@@ -250,25 +251,6 @@ export default function DashboardView({
             </svg>
             Walkthrough
           </button>
-          {isAdmin && (
-            <Link
-              href="/dashboard/admin"
-              style={{
-                background: "var(--surface)",
-                color: "var(--ink)",
-                border: "1px solid var(--border)",
-                borderRadius: "8px",
-                padding: "0.55rem 0.9rem",
-                fontSize: "0.85rem",
-                fontWeight: 500,
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "6px",
-              }}
-            >
-              Admin
-            </Link>
-          )}
           <button
             onClick={() => setAdding(true)}
             style={{
@@ -350,6 +332,14 @@ export default function DashboardView({
       </div>
 
       <div className="fl-fade-in fl-delay-2">
+        <ProfitChart rows={rows} />
+      </div>
+
+      <div className="fl-fade-in fl-delay-2">
+        <QuickActions />
+      </div>
+
+      <div className="fl-fade-in fl-delay-3">
         <ItemsTable rows={rows} editable={mode === "real"} />
       </div>
 

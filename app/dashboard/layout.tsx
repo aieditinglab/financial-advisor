@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import type { ReactNode } from "react";
 import { createClient } from "@/lib/supabase/server";
 import SignOutButton from "@/components/dashboard/SignOutButton";
+import Sidebar from "@/components/dashboard/Sidebar";
 
 export default async function DashboardLayout({ children }: { children: ReactNode }) {
   const supabase = await createClient();
@@ -14,8 +15,15 @@ export default async function DashboardLayout({ children }: { children: ReactNod
     redirect("/login");
   }
 
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("is_admin")
+    .eq("id", user.id)
+    .maybeSingle();
+
   const email = user.email ?? "";
   const initial = email.charAt(0).toUpperCase();
+  const isAdmin = !!profile?.is_admin;
 
   return (
     <div
@@ -30,7 +38,7 @@ export default async function DashboardLayout({ children }: { children: ReactNod
         style={{
           background: "var(--surface)",
           borderBottom: "1px solid var(--border)",
-          padding: "0 1.75rem",
+          padding: "0 1.25rem 0 4rem",
           height: "60px",
           display: "flex",
           alignItems: "center",
@@ -39,6 +47,7 @@ export default async function DashboardLayout({ children }: { children: ReactNod
           top: 0,
           zIndex: 30,
         }}
+        className="fl-dash-header"
       >
         <Link
           href="/dashboard"
@@ -108,7 +117,10 @@ export default async function DashboardLayout({ children }: { children: ReactNod
         </div>
       </header>
 
-      <main style={{ flex: 1 }}>{children}</main>
+      <div style={{ display: "flex", flex: 1, minHeight: 0 }}>
+        <Sidebar isAdmin={isAdmin} />
+        <main style={{ flex: 1, minWidth: 0 }}>{children}</main>
+      </div>
 
       <footer
         style={{
@@ -133,6 +145,9 @@ export default async function DashboardLayout({ children }: { children: ReactNod
       <style>{`
         @media (max-width: 640px) {
           .hide-on-mobile { display: none !important; }
+        }
+        @media (min-width: 901px) {
+          .fl-dash-header { padding-left: 1.75rem !important; }
         }
       `}</style>
     </div>
