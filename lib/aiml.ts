@@ -22,10 +22,10 @@ export async function aimlGenerate(opts: {
   maxTokens?: number;
   model?: string;
 }): Promise<string> {
-  const apiKey = process.env.AL_API_KEY;
-  if (!apiKey) throw new Error("AL_API_KEY not configured");
+  const apiKey = process.env.GROQ_API_KEY;
+  if (!apiKey) throw new Error("GROQ_API_KEY not configured");
 
-  const model = opts.model ?? process.env.AL_MODEL ?? DEFAULT_MODEL;
+  const model = opts.model ?? process.env.GROQ_MODEL ?? DEFAULT_MODEL;
 
   const messages: OAIMessage[] = [];
   if (opts.system) messages.push({ role: "system", content: opts.system });
@@ -53,7 +53,7 @@ export async function aimlGenerate(opts: {
     const msg =
       typeof json.error === "string"
         ? json.error
-        : (json.error?.message ?? json.message ?? `AI/ML request failed (${r.status})`);
+        : (json.error?.message ?? json.message ?? `Groq request failed (${r.status})`);
     throw new Error(msg);
   }
 
