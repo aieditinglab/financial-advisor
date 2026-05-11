@@ -2,10 +2,19 @@
 
 import { useEffect, useRef, useState } from "react";
 
+interface FileAttachment {
+  id: string;
+  name: string;
+  type: string;
+  base64: string;
+  preview?: string;
+}
+
 interface Msg {
   id: string;
   role: "user" | "assistant";
   content: string;
+  attachments?: FileAttachment[];
 }
 
 const SUGGESTIONS = [
@@ -20,8 +29,10 @@ export default function ChatView() {
   const [input, setInput] = useState("");
   const [pending, setPending] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  const [attachments, setAttachments] = useState<FileAttachment[]>([]);
   const scrollerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     void (async () => {
@@ -42,23 +53,60 @@ export default function ChatView() {
     if (el) el.scrollTop = el.scrollHeight;
   }, [messages, pending]);
 
+  const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.currentTarget.files;
+    if (!files) return;
+
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const base64 = event.target?.result as string;
+        const preview = file.type.startsWith("image/") ? base64 : undefined;
+        setAttachments((prev) => [
+          ...prev,
+          {
+            id: crypto.randomUUID(),
+            name: file.name,
+            type: file.type,
+            base64,
+            preview,
+          },
+        ]);
+      };
+      reader.readAsDataURL(file);
+    }
+
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  };
+
+  const removeAttachment = (id: string) => {
+    setAttachments((prev) => prev.filter((a) => a.id !== id));
+  };
+
   const send = async (text: string) => {
     const trimmed = text.trim();
-    if (!trimmed || pending) return;
+    if ((!trimmed && attachments.length === 0) || pending) return;
     setPending(true);
-    const userMsg: Msg = { id: crypto.randomUUID(), role: "user", content: trimmed };
+    const userMsg: Msg = {
+      id: crypto.randomUUID(),
+      role: "user",
+      content: trimmed || (attachments.length > 0 ? `Attached ${attachments.length} file(s)` : ""),
+      attachments: attachments.length > 0 ? attachments : undefined,
+    };
     const history = messages.map((m) => ({
       role: m.role === "assistant" ? ("assistant" as const) : ("user" as const),
       text: m.content,
     }));
     setMessages((prev) => [...prev, userMsg]);
     setInput("");
+    setAttachments([]);
 
     try {
       const r = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: trimmed, history }),
+        body: JSON.stringify({ message: trimmed, history, attachments }),
       });
       const data = (await r.json()) as { reply?: string; error?: string };
       const reply: Msg = {
@@ -189,7 +237,7 @@ export default function ChatView() {
         )}
 
         {messages.map((m) => (
-          <Bubble key={m.id} role={m.role} content={m.content} />
+          <Bubble key={m.id} role={m.role} content={m.content} attachments={m.attachments} />
         ))}
 
         {pending && (
@@ -200,6 +248,68 @@ export default function ChatView() {
           </div>
         )}
       </div>
+
+      {attachments.length > 0 && (
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(80px, 1fr))",
+            gap: "0.5rem",
+            marginBottom: "0.75rem",
+          }}
+        >
+          {attachments.map((att) => (
+            <div
+              key={att.id}
+              style={{
+                position: "relative",
+                borderRadius: 10,
+                border: "1px solid var(--border)",
+                overflow: "hidden",
+                background: "var(--paper-soft)",
+                aspectRatio: "1",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              {att.preview ? (
+                <img
+                  src={att.preview}
+                  alt={att.name}
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
+              ) : (
+                <div style={{ textAlign: "center", padding: "0.5rem", fontSize: "0.7rem", color: "var(--text-muted)" }}>
+                  📄
+                </div>
+              )}
+              <button
+                type="button"
+                onClick={() => removeAttachment(att.id)}
+                style={{
+                  position: "absolute",
+                  top: "-6px",
+                  right: "-6px",
+                  width: "20px",
+                  height: "20px",
+                  borderRadius: "50%",
+                  background: "rgba(31,26,20,0.8)",
+                  color: "white",
+                  border: "none",
+                  cursor: "pointer",
+                  fontSize: "0.7rem",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                ✕
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
 
       <form
         onSubmit={(e) => {
@@ -216,6 +326,32 @@ export default function ChatView() {
           padding: "0.5rem 0.65rem",
         }}
       >
+        <input
+          ref={fileInputRef}
+          type="file"
+          multiple
+          accept="image/*,.pdf,.txt,.doc,.docx"
+          onChange={handleFileSelect}
+          style={{ display: "none" }}
+        />
+        <button
+          type="button"
+          onClick={() => fileInputRef.current?.click()}
+          title="Attach files or images"
+          style={{
+            background: "transparent",
+            border: "none",
+            cursor: "pointer",
+            color: "var(--text-secondary)",
+            padding: "0.4rem",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontSize: "1rem",
+          }}
+        >
+          📎
+        </button>
         <textarea
           ref={inputRef}
           value={input}
@@ -243,16 +379,16 @@ export default function ChatView() {
         />
         <button
           type="submit"
-          disabled={pending || !input.trim()}
+          disabled={pending || (!input.trim() && attachments.length === 0)}
           style={{
-            background: pending || !input.trim() ? "var(--border)" : "var(--ink)",
+            background: pending || (!input.trim() && attachments.length === 0) ? "var(--border)" : "var(--ink)",
             color: "var(--paper)",
             border: "none",
             borderRadius: 10,
             padding: "0.55rem 0.9rem",
             fontSize: "0.85rem",
             fontWeight: 500,
-            cursor: pending || !input.trim() ? "not-allowed" : "pointer",
+            cursor: pending || (!input.trim() && attachments.length === 0) ? "not-allowed" : "pointer",
             display: "inline-flex",
             alignItems: "center",
             gap: 6,
@@ -285,25 +421,73 @@ export default function ChatView() {
   );
 }
 
-function Bubble({ role, content }: { role: "user" | "assistant"; content: string }) {
+function Bubble({
+  role,
+  content,
+  attachments,
+}: {
+  role: "user" | "assistant";
+  content: string;
+  attachments?: FileAttachment[];
+}) {
   const isUser = role === "user";
   return (
     <div
       style={{
         alignSelf: isUser ? "flex-end" : "flex-start",
         maxWidth: "85%",
-        background: isUser ? "var(--ink)" : "var(--paper-soft)",
-        color: isUser ? "var(--paper)" : "var(--ink)",
-        border: isUser ? "none" : "1px solid var(--border)",
-        borderRadius: 14,
-        padding: "0.7rem 0.95rem",
-        fontSize: "0.95rem",
-        lineHeight: 1.55,
-        whiteSpace: "pre-wrap",
-        animation: "fl-rise 320ms cubic-bezier(0.16, 1, 0.3, 1) both",
+        display: "flex",
+        flexDirection: "column",
+        gap: "0.5rem",
       }}
     >
-      {content}
+      <div
+        style={{
+          background: isUser ? "var(--ink)" : "var(--paper-soft)",
+          color: isUser ? "var(--paper)" : "var(--ink)",
+          border: isUser ? "none" : "1px solid var(--border)",
+          borderRadius: 14,
+          padding: "0.7rem 0.95rem",
+          fontSize: "0.95rem",
+          lineHeight: 1.55,
+          whiteSpace: "pre-wrap",
+          animation: "fl-rise 320ms cubic-bezier(0.16, 1, 0.3, 1) both",
+        }}
+      >
+        {content}
+      </div>
+      {attachments && attachments.length > 0 && (
+        <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
+          {attachments.map((att) => (
+            <div
+              key={att.id}
+              style={{
+                borderRadius: 10,
+                border: "1px solid var(--border)",
+                overflow: "hidden",
+                background: "var(--paper-soft)",
+                maxWidth: "120px",
+              }}
+            >
+              {att.preview ? (
+                <img src={att.preview} alt={att.name} style={{ width: "100%", height: "auto", display: "block" }} />
+              ) : (
+                <div
+                  style={{
+                    padding: "0.5rem",
+                    fontSize: "0.75rem",
+                    color: "var(--text-muted)",
+                    textAlign: "center",
+                    wordBreak: "break-word",
+                  }}
+                >
+                  📄 {att.name}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

@@ -4,9 +4,20 @@
 const ENDPOINT = "https://api.groq.com/openai/v1/chat/completions";
 const DEFAULT_MODEL = "qwen/qwen3-32b";
 
+type OAIContent =
+  | string
+  | {
+      type: "text";
+      text: string;
+    }
+  | {
+      type: "image_url";
+      image_url: { url: string };
+    };
+
 interface OAIMessage {
   role: "system" | "user" | "assistant";
-  content: string;
+  content: OAIContent | OAIContent[];
 }
 
 interface AimlResponse {
@@ -17,7 +28,7 @@ interface AimlResponse {
 
 export async function aimlGenerate(opts: {
   system?: string;
-  messages: { role: "user" | "assistant"; text: string }[];
+  messages: { role: "user" | "assistant"; text: string; images?: string[] }[];
   temperature?: number;
   maxTokens?: number;
   model?: string;
@@ -30,7 +41,13 @@ export async function aimlGenerate(opts: {
   const messages: OAIMessage[] = [];
   if (opts.system) messages.push({ role: "system", content: opts.system });
   for (const m of opts.messages) {
-    messages.push({ role: m.role, content: m.text });
+    const content: OAIContent[] = [{ type: "text", text: m.text }];
+    if (m.images && m.images.length > 0) {
+      for (const img of m.images) {
+        content.push({ type: "image_url", image_url: { url: img } });
+      }
+    }
+    messages.push({ role: m.role, content: content.length === 1 ? m.text : content });
   }
 
   const r = await fetch(ENDPOINT, {

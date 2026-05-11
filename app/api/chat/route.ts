@@ -13,9 +13,17 @@ When the user has tracked items in their dashboard, ground your answer in those 
 
 You are NOT a licensed financial, tax, or legal advisor. If the user asks about taxes, legal structure, or investment advice, share general framing and remind them to talk to a professional.`;
 
+interface FileAttachment {
+  id: string;
+  name: string;
+  type: string;
+  base64: string;
+}
+
 interface ChatRequest {
   message: string;
   history?: { role: "user" | "assistant" | "model"; text: string }[];
+  attachments?: FileAttachment[];
 }
 
 function buildItemContext(items: Item[]): string {
@@ -102,7 +110,7 @@ export async function POST(req: NextRequest) {
 
   const context = buildItemContext((items ?? []) as Item[]);
 
-  const messages: { role: "user" | "assistant"; text: string }[] = [];
+  const messages: { role: "user" | "assistant"; text: string; images?: string[] }[] = [];
   messages.push({
     role: "user",
     text: `Here is the user's tracked reseller data. Treat it as ground truth.\n\n${context}`,
@@ -118,7 +126,18 @@ export async function POST(req: NextRequest) {
       messages.push({ role, text: m.text });
     }
   }
-  messages.push({ role: "user", text: body.message });
+
+  // Extract image attachments
+  const images: string[] = [];
+  if (body.attachments && body.attachments.length > 0) {
+    for (const att of body.attachments) {
+      if (att.type.startsWith("image/")) {
+        images.push(att.base64);
+      }
+    }
+  }
+
+  messages.push({ role: "user", text: body.message, images: images.length > 0 ? images : undefined });
 
   try {
     const reply = await aimlGenerate({ system: SYSTEM, messages, temperature: 0.55 });
