@@ -1,30 +1,30 @@
 const testimonials = [
   {
     quote:
-      "I spent 20 years working with a commission-based advisor who I always suspected was steering me toward products that benefited him. Eleanor walked me through exactly how she's paid and what she recommends — and why. For the first time, I actually trust my financial plan.",
-    name: "Richard D.",
-    detail: "Senior VP, Manufacturing — Retired client since 2016",
+      "I was flipping sneakers across StockX and eBay with no idea which one was actually making me money. Bolt's AI insights showed me my StockX margins were 18% higher. Reallocated my inventory and my monthly profit doubled in 60 days.",
+    name: "Marcus J.",
+    detail: "Sneaker reseller · $12k/mo GMV",
     dark: true,
   },
   {
     quote:
-      "When I inherited my mother's estate, I didn't know where to start. Priya helped me understand my options without any pressure. She explained everything in plain language and built a plan that gave me confidence I hadn't felt in years.",
-    name: "Mia T.",
-    detail: "Marketing Director — Client since 2021",
+      "The vendor directory alone is worth it. Found two reliable suppliers I'd never heard of, and the step-by-step guide gave me the confidence to scale up from a side hustle to actually paying my rent with this.",
+    name: "Sarah L.",
+    detail: "Depop & Poshmark seller",
     dark: false,
   },
   {
     quote:
-      "I was selling my business and needed someone who understood both the tax implications and the wealth management side. Bolt Resell AI handled the entire transition — the Roth conversions, the estate restructuring, the investment plan — all in one place. Invaluable.",
-    name: "Tom S.",
-    detail: "Business Owner — Client since 2019",
+      "I used to track everything in a janky spreadsheet. Bolt's dashboard auto-calculates every fee, every shipping cost, every margin. The tax estimator alone saved me from a nasty surprise at filing time.",
+    name: "Dev P.",
+    detail: "Multi-platform reseller · 4 years",
     dark: false,
   },
   {
     quote:
-      "Other advisors wanted to talk about products. Marcus wanted to talk about my goals. That was different. Three years in, my portfolio is exactly where it should be, and I understand every decision that went into building it.",
-    name: "Carol & James W.",
-    detail: "Pre-retirement couple — Clients since 2018",
+      "The AI chat is genuinely useful. I ask it stuff like \"should I list more or hold inventory\" and it actually looks at my real numbers and tells me. Feels like having a CFO for a side hustle.",
+    name: "Riley K.",
+    detail: "Vintage & streetwear flips",
     dark: true,
   },
 ];

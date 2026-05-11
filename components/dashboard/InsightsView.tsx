@@ -44,10 +44,10 @@ export default function InsightsView() {
 
   useEffect(() => {
     void generate();
-    // Auto-refresh insights every 90 seconds
+    // Auto-refresh insights every 45 seconds — keeps the briefing live
     const interval = setInterval(() => {
       void generate();
-    }, 90_000);
+    }, 45_000);
     return () => clearInterval(interval);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

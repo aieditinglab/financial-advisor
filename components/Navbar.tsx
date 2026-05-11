@@ -28,11 +28,11 @@ export default function Navbar() {
         right: 0,
         zIndex: 50,
         transition: "all 0.25s ease",
-        background: scrolled ? "rgba(61, 43, 31, 0.97)" : "transparent",
-        backdropFilter: scrolled ? "saturate(180%) blur(20px)" : "none",
-        WebkitBackdropFilter: scrolled ? "saturate(180%) blur(20px)" : "none",
-        borderBottom: scrolled ? "1px solid rgba(255,253,208,0.08)" : "1px solid transparent",
-        boxShadow: scrolled ? "0 2px 16px rgba(61,43,31,0.16)" : "none",
+        background: scrolled ? "rgba(31, 26, 20, 0.85)" : "transparent",
+        backdropFilter: scrolled ? "saturate(180%) blur(24px)" : "none",
+        WebkitBackdropFilter: scrolled ? "saturate(180%) blur(24px)" : "none",
+        borderBottom: scrolled ? "1px solid rgba(250,247,232,0.08)" : "1px solid transparent",
+        boxShadow: scrolled ? "0 8px 32px rgba(31,26,20,0.20)" : "none",
       }}
     >
       <div
@@ -49,19 +49,21 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/" style={{ display: "flex", alignItems: "center", gap: "10px" }}>
           <div
+            className="fl-bolt-pulse"
             style={{
-              width: "30px",
-              height: "30px",
-              background: "linear-gradient(135deg, #E2725B 0%, #D4604A 100%)",
-              borderRadius: "7px",
+              width: "32px",
+              height: "32px",
+              background: "linear-gradient(135deg, #D4604A 0%, #E07A5F 50%, #C24F3B 100%)",
+              borderRadius: "8px",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               flexShrink: 0,
+              boxShadow: "0 4px 16px rgba(212,96,74,0.35), inset 0 1px 0 rgba(255,255,255,0.20)",
             }}
           >
             {/* Bolt icon */}
-            <svg width="14" height="16" viewBox="0 0 14 16" fill="none" aria-hidden="true">
+            <svg width="15" height="17" viewBox="0 0 14 16" fill="none" aria-hidden="true">
               <path
                 d="M8 1L2 9h5l-1 6 6-8H7l1-6z"
                 fill="white"

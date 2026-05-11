@@ -150,30 +150,39 @@ export default function Services() {
           }}
           className="services-grid"
         >
-          {services.map((svc) => (
+          {services.map((svc, idx) => (
             <div
               key={svc.title}
-              className="fl-lift"
+              className="fl-card-premium fl-lift"
               style={{
                 background: "var(--surface)",
                 border: "1px solid var(--border)",
-                borderRadius: "var(--r-xl)",
-                padding: "1.75rem",
+                position: "relative",
+                overflow: "hidden",
               }}
             >
               {/* Icon */}
               <div
                 style={{
-                  width: "44px",
-                  height: "44px",
-                  borderRadius: "10px",
-                  background: "var(--sage-soft, #E8EDDA)",
-                  color: "var(--sage-deep, #5A6B3B)",
+                  width: "52px",
+                  height: "52px",
+                  borderRadius: "14px",
+                  background: idx % 3 === 0
+                    ? "linear-gradient(135deg, var(--sage-soft), rgba(138,154,91,0.15))"
+                    : idx % 3 === 1
+                    ? "linear-gradient(135deg, var(--accent-soft), rgba(212,96,74,0.12))"
+                    : "linear-gradient(135deg, var(--gold-soft), rgba(201,168,118,0.15))",
+                  color: idx % 3 === 0
+                    ? "var(--sage-deep, #5A6B3B)"
+                    : idx % 3 === 1
+                    ? "var(--accent-deep, #A03F2D)"
+                    : "var(--gold-deep, #9F8454)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  marginBottom: "1.1rem",
+                  marginBottom: "1.25rem",
                   flexShrink: 0,
+                  border: "1px solid rgba(0,0,0,0.04)",
                 }}
               >
                 {svc.icon}

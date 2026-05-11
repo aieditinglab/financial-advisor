@@ -146,6 +146,8 @@ export default function RemotionDemo() {
       if (typeof window !== "undefined" && window.speechSynthesis) {
         window.speechSynthesis.getVoices();
       }
+      // Auto-enable voice on first play so users immediately hear sound.
+      if (!voiceOn) setVoiceOn(true);
       p.play();
     }
   };

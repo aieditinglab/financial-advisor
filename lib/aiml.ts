@@ -44,6 +44,9 @@ export async function aimlGenerate(opts: {
       messages,
       temperature: opts.temperature ?? 0.6,
       max_tokens: opts.maxTokens ?? 1024,
+      // Groq Qwen reasoning models: hide the <think> chain-of-thought from the response.
+      // Other models ignore this field harmlessly.
+      reasoning_format: "hidden",
     }),
     cache: "no-store",
   });
@@ -57,5 +60,25 @@ export async function aimlGenerate(opts: {
     throw new Error(msg);
   }
 
-  return json.choices?.[0]?.message?.content?.trim() ?? "";
+  const raw = json.choices?.[0]?.message?.content ?? "";
+  return stripThinking(raw).trim();
+}
+
+/**
+ * Strip out chain-of-thought / reasoning blocks that some models (Qwen, DeepSeek-R1, etc.)
+ * emit before their final answer. We never want to expose this to end users.
+ */
+function stripThinking(text: string): string {
+  if (!text) return "";
+  let out = text;
+  // Remove <think>...</think> blocks (closed)
+  out = out.replace(/<think>[\s\S]*?<\/think>/gi, "");
+  // Remove orphan opening <think> with no close (truncated output)
+  out = out.replace(/<think>[\s\S]*$/i, "");
+  // Remove orphan closing </think> if reasoning came at the very start with no opener
+  out = out.replace(/^[\s\S]*?<\/think>/i, (m) => (m.includes("<think>") ? m : ""));
+  // Same for other common reasoning wrappers
+  out = out.replace(/<reasoning>[\s\S]*?<\/reasoning>/gi, "");
+  out = out.replace(/<thought>[\s\S]*?<\/thought>/gi, "");
+  return out.trim();
 }

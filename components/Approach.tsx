@@ -1,153 +1,171 @@
-const principles = [
+const steps = [
   {
     number: "01",
-    title: "We're legally required to act in your interest.",
+    title: "Track Every Flip",
     description:
-      "As a fiduciary, we are legally and ethically bound to put your interests before our own at all times — not just when it's convenient.",
+      "Log items as you source them — name, cost, platform, fees, shipping. Mark them sold when they sell. We do the math: real profit per item, automatically.",
   },
   {
     number: "02",
-    title: "Planning comes before investing.",
+    title: "Connect Your Platforms",
     description:
-      "We build your financial plan first. Your investment strategy flows from your goals, time horizon, and tax situation — not the other way around.",
+      "Link your eBay, Depop, and Facebook Marketplace profiles. Get a unified view of performance across every marketplace you sell on.",
   },
   {
     number: "03",
-    title: "We follow evidence, not predictions.",
+    title: "Get AI Insights",
     description:
-      "We don't chase trends or make market calls. We use decades of academic research to build low-cost, diversified portfolios that stand the test of time.",
+      "Our AI analyzes your numbers in real time. Which platform makes you the most? Which items lose money? What should you focus on next week?",
   },
   {
     number: "04",
-    title: "One flat fee. Full transparency.",
+    title: "Hit Your Goals",
     description:
-      "You pay one transparent fee for everything — no commissions, no fund kickbacks, no hidden costs. Our incentive is your success, not product sales.",
+      "Set monthly profit and revenue targets. Watch your progress. Get coached toward bigger flips, smarter sourcing, and better margins.",
   },
 ];
 
 export default function Approach() {
   return (
     <section
-      id="approach"
+      id="how-it-works"
       style={{
-        background: "var(--ink)",
+        background: "linear-gradient(180deg, var(--paper) 0%, var(--paper-soft) 100%)",
         padding: "7rem 1.5rem",
+        position: "relative",
+        overflow: "hidden",
       }}
     >
-      <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1.3fr",
-            gap: "5rem",
-            alignItems: "start",
-          }}
-          className="approach-grid"
-        >
-          {/* Left column */}
-          <div style={{ position: "sticky", top: "8rem" }} className="approach-left">
-            <span
-              style={{
-                display: "inline-block",
-                color: "#C9A84C",
-                fontSize: "0.72rem",
-                fontWeight: 700,
-                letterSpacing: "0.13em",
-                textTransform: "uppercase",
-                marginBottom: "0.85rem",
-              }}
-            >
-              Our Philosophy
-            </span>
-            <h2
-              style={{
-                fontSize: "clamp(2rem, 4.5vw, 2.9rem)",
-                fontWeight: 700,
-                color: "#FAFAF8",
-                letterSpacing: "-0.025em",
-                lineHeight: 1.1,
-                marginBottom: "1.25rem",
-              }}
-            >
-              Different by design — not by accident.
-            </h2>
-            <p
-              style={{
-                color: "rgba(250,250,248,0.58)",
-                fontSize: "0.97rem",
-                lineHeight: 1.7,
-                marginBottom: "2rem",
-              }}
-            >
-              Independent, fee-only advisory firms are a small fraction of the industry. We chose this model deliberately because it's the only structure that keeps our interests aligned with yours.
-            </p>
-            <a
-              href="#contact"
-              className="mw-btn-gold"
-              style={{ display: "inline-flex" }}
-            >
-              Schedule a Free Consultation
-            </a>
-          </div>
+      {/* Decorative background blobs */}
+      <span
+        aria-hidden="true"
+        className="fl-blob"
+        style={{
+          top: "10%",
+          right: "-100px",
+          width: "300px",
+          height: "300px",
+          background: "rgba(212,96,74,0.08)",
+        }}
+      />
 
-          {/* Right column — principles */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
-            {principles.map((p, i) => (
+      <div style={{ maxWidth: "1100px", margin: "0 auto", position: "relative" }}>
+        {/* Section header */}
+        <div style={{ marginBottom: "4.5rem", maxWidth: "680px" }}>
+          <span
+            style={{
+              display: "inline-block",
+              color: "var(--accent)",
+              fontSize: "0.72rem",
+              fontWeight: 700,
+              letterSpacing: "0.15em",
+              textTransform: "uppercase",
+              marginBottom: "1rem",
+            }}
+          >
+            How It Works
+          </span>
+          <h2
+            className="serif"
+            style={{
+              fontSize: "clamp(2.2rem, 5vw, 3.2rem)",
+              fontWeight: 500,
+              color: "var(--ink)",
+              letterSpacing: "-0.025em",
+              lineHeight: 1.05,
+              marginBottom: "1.25rem",
+            }}
+          >
+            From scattered receipts to <span className="fl-gradient-accent" style={{ fontStyle: "italic" }}>complete clarity</span>.
+          </h2>
+          <p style={{ color: "var(--text-secondary)", fontSize: "1.08rem", lineHeight: 1.65, maxWidth: "560px" }}>
+            Four steps to take your reselling business from guesswork to a data-driven engine.
+          </p>
+        </div>
+
+        {/* Steps */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+          {steps.map((step, i) => (
+            <div
+              key={step.number}
+              className="fl-card-premium fl-lift"
+              style={{
+                display: "grid",
+                gridTemplateColumns: "auto 1fr auto",
+                gap: "2rem",
+                alignItems: "center",
+              }}
+            >
+              {/* Number */}
               <div
-                key={p.number}
+                className="serif"
                 style={{
-                  borderTop: "1px solid rgba(255,255,255,0.08)",
-                  padding: "2rem 0",
-                  borderBottom: i === principles.length - 1 ? "1px solid rgba(255,255,255,0.08)" : "none",
+                  fontSize: "clamp(2.5rem, 5vw, 3.5rem)",
+                  fontWeight: 400,
+                  color: "var(--accent)",
+                  letterSpacing: "-0.02em",
+                  lineHeight: 1,
+                  fontStyle: "italic",
+                  minWidth: "70px",
                 }}
               >
-                <div style={{ display: "flex", gap: "1.25rem", alignItems: "flex-start" }}>
-                  <span
-                    style={{
-                      fontSize: "0.72rem",
-                      fontWeight: 700,
-                      color: "#C9A84C",
-                      letterSpacing: "0.08em",
-                      marginTop: "0.2rem",
-                      flexShrink: 0,
-                    }}
-                  >
-                    {p.number}
-                  </span>
-                  <div>
-                    <h3
-                      style={{
-                        fontSize: "1.02rem",
-                        fontWeight: 600,
-                        color: "#FAFAF8",
-                        marginBottom: "0.55rem",
-                        lineHeight: 1.35,
-                        letterSpacing: "-0.01em",
-                      }}
-                    >
-                      {p.title}
-                    </h3>
-                    <p
-                      style={{
-                        fontSize: "0.88rem",
-                        color: "rgba(250,250,248,0.55)",
-                        lineHeight: 1.7,
-                      }}
-                    >
-                      {p.description}
-                    </p>
-                  </div>
-                </div>
+                {step.number}
               </div>
-            ))}
-          </div>
+
+              {/* Content */}
+              <div>
+                <h3
+                  style={{
+                    fontSize: "clamp(1.15rem, 2vw, 1.4rem)",
+                    fontWeight: 600,
+                    color: "var(--ink)",
+                    margin: "0 0 0.5rem",
+                    letterSpacing: "-0.015em",
+                  }}
+                >
+                  {step.title}
+                </h3>
+                <p
+                  style={{
+                    fontSize: "0.96rem",
+                    color: "var(--text-secondary)",
+                    lineHeight: 1.65,
+                    margin: 0,
+                    maxWidth: "640px",
+                  }}
+                >
+                  {step.description}
+                </p>
+              </div>
+
+              {/* Arrow indicator */}
+              <div
+                style={{
+                  width: 36,
+                  height: 36,
+                  borderRadius: "50%",
+                  background: "var(--paper)",
+                  border: "1px solid var(--border)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "var(--accent)",
+                  flexShrink: 0,
+                }}
+                className="step-arrow"
+              >
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
       <style>{`
-        @media (max-width: 768px) {
-          .approach-grid { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
-          .approach-left { position: static !important; }
+        @media (max-width: 640px) {
+          .step-arrow { display: none !important; }
         }
       `}</style>
     </section>
