@@ -130,55 +130,84 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* RIGHT: Product preview */}
+        {/* RIGHT: Product preview — Editorial dashboard */}
         <div className="fl-reveal hero-preview" style={{ animationDelay: "100ms" }}>
           <div
             style={{
               background: "var(--surface)",
               border: "1px solid var(--border)",
-              borderRadius: "8px",
-              padding: "2rem",
+              borderRadius: "6px",
+              padding: "1.75rem",
               position: "relative",
+              boxShadow: "0 4px 12px rgba(26, 26, 26, 0.06)",
             }}
           >
-            {/* Window header */}
+            {/* Header */}
             <div
               style={{
                 display: "flex",
-                gap: "6px",
+                justifyContent: "space-between",
+                alignItems: "flex-start",
                 marginBottom: "2rem",
                 paddingBottom: "1.5rem",
                 borderBottom: "1px solid var(--border)",
               }}
             >
+              <div>
+                <div
+                  style={{
+                    fontSize: "0.65rem",
+                    fontWeight: 700,
+                    letterSpacing: "0.1em",
+                    color: "var(--text-muted)",
+                    textTransform: "uppercase",
+                    marginBottom: "0.4rem",
+                  }}
+                >
+                  This Month
+                </div>
+                <div
+                  className="serif"
+                  style={{
+                    fontSize: "1.8rem",
+                    fontWeight: 600,
+                    color: "var(--ink)",
+                  }}
+                >
+                  $4,827
+                </div>
+              </div>
               <div
                 style={{
-                  width: 8,
-                  height: 8,
-                  borderRadius: "50%",
-                  background: "#FFD700",
+                  textAlign: "right",
                 }}
-              />
-              <div
-                style={{
-                  width: 8,
-                  height: 8,
-                  borderRadius: "50%",
-                  background: "#00FF00",
-                }}
-              />
-              <div
-                style={{
-                  width: 8,
-                  height: 8,
-                  borderRadius: "50%",
-                  background: "#FF6347",
-                }}
-              />
+              >
+                <div
+                  style={{
+                    fontSize: "0.65rem",
+                    fontWeight: 700,
+                    letterSpacing: "0.1em",
+                    color: "var(--accent)",
+                    textTransform: "uppercase",
+                    marginBottom: "0.4rem",
+                  }}
+                >
+                  Net Profit
+                </div>
+                <div
+                  style={{
+                    fontSize: "0.85rem",
+                    color: "var(--accent)",
+                    fontWeight: 600,
+                  }}
+                >
+                  ↑ 23.4% vs last month
+                </div>
+              </div>
             </div>
 
-            {/* Stats */}
-            <div style={{ marginBottom: "1.5rem" }}>
+            {/* Platform breakdown — Three pills */}
+            <div style={{ marginBottom: "2rem" }}>
               <div
                 style={{
                   fontSize: "0.65rem",
@@ -186,68 +215,61 @@ export default function Hero() {
                   letterSpacing: "0.1em",
                   color: "var(--text-muted)",
                   textTransform: "uppercase",
-                  marginBottom: "0.5rem",
+                  marginBottom: "0.75rem",
                 }}
               >
-                Net Profit
+                Top Platforms
               </div>
-              <div style={{ display: "flex", alignItems: "baseline", gap: "0.7rem" }}>
-                <span
-                  className="serif"
+              <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
+                <div
                   style={{
-                    fontSize: "2.2rem",
-                    fontWeight: 600,
+                    background: "var(--paper-soft)",
+                    border: "1px solid var(--border)",
+                    borderRadius: "3px",
+                    padding: "0.5rem 0.85rem",
+                    fontSize: "0.8rem",
                     color: "var(--ink)",
+                    fontWeight: 500,
                   }}
                 >
-                  $4,827
-                </span>
-                <span
+                  StockX <span style={{ color: "var(--accent)" }}>$2,140</span>
+                </div>
+                <div
                   style={{
-                    fontSize: "0.85rem",
-                    color: "var(--accent)",
-                    fontWeight: 600,
+                    background: "var(--paper-soft)",
+                    border: "1px solid var(--border)",
+                    borderRadius: "3px",
+                    padding: "0.5rem 0.85rem",
+                    fontSize: "0.8rem",
+                    color: "var(--ink)",
+                    fontWeight: 500,
                   }}
                 >
-                  ↑ 23.4%
-                </span>
+                  eBay <span style={{ color: "var(--text-secondary)" }}>$1,420</span>
+                </div>
+                <div
+                  style={{
+                    background: "var(--paper-soft)",
+                    border: "1px solid var(--border)",
+                    borderRadius: "3px",
+                    padding: "0.5rem 0.85rem",
+                    fontSize: "0.8rem",
+                    color: "var(--ink)",
+                    fontWeight: 500,
+                  }}
+                >
+                  Depop <span style={{ color: "var(--text-secondary)" }}>$1,267</span>
+                </div>
               </div>
             </div>
 
-            {/* Sparkline */}
-            <svg
-              viewBox="0 0 280 60"
-              style={{ width: "100%", height: 50, marginBottom: "1.5rem" }}
-            >
-              <defs>
-                <linearGradient id="spark" x1="0" y1="0" x2="0" y2="1">
-                  <stop
-                    offset="0%"
-                    stopColor="var(--accent)"
-                    stopOpacity="0.2"
-                  />
-                  <stop offset="100%" stopColor="var(--accent)" stopOpacity="0" />
-                </linearGradient>
-              </defs>
-              <path
-                d="M0,45 Q35,42 60,38 T120,30 T180,22 T240,15 L280,12 L280,60 L0,60 Z"
-                fill="url(#spark)"
-              />
-              <path
-                d="M0,45 Q35,42 60,38 T120,30 T180,22 T240,15 L280,12"
-                fill="none"
-                stroke="var(--accent)"
-                strokeWidth="1.5"
-              />
-            </svg>
-
-            {/* Insight card */}
+            {/* Key metric */}
             <div
               style={{
-                background: "var(--paper-soft)",
-                border: "1px solid var(--border)",
+                background: "var(--accent-soft)",
+                border: "1px solid var(--accent)",
                 borderRadius: "4px",
-                padding: "1rem",
+                padding: "0.9rem 1.1rem",
               }}
             >
               <div
@@ -257,22 +279,21 @@ export default function Hero() {
                   letterSpacing: "0.1em",
                   color: "var(--accent)",
                   textTransform: "uppercase",
-                  marginBottom: "0.4rem",
+                  marginBottom: "0.3rem",
                 }}
               >
-                AI Insight
+                Insight
               </div>
               <p
                 style={{
-                  fontSize: "0.85rem",
-                  color: "var(--text-secondary)",
+                  fontSize: "0.8rem",
+                  color: "var(--ink)",
                   lineHeight: 1.5,
                   margin: 0,
+                  fontWeight: 500,
                 }}
               >
-                StockX margins are{" "}
-                <strong style={{ color: "var(--ink)" }}>14% higher</strong> than
-                eBay. Reallocate inventory there.
+                Reselling margin: <strong>28.5%</strong> — your best month yet.
               </p>
             </div>
           </div>
