@@ -75,12 +75,17 @@ function TitleScene() {
   const fadeIn = interpolate(frame, [0, 18], [0, 1], { extrapolateRight: "clamp" });
   const fadeOut = interpolate(frame, [3 * fps, 4 * fps], [1, 0], { extrapolateLeft: "clamp" });
   const opacity = Math.min(fadeIn, fadeOut);
-  const yOffset = interpolate(frame, [0, 24], [12, 0], { extrapolateRight: "clamp" });
+  const yOffset = interpolate(frame, [0, 24], [20, 0], { extrapolateRight: "clamp" });
+  const logoScale = interpolate(frame, [0, 12], [0.7, 1], { extrapolateRight: "clamp" });
+  const logoRotate = interpolate(frame, [0, 18], [0, 0.5], { extrapolateRight: "clamp" });
   const accentReveal = interpolate(frame, [16, 38], [0, 1], { extrapolateRight: "clamp", extrapolateLeft: "clamp" });
+  const subtitleFade = interpolate(frame, [24, 40], [0, 1], { extrapolateRight: "clamp", extrapolateLeft: "clamp" });
 
   return (
     <AbsoluteFill style={{ alignItems: "center", justifyContent: "center", textAlign: "center", opacity, transform: `translateY(${yOffset}px)` }}>
-      <FlipLogo size={56} />
+      <div style={{ transform: `scale(${logoScale}) rotateY(${logoRotate * 15}deg)` }}>
+        <FlipLogo size={56} />
+      </div>
       <h1
         style={{
           fontFamily: SERIF,
@@ -90,6 +95,7 @@ function TitleScene() {
           letterSpacing: "-0.035em",
           lineHeight: 1.05,
           margin: "32px 0 18px",
+          transform: `translateY(${(1 - fadeIn) * 20}px)`,
         }}
       >
         Reseller finance,
@@ -109,7 +115,7 @@ function TitleScene() {
           made simple.
         </span>
       </h1>
-      <p style={{ color: TEXT_SECONDARY, fontSize: 24, maxWidth: 760, lineHeight: 1.45 }}>
+      <p style={{ color: TEXT_SECONDARY, fontSize: 24, maxWidth: 760, lineHeight: 1.45, opacity: subtitleFade, transform: `translateY(${(1 - subtitleFade) * 10}px)` }}>
         Track real profit on every flip — across eBay, StockX, Depop, Amazon, and more.
       </p>
     </AbsoluteFill>
@@ -123,18 +129,19 @@ function AddItemScene() {
 
   const cardEnter = easedSpring(frame, fps, 0);
   const fadeOut = interpolate(frame, [5 * fps, 6 * fps], [1, 0], { extrapolateLeft: "clamp" });
-  const cardScale = interpolate(cardEnter, [0, 1], [0.94, 1]);
+  const cardScale = interpolate(cardEnter, [0, 1], [0.88, 1]);
+  const cardY = interpolate(cardEnter, [0, 1], [40, 0]);
   const opacity = Math.min(cardEnter, fadeOut);
 
-  // Field reveal timings
+  // Field reveal timings with stagger
   const f = (delay: number) => interpolate(frame, [delay, delay + 12], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const f1 = f(15);
-  const f2 = f(35);
-  const f3 = f(55);
-  const f4 = f(75);
+  const f2 = f(30);
+  const f3 = f(50);
+  const f4 = f(70);
 
   // Save button pulse
-  const saveDelay = 110;
+  const saveDelay = 105;
   const saveEnter = interpolate(frame, [saveDelay, saveDelay + 14], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const savePress = interpolate(frame, [saveDelay + 28, saveDelay + 36, saveDelay + 44], [1, 0.94, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
 
@@ -147,8 +154,8 @@ function AddItemScene() {
           border: `1px solid ${BORDER}`,
           borderRadius: 18,
           padding: "44px 48px",
-          transform: `scale(${cardScale})`,
-          boxShadow: "0 20px 60px rgba(31,30,29,0.10)",
+          transform: `scale(${cardScale}) translateY(${cardY}px)`,
+          boxShadow: `0 20px 60px rgba(31,30,29,${0.10 * cardEnter})`,
         }}
       >
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 28 }}>
@@ -253,16 +260,17 @@ function StatsScene() {
   const fadeIn = interpolate(frame, [0, 18], [0, 1], { extrapolateRight: "clamp" });
   const fadeOut = interpolate(frame, [5 * fps, 6 * fps], [1, 0], { extrapolateLeft: "clamp" });
   const opacity = Math.min(fadeIn, fadeOut);
+  const titleY = interpolate(fadeIn, [0, 1], [20, 0]);
 
   const profit = interpolate(frame, [10, 70], [0, 44.78], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const revenue = interpolate(frame, [25, 85], [0, 158], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const margin = interpolate(frame, [40, 100], [0, 28.3], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
 
-  const cardEnter = (i: number) => spring({ frame: frame - i * 6, fps, config: { damping: 14 } });
+  const cardEnter = (i: number) => spring({ frame: frame - i * 8, fps, config: { damping: 14 } });
 
   return (
     <AbsoluteFill style={{ alignItems: "center", justifyContent: "center", opacity }}>
-      <div style={{ textAlign: "center", marginBottom: 36 }}>
+      <div style={{ textAlign: "center", marginBottom: 36, transform: `translateY(${titleY}px)` }}>
         <div
           style={{
             fontSize: 13,
@@ -271,6 +279,7 @@ function StatsScene() {
             letterSpacing: "0.14em",
             textTransform: "uppercase",
             marginBottom: 12,
+            opacity: fadeIn,
           }}
         >
           Your dashboard, live
@@ -310,6 +319,7 @@ function StatCard({
   tone?: "positive";
   enter: number;
 }) {
+  const borderGlow = interpolate(enter, [0, 1], [0, 0.3]);
   return (
     <div
       style={{
@@ -318,7 +328,8 @@ function StatCard({
         borderRadius: 14,
         padding: "26px 28px",
         opacity: enter,
-        transform: `translateY(${(1 - enter) * 18}px)`,
+        transform: `translateY(${(1 - enter) * 24}px) scale(${interpolate(enter, [0, 1], [0.92, 1])})`,
+        boxShadow: `0 8px 24px rgba(16,185,129,${borderGlow * 0.15})`,
       }}
     >
       <div style={{ fontSize: 13, fontWeight: 500, color: TEXT_SECONDARY, marginBottom: 10 }}>{label}</div>
@@ -346,6 +357,9 @@ function InsightsScene() {
   const fadeIn = interpolate(frame, [0, 18], [0, 1], { extrapolateRight: "clamp" });
   const fadeOut = interpolate(frame, [5 * fps, 6 * fps], [1, 0], { extrapolateLeft: "clamp" });
   const opacity = Math.min(fadeIn, fadeOut);
+  const cardEnter = easedSpring(frame, fps, 0);
+  const cardScale = interpolate(cardEnter, [0, 1], [0.88, 1]);
+  const cardY = interpolate(cardEnter, [0, 1], [40, 0]);
 
   const insights = [
     "Your average margin is 37.6% across 14 sold items.",
@@ -353,7 +367,7 @@ function InsightsScene() {
     "5 items in inventory have $640 of capital tied up.",
   ];
   const insightReveal = (i: number) =>
-    interpolate(frame, [12 + i * 30, 36 + i * 30], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+    interpolate(frame, [15 + i * 28, 40 + i * 28], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
 
   return (
     <AbsoluteFill style={{ alignItems: "center", justifyContent: "center", opacity }}>
@@ -364,7 +378,8 @@ function InsightsScene() {
           border: `1px solid ${BORDER}`,
           borderRadius: 18,
           padding: "36px 44px",
-          boxShadow: "0 20px 60px rgba(31,30,29,0.08)",
+          transform: `scale(${cardScale}) translateY(${cardY}px)`,
+          boxShadow: `0 20px 60px rgba(31,30,29,${0.08 * cardEnter})`,
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 24 }}>
@@ -450,11 +465,15 @@ function CTAScene() {
   const { fps } = useVideoConfig();
   const enter = easedSpring(frame, fps, 0);
   const opacity = interpolate(frame, [0, 18], [0, 1], { extrapolateRight: "clamp" });
-  const scale = interpolate(enter, [0, 1], [0.95, 1]);
+  const scale = interpolate(enter, [0, 1], [0.88, 1]);
+  const buttonScale = interpolate(frame, [36, 60], [1, 1.05], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const buttonPulse = interpolate(frame, [50, 78], [1, 1.02], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
 
   return (
     <AbsoluteFill style={{ alignItems: "center", justifyContent: "center", opacity, transform: `scale(${scale})` }}>
-      <FlipLogo size={48} />
+      <div style={{ opacity, transform: `translateY(${(1 - opacity) * 20}px)` }}>
+        <FlipLogo size={48} />
+      </div>
       <h2 style={{ fontFamily: SERIF, fontSize: 76, fontWeight: 500, color: INK, margin: "28px 0 14px", letterSpacing: "-0.03em", textAlign: "center", lineHeight: 1 }}>
         Start free at{" "}
         <span style={{ fontStyle: "italic", color: ACCENT_DEEP }}>boltresell.ai</span>
@@ -470,6 +489,9 @@ function CTAScene() {
           borderRadius: 14,
           fontSize: 20,
           fontWeight: 500,
+          transform: `scale(${buttonScale * buttonPulse})`,
+          boxShadow: `0 12px 32px rgba(31,30,29,${0.3 * opacity})`,
+          cursor: "pointer",
         }}
       >
         Create your account →
