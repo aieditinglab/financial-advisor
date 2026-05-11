@@ -4,9 +4,9 @@ export default function Footer() {
   return (
     <footer
       style={{
-        background: "var(--ink)",
-        color: "rgba(245,244,237,0.7)",
-        padding: "4rem 1.5rem 2rem",
+        background: "var(--paper)",
+        borderTop: "1px solid var(--border)",
+        padding: "5rem 1.5rem 3rem",
       }}
     >
       <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
@@ -14,57 +14,47 @@ export default function Footer() {
           style={{
             display: "grid",
             gridTemplateColumns: "2fr 1fr 1fr 1fr",
-            gap: "2.5rem",
+            gap: "3rem",
             marginBottom: "3rem",
           }}
           className="footer-grid"
         >
           <div>
-            <Link href="/" style={{ display: "inline-flex", alignItems: "center", gap: "10px" }}>
+            <Link href="/" style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}>
               <div
                 style={{
-                  width: "28px",
-                  height: "28px",
-                  background: "linear-gradient(135deg, #E2725B, #D4604A)",
-                  borderRadius: "7px",
+                  width: "24px",
+                  height: "24px",
+                  background: "var(--accent)",
+                  borderRadius: "2px",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
+                  flexShrink: 0,
                 }}
               >
-                <svg width="12" height="14" viewBox="0 0 14 16" fill="none">
-                  <path d="M8 1L2 9h5l-1 6 6-8H7l1-6z" fill="white" stroke="white" strokeWidth="0.5" strokeLinejoin="round" />
+                <svg width="12" height="14" viewBox="0 0 14 16" fill="white" aria-hidden="true">
+                  <path d="M8 1L2 9h5l-1 6 6-8H7l1-6z" fillRule="evenodd" />
                 </svg>
               </div>
               <span
                 className="serif"
-                style={{ fontWeight: 600, fontSize: "1.05rem", color: "var(--paper)" }}
+                style={{ fontWeight: 500, fontSize: "0.95rem", color: "var(--ink)" }}
               >
-                Bolt Resell AI
+                Bolt Resell
               </span>
             </Link>
             <p
               style={{
-                color: "rgba(245,244,237,0.55)",
-                fontSize: "0.88rem",
+                color: "var(--text-secondary)",
+                fontSize: "0.85rem",
                 lineHeight: 1.65,
                 maxWidth: "320px",
-                marginTop: "1rem",
+                marginTop: "1.25rem",
+                margin: "1.25rem 0 0 0",
               }}
             >
-              The financial tool built for resellers. Track profit, COGS, taxes, and
-              cash flow across every platform you sell on.
-            </p>
-            <p
-              style={{
-                color: "rgba(245,244,237,0.35)",
-                fontSize: "0.78rem",
-                lineHeight: 1.55,
-                maxWidth: "320px",
-                marginTop: "0.75rem",
-              }}
-            >
-              AI outputs are informational only — not financial, tax, or legal advice.
+              The operating system for resellers. Track inventory, profit, and insights across every marketplace in one dashboard.
             </p>
           </div>
 
@@ -72,10 +62,9 @@ export default function Footer() {
             title="Product"
             links={[
               { label: "Features", href: "#features" },
-              { label: "How it works", href: "#how" },
-              { label: "Stories", href: "#stories" },
-              { label: "Sign up", href: "/signup" },
-              { label: "Sign in", href: "/login" },
+              { label: "How it works", href: "#how-it-works" },
+              { label: "Testimonials", href: "#testimonials" },
+              { label: "Pricing", href: "#pricing" },
             ]}
           />
 
@@ -84,7 +73,7 @@ export default function Footer() {
             links={[
               { label: "Terms of Service", href: "/terms" },
               { label: "Privacy Policy", href: "/privacy" },
-              { label: "AI Disclaimer", href: "/disclaimer" },
+              { label: "Disclaimer", href: "/disclaimer" },
             ]}
           />
 
@@ -96,28 +85,26 @@ export default function Footer() {
 
         <div
           style={{
-            borderTop: "1px solid rgba(245,244,237,0.08)",
-            paddingTop: "1.5rem",
+            borderTop: "1px solid var(--border)",
+            paddingTop: "2rem",
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
             flexWrap: "wrap",
-            gap: "1rem",
+            gap: "1.5rem",
           }}
         >
-          <p style={{ color: "rgba(245,244,237,0.4)", fontSize: "0.78rem", margin: 0, lineHeight: 1.55, maxWidth: "640px" }}>
-            © 2025 Bolt Resell AI. Bolt Resell AI is a financial tracking tool, not a licensed
-            financial advisor. AI-generated insights are for informational purposes only
-            and do not constitute financial, tax, or legal advice.
+          <p style={{ color: "var(--text-muted)", fontSize: "0.8rem", margin: 0, lineHeight: 1.6, maxWidth: "600px" }}>
+            © 2025 Bolt Resell. Bolt Resell is a financial tracking tool, not a licensed financial advisor. All AI-generated insights are for informational purposes only and do not constitute financial, tax, or legal advice.
           </p>
-          <div style={{ display: "flex", gap: "1.25rem" }}>
-            <Link href="/privacy" style={{ color: "rgba(245,244,237,0.5)", fontSize: "0.78rem" }}>
+          <div style={{ display: "flex", gap: "1.5rem" }}>
+            <Link href="/privacy" className="fl-lift" style={{ color: "var(--text-secondary)", fontSize: "0.8rem" }}>
               Privacy
             </Link>
-            <Link href="/terms" style={{ color: "rgba(245,244,237,0.5)", fontSize: "0.78rem" }}>
+            <Link href="/terms" className="fl-lift" style={{ color: "var(--text-secondary)", fontSize: "0.8rem" }}>
               Terms
             </Link>
-            <Link href="/disclaimer" style={{ color: "rgba(245,244,237,0.5)", fontSize: "0.78rem" }}>
+            <Link href="/disclaimer" className="fl-lift" style={{ color: "var(--text-secondary)", fontSize: "0.8rem" }}>
               Disclaimer
             </Link>
           </div>
@@ -147,12 +134,13 @@ function FooterColumn({
     <div>
       <h4
         style={{
-          color: "var(--paper)",
-          fontSize: "0.78rem",
-          fontWeight: 600,
-          letterSpacing: "0.08em",
+          color: "var(--ink)",
+          fontSize: "0.7rem",
+          fontWeight: 700,
+          letterSpacing: "0.15em",
           textTransform: "uppercase",
-          marginBottom: "1rem",
+          marginBottom: "1.25rem",
+          margin: "0 0 1.25rem 0",
         }}
       >
         {title}
@@ -164,17 +152,17 @@ function FooterColumn({
           margin: 0,
           display: "flex",
           flexDirection: "column",
-          gap: "0.55rem",
+          gap: "0.75rem",
         }}
       >
         {links.map((l) => (
           <li key={l.label}>
             <Link
               href={l.href}
+              className="fl-lift"
               style={{
-                color: "rgba(245,244,237,0.55)",
+                color: "var(--text-secondary)",
                 fontSize: "0.85rem",
-                transition: "color 0.15s",
                 display: "inline-block",
               }}
             >

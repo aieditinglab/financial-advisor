@@ -1,177 +1,211 @@
+"use client";
+
+import { useState } from "react";
+
 const testimonials = [
   {
     quote:
       "I was flipping sneakers across StockX and eBay with no idea which one was actually making me money. Bolt's AI insights showed me my StockX margins were 18% higher. Reallocated my inventory and my monthly profit doubled in 60 days.",
     name: "Marcus J.",
     detail: "Sneaker reseller · $12k/mo GMV",
-    dark: true,
   },
   {
     quote:
       "The vendor directory alone is worth it. Found two reliable suppliers I'd never heard of, and the step-by-step guide gave me the confidence to scale up from a side hustle to actually paying my rent with this.",
     name: "Sarah L.",
     detail: "Depop & Poshmark seller",
-    dark: false,
   },
   {
     quote:
       "I used to track everything in a janky spreadsheet. Bolt's dashboard auto-calculates every fee, every shipping cost, every margin. The tax estimator alone saved me from a nasty surprise at filing time.",
     name: "Dev P.",
     detail: "Multi-platform reseller · 4 years",
-    dark: false,
   },
   {
     quote:
       "The AI chat is genuinely useful. I ask it stuff like \"should I list more or hold inventory\" and it actually looks at my real numbers and tells me. Feels like having a CFO for a side hustle.",
     name: "Riley K.",
     detail: "Vintage & streetwear flips",
-    dark: true,
   },
 ];
 
 export default function Testimonials() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const current = testimonials[currentIndex];
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
+
   return (
     <section
       id="testimonials"
       style={{
         background: "var(--paper)",
         padding: "7rem 1.5rem",
-        borderTop: "1px solid var(--border-subtle)",
+        borderTop: "1px solid var(--border)",
       }}
     >
-      <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+      <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
         {/* Section header */}
-        <div style={{ marginBottom: "3.75rem", maxWidth: "600px" }}>
+        <div style={{ marginBottom: "3rem", maxWidth: "600px" }}>
           <span
             style={{
               display: "inline-block",
-              color: "var(--accent-deep)",
-              fontSize: "0.72rem",
+              color: "var(--accent)",
+              fontSize: "0.7rem",
               fontWeight: 700,
-              letterSpacing: "0.13em",
+              letterSpacing: "0.15em",
               textTransform: "uppercase",
-              marginBottom: "0.85rem",
+              marginBottom: "1rem",
             }}
           >
             Client Stories
           </span>
           <h2
+            className="serif-display"
             style={{
-              fontSize: "clamp(2rem, 4.5vw, 2.9rem)",
-              fontWeight: 700,
+              fontSize: "clamp(2rem, 4vw, 2.8rem)",
               color: "var(--ink)",
-              letterSpacing: "-0.025em",
-              lineHeight: 1.12,
+              lineHeight: 1.2,
+              marginBottom: "1.5rem",
             }}
           >
-            Twenty years of trust, one family at a time.
+            Resellers who changed their business.
           </h2>
         </div>
 
-        {/* Testimonial grid */}
+        {/* Single quote display */}
         <div
+          className="fl-reveal"
           style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(2, 1fr)",
-            gap: "1.25rem",
+            maxWidth: "700px",
+            marginBottom: "3rem",
           }}
-          className="testimonials-grid"
         >
-          {testimonials.map((t) => (
+          {/* Large serif italic quote */}
+          <blockquote
+            className="serif-display"
+            style={{
+              fontSize: "clamp(1.5rem, 3.5vw, 2rem)",
+              fontStyle: "italic",
+              color: "var(--ink)",
+              lineHeight: 1.4,
+              margin: "0 0 2rem",
+              letterSpacing: "-0.02em",
+            }}
+          >
+            "{current.quote}"
+          </blockquote>
+
+          {/* Attribution */}
+          <div>
             <div
-              key={t.name}
               style={{
-                background: t.dark ? "var(--ink)" : "var(--surface)",
-                border: t.dark ? "none" : "1px solid var(--border)",
-                borderRadius: "var(--r-xl)",
-                padding: "2.25rem 2rem",
-                position: "relative",
-                display: "flex",
-                flexDirection: "column",
+                fontSize: "0.9rem",
+                fontWeight: 600,
+                color: "var(--ink)",
+                marginBottom: "0.25rem",
               }}
             >
-              {/* Large quotation mark */}
-              <span
-                aria-hidden="true"
-                style={{
-                  display: "block",
-                  fontSize: "4.5rem",
-                  lineHeight: 0.8,
-                  color: t.dark ? "rgba(201,168,76,0.3)" : "var(--border-strong)",
-                  fontFamily: "Georgia, serif",
-                  marginBottom: "0.75rem",
-                  userSelect: "none",
-                }}
-              >
-                &ldquo;
-              </span>
-
-              {/* Quote */}
-              <blockquote
-                style={{
-                  fontSize: "0.97rem",
-                  color: t.dark ? "rgba(250,250,248,0.78)" : "var(--text-secondary)",
-                  lineHeight: 1.72,
-                  margin: "0 0 1.75rem",
-                  flex: 1,
-                }}
-              >
-                {t.quote}
-              </blockquote>
-
-              {/* Attribution */}
-              <div style={{ display: "flex", alignItems: "center", gap: "0.85rem" }}>
-                <div
-                  style={{
-                    width: "38px",
-                    height: "38px",
-                    borderRadius: "50%",
-                    background: t.dark
-                      ? "rgba(201,168,76,0.18)"
-                      : "var(--accent-soft)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    flexShrink: 0,
-                  }}
-                >
-                  <span
-                    style={{
-                      fontSize: "0.72rem",
-                      fontWeight: 700,
-                      color: t.dark ? "#C9A84C" : "var(--accent-deep)",
-                      letterSpacing: "0.04em",
-                    }}
-                  >
-                    {t.name
-                      .split(" ")
-                      .map((w) => w[0])
-                      .join("")}
-                  </span>
-                </div>
-                <div>
-                  <div
-                    style={{
-                      fontSize: "0.88rem",
-                      fontWeight: 600,
-                      color: t.dark ? "#FAFAF8" : "var(--ink)",
-                      marginBottom: "0.15rem",
-                    }}
-                  >
-                    {t.name}
-                  </div>
-                  <div
-                    style={{
-                      fontSize: "0.78rem",
-                      color: t.dark ? "rgba(250,250,248,0.45)" : "var(--text-muted)",
-                    }}
-                  >
-                    {t.detail}
-                  </div>
-                </div>
-              </div>
+              {current.name}
             </div>
-          ))}
+            <div
+              style={{
+                fontSize: "0.85rem",
+                color: "var(--text-secondary)",
+              }}
+            >
+              {current.detail}
+            </div>
+          </div>
+        </div>
+
+        {/* Navigation */}
+        <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
+          <button
+            onClick={handlePrev}
+            aria-label="Previous testimonial"
+            style={{
+              background: "transparent",
+              border: "1px solid var(--border)",
+              borderRadius: "3px",
+              width: "36px",
+              height: "36px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+              color: "var(--accent)",
+              transition: "border-color 280ms ease, background 280ms ease",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = "var(--accent)";
+              e.currentTarget.style.background = "var(--accent-soft)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = "var(--border)";
+              e.currentTarget.style.background = "transparent";
+            }}
+          >
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M10 4L6 8l4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
+
+          {/* Indicator dots */}
+          <div style={{ display: "flex", gap: "0.5rem" }}>
+            {testimonials.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrentIndex(i)}
+                aria-label={`Go to testimonial ${i + 1}`}
+                style={{
+                  width: "8px",
+                  height: "8px",
+                  borderRadius: "50%",
+                  background: i === currentIndex ? "var(--accent)" : "var(--border)",
+                  border: "none",
+                  cursor: "pointer",
+                  transition: "background 280ms ease",
+                }}
+              />
+            ))}
+          </div>
+
+          <button
+            onClick={handleNext}
+            aria-label="Next testimonial"
+            style={{
+              background: "transparent",
+              border: "1px solid var(--border)",
+              borderRadius: "3px",
+              width: "36px",
+              height: "36px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+              color: "var(--accent)",
+              transition: "border-color 280ms ease, background 280ms ease",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = "var(--accent)";
+              e.currentTarget.style.background = "var(--accent-soft)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = "var(--border)";
+              e.currentTarget.style.background = "transparent";
+            }}
+          >
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M6 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
         </div>
 
         {/* Compliance footnote */}
@@ -184,13 +218,9 @@ export default function Testimonials() {
             maxWidth: "680px",
           }}
         >
-          * Testimonials are from current clients and reflect their individual experiences. Past results are not indicative of future performance. Names have been abbreviated for privacy. Testimonials have been reviewed and released in compliance with applicable regulations.
+          * Testimonials are from current clients and reflect their individual experiences. Past results are not indicative of future performance. Testimonials have been reviewed and released in compliance with applicable regulations.
         </p>
       </div>
-
-      <style>{`
-        @media (max-width: 768px) { .testimonials-grid { grid-template-columns: 1fr !important; } }
-      `}</style>
     </section>
   );
 }

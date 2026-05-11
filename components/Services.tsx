@@ -105,151 +105,108 @@ export default function Services() {
       style={{
         background: "var(--paper)",
         padding: "7rem 1.5rem",
-        borderTop: "1px solid var(--border-subtle)",
+        borderTop: "1px solid var(--border)",
       }}
     >
-      <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+      <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
         {/* Section header */}
-        <div style={{ marginBottom: "3.75rem", maxWidth: "620px" }}>
+        <div style={{ marginBottom: "4rem", maxWidth: "600px" }}>
           <span
             style={{
               display: "inline-block",
-              color: "var(--accent, #E2725B)",
-              fontSize: "0.72rem",
+              color: "var(--accent)",
+              fontSize: "0.7rem",
               fontWeight: 700,
-              letterSpacing: "0.13em",
+              letterSpacing: "0.15em",
               textTransform: "uppercase",
-              marginBottom: "0.85rem",
-            }}
-          >
-            Features
-          </span>
-          <h2
-            style={{
-              fontSize: "clamp(2rem, 4.5vw, 2.9rem)",
-              fontWeight: 700,
-              color: "var(--ink)",
-              letterSpacing: "-0.025em",
-              lineHeight: 1.12,
               marginBottom: "1rem",
             }}
           >
-            Everything you need to flip profitably.
+            What You Get
+          </span>
+          <h2
+            className="serif-display"
+            style={{
+              fontSize: "clamp(2rem, 4vw, 2.8rem)",
+              color: "var(--ink)",
+              lineHeight: 1.2,
+              marginBottom: "1.5rem",
+            }}
+          >
+            Everything a reseller needs.
           </h2>
-          <p style={{ color: "var(--text-secondary)", fontSize: "1rem", lineHeight: 1.65 }}>
-            From sourcing to selling, Bolt Resell AI gives you the tools and intelligence to grow your reselling business.
+          <p style={{ color: "var(--text-secondary)", fontSize: "1rem", lineHeight: 1.7 }}>
+            From tracking to insights to market research. One dashboard, all platforms.
           </p>
         </div>
 
-        {/* Service cards grid */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: "1.25rem",
-          }}
-          className="services-grid"
-        >
-          {services.map((svc, idx) => (
+        {/* Services list — editorial, no cards */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "2.5rem" }}>
+          {services.map((svc) => (
             <div
               key={svc.title}
-              className="fl-card-premium fl-lift"
+              className="fl-reveal"
               style={{
-                background: "var(--surface)",
-                border: "1px solid var(--border)",
-                position: "relative",
-                overflow: "hidden",
+                display: "grid",
+                gridTemplateColumns: "60px 1fr",
+                gap: "2rem",
+                paddingBottom: "2.5rem",
+                borderBottom: "1px solid var(--border)",
               }}
             >
               {/* Icon */}
               <div
                 style={{
-                  width: "52px",
-                  height: "52px",
-                  borderRadius: "14px",
-                  background: idx % 3 === 0
-                    ? "linear-gradient(135deg, var(--sage-soft), rgba(138,154,91,0.15))"
-                    : idx % 3 === 1
-                    ? "linear-gradient(135deg, var(--accent-soft), rgba(212,96,74,0.12))"
-                    : "linear-gradient(135deg, var(--gold-soft), rgba(201,168,118,0.15))",
-                  color: idx % 3 === 0
-                    ? "var(--sage-deep, #5A6B3B)"
-                    : idx % 3 === 1
-                    ? "var(--accent-deep, #A03F2D)"
-                    : "var(--gold-deep, #9F8454)",
+                  width: "40px",
+                  height: "40px",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  marginBottom: "1.25rem",
+                  color: "var(--accent)",
                   flexShrink: 0,
-                  border: "1px solid rgba(0,0,0,0.04)",
                 }}
               >
                 {svc.icon}
               </div>
 
-              {/* Title */}
-              <h3
-                style={{
-                  fontSize: "1rem",
-                  fontWeight: 700,
-                  color: "var(--ink)",
-                  marginBottom: "0.55rem",
-                  letterSpacing: "-0.01em",
-                }}
-              >
-                {svc.title}
-              </h3>
-
-              {/* Description */}
-              <p
-                style={{
-                  fontSize: "0.88rem",
-                  color: "var(--text-secondary)",
-                  lineHeight: 1.6,
-                  marginBottom: "1.1rem",
-                }}
-              >
-                {svc.description}
-              </p>
-
-              {/* Feature bullets */}
-              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.45rem" }}>
-                {svc.features.map((f) => (
-                  <li
-                    key={f}
-                    style={{
-                      display: "flex",
-                      alignItems: "flex-start",
-                      gap: "0.55rem",
-                      fontSize: "0.82rem",
-                      color: "var(--text-muted)",
-                      lineHeight: 1.45,
-                    }}
-                  >
-                    <span
-                      style={{
-                        display: "inline-block",
-                        width: "4px",
-                        height: "4px",
-                        borderRadius: "50%",
-                        background: "var(--accent, #E2725B)",
-                        marginTop: "0.45rem",
-                        flexShrink: 0,
-                      }}
-                    />
-                    {f}
-                  </li>
-                ))}
-              </ul>
+              {/* Content */}
+              <div>
+                <h3
+                  style={{
+                    fontSize: "1rem",
+                    fontWeight: 600,
+                    color: "var(--ink)",
+                    marginBottom: "0.5rem",
+                    margin: 0,
+                  }}
+                >
+                  {svc.title}
+                </h3>
+                <p
+                  style={{
+                    fontSize: "0.95rem",
+                    color: "var(--text-secondary)",
+                    lineHeight: 1.6,
+                    margin: 0,
+                  }}
+                >
+                  {svc.description}
+                </p>
+              </div>
             </div>
           ))}
         </div>
       </div>
 
       <style>{`
-        @media (max-width: 1024px) { .services-grid { grid-template-columns: repeat(2, 1fr) !important; } }
-        @media (max-width: 640px) { .services-grid { grid-template-columns: 1fr !important; } }
+        @media (max-width: 768px) {
+          .services-grid {
+            grid-template-columns: 1fr !important;
+          }
+          [style*="grid-template-columns: 60px 1fr"] {
+            grid-template-columns: 1fr !important;
+          }
+        }
       `}</style>
     </section>
   );

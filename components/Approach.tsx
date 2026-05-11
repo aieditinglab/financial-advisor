@@ -30,33 +30,18 @@ export default function Approach() {
     <section
       id="how-it-works"
       style={{
-        background: "linear-gradient(180deg, var(--paper) 0%, var(--paper-soft) 100%)",
+        background: "var(--paper)",
         padding: "7rem 1.5rem",
-        position: "relative",
-        overflow: "hidden",
       }}
     >
-      {/* Decorative background blobs */}
-      <span
-        aria-hidden="true"
-        className="fl-blob"
-        style={{
-          top: "10%",
-          right: "-100px",
-          width: "300px",
-          height: "300px",
-          background: "rgba(212,96,74,0.08)",
-        }}
-      />
-
-      <div style={{ maxWidth: "1100px", margin: "0 auto", position: "relative" }}>
+      <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
         {/* Section header */}
-        <div style={{ marginBottom: "4.5rem", maxWidth: "680px" }}>
+        <div style={{ marginBottom: "4rem", maxWidth: "600px" }}>
           <span
             style={{
               display: "inline-block",
               color: "var(--accent)",
-              fontSize: "0.72rem",
+              fontSize: "0.7rem",
               fontWeight: 700,
               letterSpacing: "0.15em",
               textTransform: "uppercase",
@@ -66,47 +51,44 @@ export default function Approach() {
             How It Works
           </span>
           <h2
-            className="serif"
+            className="serif-display"
             style={{
-              fontSize: "clamp(2.2rem, 5vw, 3.2rem)",
-              fontWeight: 500,
+              fontSize: "clamp(2rem, 4vw, 2.8rem)",
               color: "var(--ink)",
-              letterSpacing: "-0.025em",
-              lineHeight: 1.05,
-              marginBottom: "1.25rem",
+              lineHeight: 1.2,
+              marginBottom: "1.5rem",
             }}
           >
-            From scattered receipts to <span className="fl-gradient-accent" style={{ fontStyle: "italic" }}>complete clarity</span>.
+            From scattered receipts to complete clarity.
           </h2>
-          <p style={{ color: "var(--text-secondary)", fontSize: "1.08rem", lineHeight: 1.65, maxWidth: "560px" }}>
-            Four steps to take your reselling business from guesswork to a data-driven engine.
+          <p style={{ color: "var(--text-secondary)", fontSize: "1rem", lineHeight: 1.7 }}>
+            Four simple steps to transform your reselling business from guesswork into data-driven decisions.
           </p>
         </div>
 
-        {/* Steps */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+        {/* Steps — editorial list */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
           {steps.map((step, i) => (
             <div
               key={step.number}
-              className="fl-card-premium fl-lift"
+              className="fl-reveal"
               style={{
                 display: "grid",
-                gridTemplateColumns: "auto 1fr auto",
+                gridTemplateColumns: "80px 1fr",
                 gap: "2rem",
-                alignItems: "center",
+                paddingBottom: "2.5rem",
+                borderBottom: "1px solid var(--border)",
               }}
             >
               {/* Number */}
               <div
                 className="serif"
                 style={{
-                  fontSize: "clamp(2.5rem, 5vw, 3.5rem)",
-                  fontWeight: 400,
+                  fontSize: "2.5rem",
+                  fontWeight: 500,
                   color: "var(--accent)",
+                  lineHeight: 1.1,
                   letterSpacing: "-0.02em",
-                  lineHeight: 1,
-                  fontStyle: "italic",
-                  minWidth: "70px",
                 }}
               >
                 {step.number}
@@ -116,58 +98,31 @@ export default function Approach() {
               <div>
                 <h3
                   style={{
-                    fontSize: "clamp(1.15rem, 2vw, 1.4rem)",
+                    fontSize: "1.1rem",
                     fontWeight: 600,
                     color: "var(--ink)",
                     margin: "0 0 0.5rem",
-                    letterSpacing: "-0.015em",
+                    letterSpacing: "-0.01em",
                   }}
                 >
                   {step.title}
                 </h3>
                 <p
                   style={{
-                    fontSize: "0.96rem",
+                    fontSize: "0.95rem",
                     color: "var(--text-secondary)",
-                    lineHeight: 1.65,
+                    lineHeight: 1.6,
                     margin: 0,
-                    maxWidth: "640px",
+                    maxWidth: "620px",
                   }}
                 >
                   {step.description}
                 </p>
               </div>
-
-              {/* Arrow indicator */}
-              <div
-                style={{
-                  width: 36,
-                  height: 36,
-                  borderRadius: "50%",
-                  background: "var(--paper)",
-                  border: "1px solid var(--border)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: "var(--accent)",
-                  flexShrink: 0,
-                }}
-                className="step-arrow"
-              >
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </div>
             </div>
           ))}
         </div>
       </div>
-
-      <style>{`
-        @media (max-width: 640px) {
-          .step-arrow { display: none !important; }
-        }
-      `}</style>
     </section>
   );
 }

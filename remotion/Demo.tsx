@@ -10,17 +10,17 @@ import {
 } from "remotion";
 
 // ---------- Constants ----------
-const PAPER = "#F5F4ED";
-const PAPER_SOFT = "#FAF9F2";
+const PAPER = "#FAF9F6";
+const PAPER_SOFT = "#F5F1EB";
 const SURFACE = "#FFFFFF";
-const INK = "#1F1E1D";
+const INK = "#1A1A1A";
 const INK_SOFT = "#2E2C2A";
 const TEXT_SECONDARY = "#605F5C";
 const TEXT_MUTED = "#8C8A82";
 const BORDER = "#E5E2D6";
-const ACCENT = "#10B981";
-const ACCENT_DEEP = "#064E3B";
-const ACCENT_SOFT = "#E6F2EC";
+const ACCENT = "#D97757";
+const ACCENT_DEEP = "#CC785C";
+const ACCENT_SOFT = "#F0D9D3";
 
 const SERIF = `'Source Serif 4', 'Source Serif Pro', Charter, Georgia, serif`;
 const SANS = `Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif`;
@@ -42,7 +42,7 @@ export default function BoltResellDemo() {
       {/* Subtle paper grain */}
       <AbsoluteFill
         style={{
-          background: `radial-gradient(ellipse 50% 35% at 50% 30%, rgba(16,185,129,0.05) 0%, transparent 70%)`,
+          background: `radial-gradient(ellipse 50% 35% at 50% 30%, rgba(217,119,87,0.05) 0%, transparent 70%)`,
         }}
       />
 
@@ -329,7 +329,7 @@ function StatCard({
         padding: "26px 28px",
         opacity: enter,
         transform: `translateY(${(1 - enter) * 24}px) scale(${interpolate(enter, [0, 1], [0.92, 1])})`,
-        boxShadow: `0 8px 24px rgba(16,185,129,${borderGlow * 0.15})`,
+        boxShadow: `0 8px 24px rgba(217,119,87,${borderGlow * 0.15})`,
       }}
     >
       <div style={{ fontSize: 13, fontWeight: 500, color: TEXT_SECONDARY, marginBottom: 10 }}>{label}</div>

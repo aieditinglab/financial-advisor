@@ -20,8 +20,8 @@ export default function LegalShell({
     <div style={{ minHeight: "100vh", background: "var(--paper)", display: "flex", flexDirection: "column" }}>
       <header
         style={{
-          background: "var(--surface)",
-          borderBottom: "1px solid var(--border-subtle)",
+          background: "var(--paper)",
+          borderBottom: "1px solid var(--border)",
           padding: "0 1.5rem",
           height: "60px",
           display: "flex",
@@ -30,65 +30,62 @@ export default function LegalShell({
           position: "sticky",
           top: 0,
           zIndex: 30,
-          backdropFilter: "saturate(180%) blur(14px)",
+          backdropFilter: "blur(12px)",
+          WebkitBackdropFilter: "blur(12px)",
         }}
       >
-        <Link href="/" style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+        <Link href="/" style={{ display: "flex", alignItems: "center", gap: "8px" }}>
           <div
             style={{
-              width: "26px",
-              height: "26px",
-              background: "var(--ink)",
-              borderRadius: "6px",
+              width: "24px",
+              height: "24px",
+              background: "var(--accent)",
+              borderRadius: "2px",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
+              flexShrink: 0,
             }}
           >
-            <svg width="15" height="15" viewBox="0 0 18 18" fill="none">
-              <path
-                d="M2 12l3.5-3.5 2.5 2.5 3.5-4.5 3 2.5"
-                stroke="var(--paper)"
-                strokeWidth="1.75"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
+            <svg width="12" height="14" viewBox="0 0 14 16" fill="white" aria-hidden="true">
+              <path d="M8 1L2 9h5l-1 6 6-8H7l1-6z" fillRule="evenodd" />
             </svg>
           </div>
           <span
             className="serif"
-            style={{ fontWeight: 600, fontSize: "1rem", color: "var(--ink)" }}
+            style={{ fontWeight: 500, fontSize: "0.95rem", color: "var(--ink)" }}
           >
-            Bolt Resell AI
+            Bolt Resell
           </span>
         </Link>
         <Link
           href="/"
+          className="fl-lift"
           style={{
             color: "var(--text-secondary)",
-            fontSize: "0.85rem",
+            fontSize: "0.8rem",
             fontWeight: 500,
           }}
         >
-          ← Back to home
+          ← Back home
         </Link>
       </header>
 
-      <main style={{ flex: 1, maxWidth: "740px", margin: "0 auto", padding: "4rem 1.5rem 6rem", width: "100%" }}>
+      <main style={{ flex: 1, maxWidth: "800px", margin: "0 auto", padding: "4rem 1.5rem 5rem", width: "100%" }}>
         <div
           style={{
-            marginBottom: "2.5rem",
-            paddingBottom: "1.75rem",
-            borderBottom: "1px solid var(--border-subtle)",
+            marginBottom: "3rem",
+            paddingBottom: "2rem",
+            borderBottom: "1px solid var(--border)",
           }}
         >
           <span
             style={{
               display: "inline-block",
-              color: "var(--accent-deep)",
-              fontSize: "0.72rem",
-              fontWeight: 600,
-              letterSpacing: "0.12em",
+              color: "var(--accent)",
+              fontSize: "0.7rem",
+              fontWeight: 700,
+              letterSpacing: "0.15em",
               textTransform: "uppercase",
               marginBottom: "1rem",
             }}
@@ -96,20 +93,19 @@ export default function LegalShell({
             {eyebrow}
           </span>
           <h1
-            className="serif"
+            className="serif-display"
             style={{
-              fontSize: "clamp(2.25rem, 5vw, 3rem)",
-              fontWeight: 500,
+              fontSize: "clamp(2rem, 4vw, 2.8rem)",
               color: "var(--ink)",
-              letterSpacing: "-0.025em",
-              lineHeight: 1.1,
-              marginBottom: "0.75rem",
+              letterSpacing: "-0.02em",
+              lineHeight: 1.2,
+              marginBottom: "1rem",
             }}
           >
             {title}
           </h1>
-          <p style={{ color: "var(--text-muted)", fontSize: "0.875rem", margin: 0 }}>
-            Effective date: {effectiveDate}
+          <p style={{ color: "var(--text-muted)", fontSize: "0.85rem", margin: 0 }}>
+            Effective {effectiveDate}
           </p>
         </div>
 
@@ -117,9 +113,9 @@ export default function LegalShell({
 
         <div
           style={{
-            marginTop: "3.5rem",
-            paddingTop: "1.75rem",
-            borderTop: "1px solid var(--border-subtle)",
+            marginTop: "3rem",
+            paddingTop: "2rem",
+            borderTop: "1px solid var(--border)",
             display: "flex",
             justifyContent: "space-between",
             flexWrap: "wrap",
@@ -127,14 +123,14 @@ export default function LegalShell({
           }}
         >
           {prevPage ? (
-            <Link href={prevPage.href} style={{ color: "var(--accent-deep)", fontSize: "0.9rem", fontWeight: 500 }}>
+            <Link href={prevPage.href} className="fl-lift" style={{ color: "var(--accent)", fontSize: "0.9rem", fontWeight: 500 }}>
               ← {prevPage.label}
             </Link>
           ) : (
             <span />
           )}
           {nextPage && (
-            <Link href={nextPage.href} style={{ color: "var(--accent-deep)", fontSize: "0.9rem", fontWeight: 500 }}>
+            <Link href={nextPage.href} className="fl-lift" style={{ color: "var(--accent)", fontSize: "0.9rem", fontWeight: 500 }}>
               {nextPage.label} →
             </Link>
           )}
@@ -143,16 +139,17 @@ export default function LegalShell({
 
       <footer
         style={{
-          background: "var(--ink)",
-          padding: "1.75rem 1.5rem",
+          background: "var(--paper)",
+          borderTop: "1px solid var(--border)",
+          padding: "2rem 1.5rem",
           textAlign: "center",
         }}
       >
-        <p style={{ color: "rgba(245,244,237,0.45)", fontSize: "0.78rem", margin: 0 }}>
-          © 2025 Bolt Resell AI. Not financial advice. ·{" "}
-          <Link href="/terms" style={{ color: "rgba(245,244,237,0.55)" }}>Terms</Link> ·{" "}
-          <Link href="/privacy" style={{ color: "rgba(245,244,237,0.55)" }}>Privacy</Link> ·{" "}
-          <Link href="/disclaimer" style={{ color: "rgba(245,244,237,0.55)" }}>Disclaimer</Link>
+        <p style={{ color: "var(--text-muted)", fontSize: "0.8rem", margin: 0 }}>
+          © 2025 Bolt Resell. Not financial advice. ·{" "}
+          <Link href="/terms" className="fl-lift" style={{ color: "var(--text-secondary)" }}>Terms</Link> ·{" "}
+          <Link href="/privacy" className="fl-lift" style={{ color: "var(--text-secondary)" }}>Privacy</Link> ·{" "}
+          <Link href="/disclaimer" className="fl-lift" style={{ color: "var(--text-secondary)" }}>Disclaimer</Link>
         </p>
       </footer>
 

@@ -10,14 +10,7 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   return (
     <header
@@ -27,12 +20,10 @@ export default function Navbar() {
         left: 0,
         right: 0,
         zIndex: 50,
-        transition: "all 0.25s ease",
-        background: scrolled ? "rgba(31, 26, 20, 0.85)" : "transparent",
-        backdropFilter: scrolled ? "saturate(180%) blur(24px)" : "none",
-        WebkitBackdropFilter: scrolled ? "saturate(180%) blur(24px)" : "none",
-        borderBottom: scrolled ? "1px solid rgba(250,247,232,0.08)" : "1px solid transparent",
-        boxShadow: scrolled ? "0 8px 32px rgba(31,26,20,0.20)" : "none",
+        background: "var(--paper)",
+        borderBottom: "1px solid var(--border)",
+        backdropFilter: "blur(12px)",
+        WebkitBackdropFilter: "blur(12px)",
       }}
     >
       <div
@@ -40,68 +31,59 @@ export default function Navbar() {
           maxWidth: "1200px",
           margin: "0 auto",
           padding: "0 1.5rem",
-          height: "68px",
+          height: "60px",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
         }}
       >
-        {/* Logo */}
-        <Link href="/" style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+        {/* Logo — Serif wordmark */}
+        <Link
+          href="/"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "8px",
+            textDecoration: "none",
+          }}
+        >
           <div
-            className="fl-bolt-pulse"
             style={{
-              width: "32px",
-              height: "32px",
-              background: "linear-gradient(135deg, #D4604A 0%, #E07A5F 50%, #C24F3B 100%)",
-              borderRadius: "8px",
+              width: "24px",
+              height: "24px",
+              background: "var(--accent)",
+              borderRadius: "2px",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               flexShrink: 0,
-              boxShadow: "0 4px 16px rgba(212,96,74,0.35), inset 0 1px 0 rgba(255,255,255,0.20)",
             }}
           >
-            {/* Bolt icon */}
-            <svg width="15" height="17" viewBox="0 0 14 16" fill="none" aria-hidden="true">
-              <path
-                d="M8 1L2 9h5l-1 6 6-8H7l1-6z"
-                fill="white"
-                stroke="white"
-                strokeWidth="0.5"
-                strokeLinejoin="round"
-              />
+            <svg width="12" height="14" viewBox="0 0 14 16" fill="white" aria-hidden="true">
+              <path d="M8 1L2 9h5l-1 6 6-8H7l1-6z" fillRule="evenodd" />
             </svg>
           </div>
-          <span
-            style={{
-              fontWeight: 700,
-              fontSize: "1rem",
-              color: "rgba(255,253,208,0.95)",
-              letterSpacing: "-0.01em",
-            }}
-          >
-            Bolt Resell AI
+          <span className="serif" style={{ fontSize: "0.95rem", color: "var(--ink)" }}>
+            Bolt Resell
           </span>
         </Link>
 
-        {/* Desktop Nav */}
+        {/* Desktop Nav — Small Caps */}
         <nav
           className="hidden-mobile"
-          style={{ display: "flex", alignItems: "center", gap: "2.25rem" }}
+          style={{ display: "flex", alignItems: "center", gap: "2rem" }}
         >
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
+              className="small-caps fl-lift"
               style={{
-                color: "rgba(255,253,208,0.72)",
-                fontSize: "0.88rem",
-                fontWeight: 500,
-                transition: "color 160ms ease",
+                color: "var(--text-secondary)",
+                fontSize: "0.75rem",
+                fontWeight: 600,
+                cursor: "pointer",
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "rgba(255,253,208,1)")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,253,208,0.72)")}
             >
               {link.label}
             </a>
@@ -112,19 +94,17 @@ export default function Navbar() {
         <div className="hidden-mobile" style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
           <Link
             href="/login"
+            className="small-caps fl-lift"
             style={{
-              color: "rgba(255,253,208,0.8)",
-              fontSize: "0.88rem",
-              fontWeight: 500,
+              color: "var(--text-secondary)",
+              fontSize: "0.75rem",
+              fontWeight: 600,
+              cursor: "pointer",
             }}
           >
             Log in
           </Link>
-          <Link
-            href="/login"
-            className="bolt-btn-cta"
-            style={{ fontSize: "0.85rem", padding: "0.62rem 1.3rem" }}
-          >
+          <Link href="/login" className="bolt-btn-cta">
             Get Started Free
           </Link>
         </div>
@@ -139,16 +119,16 @@ export default function Navbar() {
             border: "none",
             cursor: "pointer",
             padding: "6px",
-            color: "rgba(255,253,208,0.9)",
+            color: "var(--ink)",
           }}
         >
           <svg
-            width="22"
-            height="22"
+            width="20"
+            height="20"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            strokeWidth="1.75"
+            strokeWidth="1.5"
             strokeLinecap="round"
           >
             {menuOpen ? (
@@ -171,12 +151,12 @@ export default function Navbar() {
       {menuOpen && (
         <div
           style={{
-            background: "rgba(61,43,31,0.98)",
-            borderTop: "1px solid rgba(255,253,208,0.08)",
+            background: "var(--paper-soft)",
+            borderTop: "1px solid var(--border)",
             padding: "1.25rem 1.5rem 1.75rem",
             display: "flex",
             flexDirection: "column",
-            gap: "1.1rem",
+            gap: "1rem",
           }}
         >
           {navLinks.map((link) => (
@@ -184,10 +164,11 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               onClick={() => setMenuOpen(false)}
+              className="small-caps"
               style={{
-                color: "rgba(255,253,208,0.82)",
-                fontSize: "1rem",
-                fontWeight: 500,
+                color: "var(--ink)",
+                fontSize: "0.75rem",
+                fontWeight: 600,
               }}
             >
               {link.label}
