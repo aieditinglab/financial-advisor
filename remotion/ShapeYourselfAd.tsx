@@ -69,6 +69,8 @@ export default function ShapeYourselfAd() {
           background: `radial-gradient(circle at 80% 80%, rgba(184,90,61,0.04), transparent 50%)`,
         }}
       />
+      {/* Drifting dust motes — cinematic depth, present across the whole film */}
+      <ParticleLayer />
 
       <Sequence from={0} durationInFrames={S1}>
         <TextIntroScene />
@@ -531,35 +533,39 @@ function QualityScene() {
             alignItems: "center",
             justifyContent: "space-between",
             marginBottom: 30,
+            gap: 24,
           }}
         >
-          <div>
-            <div
-              style={{
-                fontFamily: MONO,
-                fontSize: 12,
-                color: ACCENT_DEEP,
-                letterSpacing: "0.22em",
-                textTransform: "uppercase",
-                marginBottom: 10,
-              }}
-            >
-              The Collection
+          <div style={{ display: "flex", alignItems: "center", gap: 22 }}>
+            <TeeSilhouette />
+            <div>
+              <div
+                style={{
+                  fontFamily: MONO,
+                  fontSize: 12,
+                  color: ACCENT_DEEP,
+                  letterSpacing: "0.22em",
+                  textTransform: "uppercase",
+                  marginBottom: 10,
+                }}
+              >
+                The Collection
+              </div>
+              <h2
+                style={{
+                  fontFamily: SERIF,
+                  fontSize: 44,
+                  fontWeight: 500,
+                  color: INK,
+                  margin: 0,
+                  letterSpacing: "-0.02em",
+                  lineHeight: 1.1,
+                }}
+              >
+                Crafted with{" "}
+                <span style={{ fontStyle: "italic", color: ACCENT_DEEP }}>intention.</span>
+              </h2>
             </div>
-            <h2
-              style={{
-                fontFamily: SERIF,
-                fontSize: 44,
-                fontWeight: 500,
-                color: INK,
-                margin: 0,
-                letterSpacing: "-0.02em",
-                lineHeight: 1.1,
-              }}
-            >
-              Crafted with{" "}
-              <span style={{ fontStyle: "italic", color: ACCENT_DEEP }}>intention.</span>
-            </h2>
           </div>
           <div
             style={{
@@ -571,6 +577,7 @@ function QualityScene() {
               border: `1px solid ${BORDER}`,
               padding: "6px 12px",
               borderRadius: 999,
+              whiteSpace: "nowrap",
             }}
           >
             Live · 2026
@@ -752,11 +759,22 @@ function CTAScene() {
           display: "inline-flex",
           alignItems: "center",
           gap: 12,
+          position: "relative",
+          overflow: "hidden",
         }}
       >
-        Shop the Collection
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: `linear-gradient(115deg, transparent ${((frame * 1.2) % 220) - 30}%, rgba(217,119,87,0.32) ${(frame * 1.2) % 220}%, transparent ${((frame * 1.2) % 220) + 30}%)`,
+            pointerEvents: "none",
+          }}
+        />
+        <span style={{ position: "relative" }}>Shop the Collection</span>
         <span
           style={{
+            position: "relative",
             display: "inline-flex",
             width: 28,
             height: 28,
@@ -771,6 +789,90 @@ function CTAScene() {
           →
         </span>
       </div>
+    </AbsoluteFill>
+  );
+}
+
+// ---------- Tee silhouette ----------
+function TeeSilhouette() {
+  const frame = useCurrentFrame();
+  const float = Math.sin(frame / 28) * 4;
+  const sweep = (frame % 90) / 90; // 0 -> 1 across 3s
+  return (
+    <div
+      style={{
+        width: 80,
+        height: 80,
+        borderRadius: 14,
+        background: PAPER_SOFT,
+        border: `1px solid ${BORDER}`,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        position: "relative",
+        overflow: "hidden",
+        transform: `translateY(${float}px)`,
+      }}
+    >
+      {/* Subtle shine sweep for premium feel */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background: `linear-gradient(115deg, transparent ${sweep * 100 - 18}%, rgba(217,119,87,0.18) ${sweep * 100}%, transparent ${sweep * 100 + 18}%)`,
+        }}
+      />
+      <svg width="46" height="46" viewBox="0 0 64 64" fill="none">
+        <path
+          d="M22 8 L14 14 L8 20 L14 28 L20 24 L20 56 L44 56 L44 24 L50 28 L56 20 L50 14 L42 8 C42 12 38 16 32 16 C26 16 22 12 22 8 Z"
+          fill={INK}
+          stroke={INK}
+          strokeLinejoin="round"
+          strokeWidth="1.5"
+        />
+        <path
+          d="M26 30 L38 30"
+          stroke={ACCENT}
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+      </svg>
+    </div>
+  );
+}
+
+// ---------- Particle Layer ----------
+function ParticleLayer() {
+  const frame = useCurrentFrame();
+  // 18 deterministic motes — seeded so they're stable frame to frame
+  const motes = Array.from({ length: 18 }).map((_, i) => {
+    const seed = i * 137.508;
+    const baseX = (Math.sin(seed) * 0.5 + 0.5) * 100; // 0–100%
+    const baseY = (Math.cos(seed * 1.7) * 0.5 + 0.5) * 100;
+    const drift = Math.sin((frame + i * 24) / 120) * 12;
+    const driftY = Math.cos((frame + i * 19) / 140) * 10;
+    const size = 2 + (i % 4);
+    const twinkle = 0.18 + (Math.sin((frame + i * 11) / 30) * 0.5 + 0.5) * 0.32;
+    return { x: baseX + drift, y: baseY + driftY, size, opacity: twinkle, i };
+  });
+  return (
+    <AbsoluteFill style={{ pointerEvents: "none" }}>
+      {motes.map((m) => (
+        <div
+          key={m.i}
+          style={{
+            position: "absolute",
+            left: `${m.x}%`,
+            top: `${m.y}%`,
+            width: m.size,
+            height: m.size,
+            borderRadius: "50%",
+            background: ACCENT,
+            opacity: m.opacity * 0.35,
+            filter: "blur(0.5px)",
+          }}
+        />
+      ))}
     </AbsoluteFill>
   );
 }

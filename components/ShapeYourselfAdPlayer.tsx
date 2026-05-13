@@ -3,6 +3,7 @@
 import { Player } from "@remotion/player";
 import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
+import { createAmbience, type AmbienceHandle } from "@/lib/ambience";
 
 const Ad = dynamic(() => import("@/remotion/ShapeYourselfAd"), { ssr: false });
 
@@ -58,12 +59,14 @@ function speakFallback(text: string) {
 
 export default function ShapeYourselfAdPlayer() {
   const [voiceOn, setVoiceOn] = useState(true);
+  const [musicOn, setMusicOn] = useState(true);
   const [playing, setPlaying] = useState(false);
   const [loadingVoice, setLoadingVoice] = useState(false);
   const [started, setStarted] = useState(false);
   const playerRef = useRef<React.ComponentRef<typeof Player>>(null);
   const spokenRef = useRef<Set<number>>(new Set());
   const clipsRef = useRef<(HTMLAudioElement | null)[]>([]);
+  const ambienceRef = useRef<AmbienceHandle | null>(null);
 
   useEffect(() => {
     if (!playing) spokenRef.current = new Set();
@@ -72,15 +75,36 @@ export default function ShapeYourselfAdPlayer() {
   useEffect(() => {
     const player = playerRef.current;
     if (!player) return;
-    const onPlay = () => setPlaying(true);
-    const onPause = () => setPlaying(false);
+    const onPlay = () => {
+      setPlaying(true);
+      if (musicOn) {
+        if (!ambienceRef.current) ambienceRef.current = createAmbience();
+        ambienceRef.current?.start();
+      }
+    };
+    const onPause = () => {
+      setPlaying(false);
+      ambienceRef.current?.pause();
+    };
     player.addEventListener("play", onPlay);
     player.addEventListener("pause", onPause);
     return () => {
       player.removeEventListener("play", onPlay);
       player.removeEventListener("pause", onPause);
     };
-  }, []);
+  }, [musicOn]);
+
+  useEffect(() => {
+    ambienceRef.current?.setMuted(!musicOn);
+  }, [musicOn]);
+
+  useEffect(
+    () => () => {
+      ambienceRef.current?.stop();
+      ambienceRef.current = null;
+    },
+    [],
+  );
 
   useEffect(() => {
     if (!voiceOn || clipsRef.current.length > 0) return;
@@ -280,6 +304,22 @@ export default function ShapeYourselfAdPlayer() {
             }}
           >
             {loadingVoice ? "Loading voice…" : voiceOn ? "AI voice on" : "AI voice off"}
+          </button>
+          <button
+            onClick={() => setMusicOn((m) => !m)}
+            style={{
+              background: musicOn ? "var(--accent-soft)" : "transparent",
+              color: musicOn ? "var(--accent-hover)" : "var(--text-secondary)",
+              border: `1px solid ${musicOn ? "var(--accent)" : "var(--border)"}`,
+              padding: "0.55rem 1.1rem",
+              borderRadius: 999,
+              fontSize: "0.85rem",
+              fontWeight: 500,
+              cursor: "pointer",
+              fontFamily: "inherit",
+            }}
+          >
+            {musicOn ? "Music on" : "Music off"}
           </button>
           <span style={{ color: "var(--text-muted)", fontSize: "0.78rem" }}>
             28s · loops automatically
