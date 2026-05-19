@@ -26,7 +26,8 @@
       "Bash(xargs grep -l \"Meridian\")",
       "mcp__9800ca92-ecc8-42fa-9398-55a3e713e87e__get_project",
       "Bash(npx vercel *)",
-      "mcp__9800ca92-ecc8-42fa-9398-55a3e713e87e__get_deployment"
+      "mcp__9800ca92-ecc8-42fa-9398-55a3e713e87e__get_deployment",
+      "mcp__9800ca92-ecc8-42fa-9398-55a3e713e87e__list_deployments"
     ]
   }
 }
